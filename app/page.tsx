@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { 
@@ -64,11 +64,23 @@ const staggerChild = {
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showNavBackground, setShowNavBackground] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     requests: ''
   });
+
+  // Scroll detection for navigation background
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setShowNavBackground(scrollY > 50); // Show background after scrolling 50px
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
     // Create refs for different sections with scroll-triggered animations
   const [heroRef, heroInView] = useScrollAnimation(0.2);
   const [problemRef, problemInView] = useScrollAnimation(0.2);
@@ -111,20 +123,27 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
+        showNavBackground 
+          ? 'bg-black/20 backdrop-blur-md border-white/10' 
+          : 'bg-transparent border-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto px-12 lg:px-16">
           <div className="flex justify-center items-center h-16 relative">
+            
+            
             <div className="absolute left-0 flex items-center">
               <Image 
                 src="/logo.png" 
                 alt="WebBrand Pro" 
-                width={40} 
-                height={40} 
+                width={35} 
+                height={35} 
                 className="mr-3" 
                 priority
               />
-              <span className="text-xl font-bold text-white">WebBrand Pro</span>
             </div>
+
+
             <div className="hidden md:flex space-x-8">
               <button onClick={() => scrollToSection('problem')} className="text-gray-300 hover:text-white transition-colors">Problem</button>
               <button onClick={() => scrollToSection('solution')} className="text-gray-300 hover:text-white transition-colors">Solution</button>
