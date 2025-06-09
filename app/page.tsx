@@ -80,6 +80,7 @@ export default function Home() {
   const [ctaRef, ctaInView] = useScrollAnimation(0.2);
   const [testimonialRef, testimonialInView] = useScrollAnimation(0.2);
   const [contactRef, contactInView] = useScrollAnimation(0.2);
+  const [meetingRef, meetingInView] = useScrollAnimation(0.2);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -564,12 +565,12 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Schedule Meeting Section */}
-      <section className="py-20 px-6 lg:px-8 relative" ref={ctaRef}>
+      <section className="py-20 px-6 lg:px-8 relative" ref={meetingRef}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
             initial={fadeInUp.initial}
-            animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
+            animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
             Have Questions? <span className="text-[hsl(267,75%,56%)]">Let's Talk.</span>
@@ -577,14 +578,14 @@ export default function Home() {
           <motion.p 
             className="text-xl text-gray-300 mb-8"
             initial={fadeInUp.initial}
-            animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
+            animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={{ ...fadeInUp.transition, delay: 0.1 }}
           >
             Schedule a free, no-obligation 15-minute call to discuss your project in detail.
           </motion.p>          <motion.button
             className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105"
             initial={fadeInUp.initial}
-            animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
+            animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
           >
             Schedule on Calendly
