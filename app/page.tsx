@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 import { 
   Shield, 
   DollarSign, 
@@ -113,7 +114,17 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-12 lg:px-16">
           <div className="flex justify-center items-center h-16 relative">
-            <div className="absolute left-0 text-xl font-bold text-white">WebBrand Pro</div>
+            <div className="absolute left-0 flex items-center">
+              <Image 
+                src="/logo.png" 
+                alt="WebBrand Pro" 
+                width={40} 
+                height={40} 
+                className="mr-3" 
+                priority
+              />
+              <span className="text-xl font-bold text-white">WebBrand Pro</span>
+            </div>
             <div className="hidden md:flex space-x-8">
               <button onClick={() => scrollToSection('problem')} className="text-gray-300 hover:text-white transition-colors">Problem</button>
               <button onClick={() => scrollToSection('solution')} className="text-gray-300 hover:text-white transition-colors">Solution</button>
