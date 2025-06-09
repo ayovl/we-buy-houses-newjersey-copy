@@ -280,15 +280,14 @@ export default function Home() {
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={fadeInUp.transition}
-          >
+            transition={fadeInUp.transition}          >
             The Problem with <br className="sm:hidden" />
-            <span className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-all">cashforpropertiesnyc.com</span>
-          </motion.h2>          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 max-w-4xl mx-auto"
+            <span className="text-red-400 text-2xl md:text-3xl lg:text-4xl break-all">cashforpropertiesnyc.com</span>
+          </motion.h2><motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
             initial={staggerContainer.initial}
             animate={problemInView ? staggerContainer.animate : staggerContainer.initial}
-          >            {[
+          >{[
               { icon: AlertTriangle, title: "Poor Design", description: "Making your business appear untrustworthy and unprofessional." },
               { icon: Ban, title: "Wasted Ad Spend", description: "Paying for ads only to see visitors click away." },
               { icon: Smartphone, title: "Bad First Impression", description: "Causing potential clients to leave quickly." },
