@@ -328,19 +328,19 @@ export default function Home() {
           >            {[
               { 
                 stat: "43%", 
-                title: "Increased Conversion Rate", 
+                title: "Attract more Clients", 
                 description: "Professional websites convert 43% more visitors into clients",
                 icon: TrendingUp
               },
               { 
                 stat: "75%", 
-                title: "Trust Factor", 
+                title: "Appear Trust Worthy", 
                 description: "75% of users judge credibility based on website design",
                 icon: Shield
               },
               { 
                 stat: "94%", 
-                title: "First Impressions", 
+                title: "Appear More Professional", 
                 description: "94% of first impressions are design-related",
                 icon: Zap
               },
@@ -359,15 +359,10 @@ export default function Home() {
                 {/* Card with enhanced styling */}
                 <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/25 p-8 rounded-xl text-center hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 relative overflow-hidden">
                   {/* Subtle background pattern */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/5 opacity-50"></div>
-                  
-                  {/* Content */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/5 opacity-50"></div>                  {/* Content */}
                   <div className="relative z-10">
-                    <item.icon className="w-12 h-12 text-purple-400 mb-4 mx-auto" />
-                    <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">
-                      {item.stat}
-                    </div>
-                    <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                    <item.icon className="w-12 h-12 text-purple-400 mb-6 mx-auto" />
+                    <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{item.title}</h3>
                     <p className="text-gray-300 text-base leading-relaxed">{item.description}</p>
                   </div>
                   
