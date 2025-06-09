@@ -68,11 +68,51 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNavBackground, setShowNavBackground] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState('100vh');
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     requests: ''
   });
+
+  // iOS Device Detection
+  const isIOS = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  };
+
+  // Viewport Height Management - Chrome Mobile Fix
+  useEffect(() => {
+    const updateViewportHeight = () => {
+      const height = `${window.innerHeight}px`;
+      setViewportHeight(height);
+      document.documentElement.style.setProperty('--vh', height);
+    };
+
+    const handleOrientationChange = () => {
+      // Delay for iOS to complete orientation change
+      setTimeout(updateViewportHeight, 100);
+    };
+
+    // Initial setup
+    updateViewportHeight();
+
+    if (isIOS()) {
+      // For iOS: only listen to orientation changes to prevent jerky behavior
+      window.addEventListener('orientationchange', handleOrientationChange);
+    } else {
+      // For other devices: use resize listener
+      window.addEventListener('resize', updateViewportHeight);
+    }
+
+    return () => {
+      if (isIOS()) {
+        window.removeEventListener('orientationchange', handleOrientationChange);
+      } else {
+        window.removeEventListener('resize', updateViewportHeight);
+      }
+    };
+  }, []);
 
   // Scroll detection for navigation background
   useEffect(() => {
@@ -180,8 +220,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </nav>{/* Hero Section - Mobile Performance Optimized */}
-      <section ref={heroRef} className="h-screen flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation">
+      </nav>{/* Hero Section - Chrome Mobile Viewport Fixed */}
+      <section ref={heroRef} className="flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation" style={{ height: viewportHeight }}>
         <div className="max-w-7xl mx-auto text-center">
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"            initial={fadeInUp.initial}

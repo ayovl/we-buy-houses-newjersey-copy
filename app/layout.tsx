@@ -12,6 +12,12 @@ export const metadata: Metadata = {
     shortcut: '/fav.png',
     apple: '/fav.png',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+  },
 };
 
 export default function RootLayout({
