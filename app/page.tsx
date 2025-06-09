@@ -276,8 +276,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Problem Section */}
-      <section id="problem" ref={problemRef} className="py-20 lg:py-32 px-6 lg:px-16 xl:px-24 relative">        <div className="max-w-5xl mx-auto">          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 leading-tight"
+      <section id="problem" ref={problemRef} className="py-12 lg:py-16 px-6 lg:px-16 xl:px-24 relative"><div className="max-w-5xl mx-auto">          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -285,7 +285,7 @@ export default function Home() {
             The Problem with <br className="sm:hidden" />
             <span className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-all">cashforpropertiesnyc.com</span>
           </motion.h2>          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 max-w-4xl mx-auto"
             initial={staggerContainer.initial}
             animate={problemInView ? staggerContainer.animate : staggerContainer.initial}
           >            {[
@@ -295,14 +295,13 @@ export default function Home() {
               { icon: MousePointer, title: "No Clear CTA", description: "Lack of a clear call-to-action is hurting your conversions." },
               { icon: Frown, title: "Unmotivating", description: "Failing to motivate users to explore your offerings." },
               { icon: Snail, title: "Slow Loading", description: "Slow-loading, causing users to leave before they see your value." }
-            ].map((item, index) => (
-              <motion.div
+            ].map((item, index) => (              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg hover:scale-105 transition-transform duration-300"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg hover:scale-105 transition-transform duration-300"
                 variants={staggerChild}
               >
-                <item.icon className="w-10 h-10 text-red-400 mb-3" />
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                <item.icon className="w-8 h-8 text-red-400 mb-2" />
+                <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
                 <p className="text-gray-300 text-sm">{item.description}</p>
               </motion.div>
             ))}
