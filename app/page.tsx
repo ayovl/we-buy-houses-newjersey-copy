@@ -213,7 +213,7 @@ export default function Home() {
             Get Your Website Now
           </motion.button>
         </div>          {/* Learn More Button (replacing scroll indicator) */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center keep-mobile-animation">
+        <div className="absolute bottom-6 md:bottom-8 left-0 right-0 flex justify-center keep-mobile-animation">
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
