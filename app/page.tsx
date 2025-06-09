@@ -318,7 +318,7 @@ export default function Home() {
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >
             {[
-              { stat: "43%", title: "Higher Conversion Rate", description: "Professional websites convert 43% more visitors into clients" },
+              { stat: "43%", title: "Increased Conversion Rate", description: "Professional websites convert 43% more visitors into clients" },
               { stat: "75%", title: "Trust Factor", description: "75% of users judge credibility based on website design" },
               { stat: "94%", title: "First Impressions", description: "94% of first impressions are design-related" },
               { stat: "132%", title: "Revenue Increase", description: "Well-designed websites can boost revenue by 132%" }
