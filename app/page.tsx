@@ -5,11 +5,6 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { 
   Shield, 
-  DollarSign, 
-  Users, 
-  Target, 
-  TrendingUp, 
-  Eye, 
   Award, 
   BarChart3,
   CheckCircle,
@@ -24,7 +19,13 @@ import {
   Mail,
   ChevronDown,
   ChevronUp,
-  Menu
+  Menu,
+  AlertTriangle,
+  Ban,
+  Smartphone,
+  MousePointer,
+  Frown,
+  Snail
 } from 'lucide-react';
 
 const fadeInUp = {
@@ -288,14 +289,13 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 max-w-3xl mx-auto"
             initial={staggerContainer.initial}
             animate={problemInView ? staggerContainer.animate : staggerContainer.initial}
-          >
-            {[
-              { icon: Shield, title: "Poor Design", description: "Making your business appear untrustworthy and unprofessional." },
-              { icon: DollarSign, title: "Wasted Ad Spend", description: "Paying for ads only to see visitors click away." },
-              { icon: Users, title: "Bad First Impression", description: "Causing potential clients to leave quickly." },
-              { icon: Target, title: "No Clear CTA", description: "Lack of a clear call-to-action is hurting your conversions." },
-              { icon: TrendingUp, title: "Unmotivating", description: "Failing to motivate users to explore your offerings." },
-              { icon: Eye, title: "Slow Loading", description: "Slow-loading, causing users to leave before they see your value." }
+          >            {[
+              { icon: AlertTriangle, title: "Poor Design", description: "Making your business appear untrustworthy and unprofessional." },
+              { icon: Ban, title: "Wasted Ad Spend", description: "Paying for ads only to see visitors click away." },
+              { icon: Smartphone, title: "Bad First Impression", description: "Causing potential clients to leave quickly." },
+              { icon: MousePointer, title: "No Clear CTA", description: "Lack of a clear call-to-action is hurting your conversions." },
+              { icon: Frown, title: "Unmotivating", description: "Failing to motivate users to explore your offerings." },
+              { icon: Snail, title: "Slow Loading", description: "Slow-loading, causing users to leave before they see your value." }
             ].map((item, index) => (
               <motion.div
                 key={index}
