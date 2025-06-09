@@ -613,14 +613,12 @@ export default function Home() {
               <div className="space-y-2 text-sm text-gray-300 mb-6">
                 <p>✅ Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days</p>
                 <p>💯 100% satisfaction or a full refund</p>
-              </div>
-
-              {/* Context Link */}
+              </div>              {/* Context Link */}
               <button 
-                onClick={() => scrollToSection('offer')}
+                onClick={() => scrollToSection('problem')}
                 className="text-[hsl(267,75%,56%)] hover:underline text-sm mb-4 flex items-center justify-center mx-auto"
               >
-                Why this package? Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                Why Do You Need This, Learn More <ArrowRight className="w-4 h-4 ml-1" />
               </button>
 
               {/* Lock-in Statement */}
