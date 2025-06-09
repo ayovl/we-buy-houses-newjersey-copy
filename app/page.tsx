@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { 
   Shield, 
@@ -189,8 +189,8 @@ export default function Home() {
               <Image 
                 src="/logo.png" 
                 alt="WebBrand Pro" 
-                width={35} 
-                height={35} 
+                width={33} 
+                height={33} 
                 className="mr-3" 
                 priority
               />
@@ -275,9 +275,9 @@ export default function Home() {
             </motion.button>
           </motion.div>
         </div>
-      </section>{/* Problem Section */}
-      <section id="problem" ref={problemRef} className="py-20 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">          <motion.h2 
+      </section>      {/* Problem Section */}
+      <section id="problem" ref={problemRef} className="py-20 lg:py-32 px-6 lg:px-16 xl:px-24 relative">
+        <div className="max-w-6xl mx-auto">          <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
@@ -287,7 +287,7 @@ export default function Home() {
             <span className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-all">cashforpropertiesnyc.com</span>
           </motion.h2>
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 gap-8 lg:gap-12"
             initial={staggerContainer.initial}
             animate={problemInView ? staggerContainer.animate : staggerContainer.initial}
           >
@@ -312,7 +312,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Solution Section */}
-      <section id="solution" ref={solutionRef} className="py-20 px-6 lg:px-8 relative">
+      <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"            initial={fadeInUp.initial}
@@ -345,7 +345,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Mid-Page CTA */}
-      <section ref={ctaRef} className="py-20 px-6 lg:px-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 relative">
+      <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 relative">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
@@ -373,7 +373,7 @@ export default function Home() {
           </motion.button>
         </div>
       </section>      {/* Testimonials Section */}
-      <section ref={testimonialRef} className="py-20 px-6 lg:px-8 relative">
+      <section ref={testimonialRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
@@ -418,7 +418,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* The Offer Section */}
-      <section id="offer" ref={benefitsRef} className="py-20 px-6 lg:px-8 relative">
+      <section id="offer" ref={benefitsRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6"
@@ -573,7 +573,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Pricing Section */}
-      <section id="pricing" ref={pricingRef} className="py-20 px-6 lg:px-8 relative">
+      <section id="pricing" ref={pricingRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">
           <motion.div 
             className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border-2 border-[hsl(267,75%,56%)]/50 p-8 rounded-2xl text-center relative overflow-hidden"
@@ -677,7 +677,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Schedule Meeting Section */}
-      <section className="py-20 px-6 lg:px-8 relative" ref={meetingRef}>
+      <section className="py-20 lg:py-32 px-6 lg:px-8 relative" ref={meetingRef}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
@@ -704,7 +704,7 @@ export default function Home() {
           </motion.button>
         </div>
       </section>      {/* Contact Section */}
-      <section id="contact" ref={contactRef} className="py-20 px-6 lg:px-8 relative">
+      <section id="contact" ref={contactRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
@@ -816,32 +816,30 @@ export default function Home() {
               </button>
             </form>
           </motion.div>        </div>
-      )}      {/* Scroll to Top Button - Desktop Only (Hidden on Mobile) */}
-      <motion.button
-        onClick={scrollToTop}
-        className="hidden md:fixed bottom-6 right-6 z-[60] bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-colors duration-300"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ 
-          opacity: showScrollToTop ? 1 : 0, 
-          y: showScrollToTop ? 0 : 40 
-        }}
-        transition={{ 
-          duration: 0.4, 
-          ease: "easeInOut" 
-        }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        style={{ 
-          pointerEvents: showScrollToTop ? 'auto' : 'none',
-          position: 'fixed',
-          bottom: '1.5rem',
-          right: '1.5rem',
-          zIndex: 60
-        }}
-        aria-label="Scroll to top"
-      >
-        <ChevronUp className="w-6 h-6" />
-      </motion.button>
+      )}      {/* Scroll to Top Button - Desktop Only */}
+      <AnimatePresence>
+        {showScrollToTop && (
+          <motion.button
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hidden md:block"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ 
+              duration: 0.3, 
+              ease: "easeInOut" 
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            style={{ 
+              zIndex: 9999
+            }}
+            aria-label="Scroll to top"
+          >
+            <ChevronUp className="w-6 h-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
