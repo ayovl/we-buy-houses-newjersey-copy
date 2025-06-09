@@ -278,12 +278,13 @@ export default function Home() {
       </section>{/* Problem Section */}
       <section id="problem" ref={problemRef} className="py-20 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            The Problem with <span className="text-red-400">cashforpropertiesnyc.com</span>
+            The Problem with <br className="sm:hidden" />
+            <span className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-all">cashforpropertiesnyc.com</span>
           </motion.h2>
           <motion.div 
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
