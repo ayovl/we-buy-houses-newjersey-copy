@@ -315,9 +315,8 @@ export default function Home() {
             transition={fadeInUp.transition}
           >
             A Professionally Designed Website <span className="text-green-400">Delivers Results</span>
-          </motion.h2>
-          <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          </motion.h2>          <motion.div 
+            className="grid md:grid-cols-2 gap-8 px-4 md:px-8 lg:px-12 max-w-5xl mx-auto"
             initial={staggerContainer.initial}
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >
@@ -326,15 +325,13 @@ export default function Home() {
               { stat: "75%", title: "Trust Factor", description: "75% of users judge credibility based on website design" },
               { stat: "94%", title: "First Impressions", description: "94% of first impressions are design-related" },
               { stat: "132%", title: "Revenue Increase", description: "Well-designed websites can boost revenue by 132%" }
-            ].map((item, index) => (
-              <motion.div
+            ].map((item, index) => (              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg text-center hover:scale-105 transition-transform duration-300"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg text-center hover:scale-105 transition-transform duration-300"
                 variants={staggerChild}
-              >
-                <div className="text-4xl font-bold text-[hsl(267,75%,56%)] mb-2">{item.stat}</div>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-300 text-sm">{item.description}</p>
+              >                <div className="text-5xl font-bold text-[hsl(267,75%,56%)] mb-4">{item.stat}</div>
+                <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
+                <p className="text-gray-300 text-base">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
