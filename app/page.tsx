@@ -296,7 +296,7 @@ export default function Home() {
               { icon: Snail, title: "Slow Loading", description: "Slow-loading, causing users to leave before they see your value." }
             ].map((item, index) => (              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg hover:scale-105 transition-transform duration-300"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-4 rounded-lg hover:scale-105 transition-transform duration-300"
                 variants={staggerChild}
               >
                 <item.icon className="w-8 h-8 text-red-400 mb-2" />
@@ -327,9 +327,9 @@ export default function Home() {
               { stat: "132%", title: "Revenue Increase", description: "Well-designed websites can boost revenue by 132%" }
             ].map((item, index) => (              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg text-center hover:scale-105 transition-transform duration-300"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-8 rounded-lg text-center hover:scale-105 transition-transform duration-300"
                 variants={staggerChild}
-              >                <div className="text-5xl font-bold text-[hsl(267,75%,56%)] mb-4">{item.stat}</div>
+              ><div className="text-5xl font-bold text-[hsl(267,75%,56%)] mb-4">{item.stat}</div>
                 <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
                 <p className="text-gray-300 text-base">{item.description}</p>
               </motion.div>
@@ -389,10 +389,9 @@ export default function Home() {
                 quote: "Professional, responsive, and incredibly talented. Our new website has significantly improved our conversion rates and client engagement.",
                 author: "Business Owner"
               }
-            ].map((testimonial, index) => (
-              <motion.div
+            ].map((testimonial, index) => (              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
                 variants={staggerChild}
               >
                 <div className="flex mb-4">
@@ -429,9 +428,8 @@ export default function Home() {
             className="grid md:grid-cols-3 gap-8 mb-16"
             initial={staggerContainer.initial}
             animate={benefitsInView ? staggerContainer.animate : staggerContainer.initial}
-          >
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"
+          >            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
               variants={staggerChild}
             >
               <h3 className="text-2xl font-bold mb-4">Website Design & Development</h3>
@@ -448,10 +446,8 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"
+            </motion.div>            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
               variants={staggerChild}
             >
               <h3 className="text-2xl font-bold mb-4">SEO & Copywriting</h3>
@@ -500,7 +496,7 @@ export default function Home() {
           </motion.div>
 
           {/* Hosting & Support */}          <motion.div 
-            className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg mb-8"
+            className="bg-white/5 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8"
             initial={fadeInUp.initial}
             animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
             transition={{ ...fadeInUp.transition, delay: 0.1 }}
@@ -553,7 +549,7 @@ export default function Home() {
                 { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
                 { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
               ].map((item, index) => (
-                <div key={index} className="flex items-center space-x-3 bg-white/5 px-4 py-3 rounded-lg border border-white/10">
+                <div key={index} className="flex items-center space-x-3 bg-white/5 px-4 py-3 rounded-lg border border-white/20">
                   <item.icon className={`w-6 h-6 ${item.color}`} />
                   <span className="font-semibold text-white">{item.text}</span>
                 </div>
