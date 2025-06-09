@@ -880,12 +880,12 @@ export default function Home() {
               </button>
             </form>
           </motion.div>        </div>
-      )}      {/* Scroll to Top Button - Desktop Only */}
+      )}      {/* Scroll to Top Button - Modern Glassmorphism Design */}
       <AnimatePresence mode="wait">
         {showScrollToTop && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 hidden md:block"
+            className="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 hover:border-white/30 text-white p-3 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 hidden md:block group overflow-hidden"
             initial={{ 
               opacity: 0, 
               y: 60,
@@ -922,7 +922,11 @@ export default function Home() {
             }}
             aria-label="Scroll to top"
           >
-            <ChevronUp className="w-6 h-6" />
+            {/* Subtle gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            
+            {/* Icon with subtle animation */}
+            <ChevronUp className="w-6 h-6 relative z-10 group-hover:translate-y-[-1px] transition-transform duration-200" />
           </motion.button>
         )}
       </AnimatePresence>
