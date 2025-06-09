@@ -78,8 +78,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* Prevent mobile scroll bounce and improve performance */
-    overscroll-behavior: none;
+    /* Improve mobile scroll performance while keeping pull-to-refresh */
+    overscroll-behavior-x: none;
     -webkit-overflow-scrolling: touch;
   }
   
@@ -88,8 +88,8 @@
     html, body {
       /* Prevent white flashing during scroll */
       background-color: rgb(19, 17, 28);
-      /* Disable scroll bounce */
-      overscroll-behavior-y: none;
+      /* Disable horizontal scroll bounce only */
+      overscroll-behavior-x: none;
       /* Optimize rendering */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
