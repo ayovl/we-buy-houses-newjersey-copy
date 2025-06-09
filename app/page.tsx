@@ -194,8 +194,7 @@ export default function Home() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
               Isn't Converting
             </span>
-          </motion.h1>
-          <motion.p 
+          </motion.h1>          <motion.p 
             className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
             initial={fadeInUp.initial}
             animate={heroInView ? fadeInUp.animate : fadeInUp.initial}
@@ -203,33 +202,32 @@ export default function Home() {
           >
             A new and improved cashforpropertiesnyc.com is ready for you.
           </motion.p>          <motion.button
-            onClick={() => scrollToSection('solution')}
+            onClick={() => scrollToSection('pricing')}
             className="bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
             initial={fadeInUp.initial}
             animate={heroInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            See The Solution
+            Get Your Website Now
           </motion.button>
         </div>
-          {/* Scroll Indicator */}
+          {/* Learn More Button (replacing scroll indicator) */}
         <div className="absolute bottom-8 left-0 right-0 flex justify-center">
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
-          >
-            <motion.div
-              className="flex flex-col items-center cursor-pointer group"
+          >            <motion.button
+              className="flex flex-col items-center cursor-pointer group bg-transparent hover:bg-white/5 px-4 py-3 rounded-lg transition-all duration-300"
               onClick={() => scrollToSection('problem')}
-              animate={{ y: [0, 10, 0] }}
+              animate={{ y: [0, 5, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             >
               <span className="text-gray-400 text-sm mb-2 group-hover:text-white transition-colors">
-                Scroll to explore
+                Learn More
               </span>
-              <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
-            </motion.div>
+              <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+            </motion.button>
           </motion.div>
         </div>
       </section>{/* Problem Section */}
