@@ -21,7 +21,8 @@ import {
   Type,
   FileText,
   Phone,
-  Mail
+  Mail,
+  ChevronDown
 } from 'lucide-react';
 
 const fadeInUp = {
@@ -183,7 +184,27 @@ export default function Home() {
             See The Solution
           </motion.button>
         </div>
-      </section>      {/* Problem Section */}
+          {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
+            <motion.div
+              className="flex flex-col items-center cursor-pointer group"
+              onClick={() => scrollToSection('problem')}
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <span className="text-gray-400 text-sm mb-2 group-hover:text-white transition-colors">
+                Scroll to explore
+              </span>
+              <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>{/* Problem Section */}
       <section id="problem" ref={problemRef} className="py-20 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">          <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
