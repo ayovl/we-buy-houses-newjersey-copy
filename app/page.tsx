@@ -276,8 +276,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Problem Section */}
-      <section id="problem" ref={problemRef} className="py-20 lg:py-32 px-6 lg:px-16 xl:px-24 relative">
-        <div className="max-w-6xl mx-auto">          <motion.h2 
+      <section id="problem" ref={problemRef} className="py-20 lg:py-32 px-6 lg:px-16 xl:px-24 relative">        <div className="max-w-5xl mx-auto">          <motion.h2 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
@@ -285,9 +284,8 @@ export default function Home() {
           >
             The Problem with <br className="sm:hidden" />
             <span className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-all">cashforpropertiesnyc.com</span>
-          </motion.h2>
-          <motion.div 
-            className="grid md:grid-cols-2 gap-8 lg:gap-12"
+          </motion.h2>          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 max-w-3xl mx-auto"
             initial={staggerContainer.initial}
             animate={problemInView ? staggerContainer.animate : staggerContainer.initial}
           >
@@ -301,12 +299,12 @@ export default function Home() {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg hover:scale-105 transition-transform duration-300"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg hover:scale-105 transition-transform duration-300"
                 variants={staggerChild}
               >
-                <item.icon className="w-12 h-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-300">{item.description}</p>
+                <item.icon className="w-8 h-8 text-red-400 mb-2" />
+                <h3 className="text-base font-semibold mb-1">{item.title}</h3>
+                <p className="text-gray-300 text-xs">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
