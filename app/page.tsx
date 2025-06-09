@@ -280,7 +280,7 @@ export default function Home() {
         </div>
       </section>      {/* Problem Section */}
       <section id="problem" ref={problemRef} className="py-12 lg:py-16 px-6 lg:px-16 xl:px-24 relative"><div className="max-w-5xl mx-auto">          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}          >
@@ -313,10 +313,9 @@ export default function Home() {
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         {/* Background gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-pink-900/10"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -324,16 +323,7 @@ export default function Home() {
             A Professionally Designed Website <span className="text-green-400">Delivers Results</span>
           </motion.h2>
 
-          <motion.p 
-            className="text-lg md:text-xl text-gray-300 text-center mb-16 max-w-3xl mx-auto"
-            initial={fadeInUp.initial}
-            animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.1 }}
-          >
-            Transform your online presence with data-driven design that converts visitors into clients
-          </motion.p>
-
-          <motion.div 
+          <motion.div
             className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto"
             initial={staggerContainer.initial}
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
