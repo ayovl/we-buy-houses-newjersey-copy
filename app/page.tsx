@@ -231,9 +231,8 @@ export default function Home() {
         </div>
       </nav>{/* Hero Section - Chrome Mobile Viewport Fixed */}
       <section ref={heroRef} className="flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation" style={{ height: viewportHeight }}>
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"            initial={fadeInUp.initial}
+        <div className="max-w-7xl mx-auto text-center">          <motion.h1 
+            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"initial={fadeInUp.initial}
             animate={heroInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
@@ -278,7 +277,7 @@ export default function Home() {
         </div>
       </section>      {/* Problem Section */}
       <section id="problem" ref={problemRef} className="py-20 lg:py-32 px-6 lg:px-16 xl:px-24 relative">        <div className="max-w-5xl mx-auto">          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16 leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -313,7 +312,7 @@ export default function Home() {
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"            initial={fadeInUp.initial}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"            initial={fadeInUp.initial}
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
@@ -344,9 +343,8 @@ export default function Home() {
         </div>
       </section>      {/* Mid-Page CTA */}
       <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 relative">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+        <div className="max-w-4xl mx-auto text-center">          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
             animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -372,9 +370,8 @@ export default function Home() {
         </div>
       </section>      {/* Testimonials Section */}
       <section ref={testimonialRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
+        <div className="max-w-7xl mx-auto">          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
             animate={testimonialInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -417,9 +414,8 @@ export default function Home() {
         </div>
       </section>      {/* The Offer Section */}
       <section id="offer" ref={benefitsRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6"
+        <div className="max-w-7xl mx-auto">          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6"
             initial={fadeInUp.initial}
             animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -590,8 +586,7 @@ export default function Home() {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <div className="relative z-10">              <h2 className="text-2xl md:text-3xl font-bold mb-4">
                 Everything You Need to <span className="text-[hsl(267,75%,56%)]">Succeed Online</span>
               </h2>
               
@@ -676,9 +671,8 @@ export default function Home() {
         </div>
       </section>      {/* Schedule Meeting Section */}
       <section className="py-20 lg:py-32 px-6 lg:px-8 relative" ref={meetingRef}>
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+        <div className="max-w-4xl mx-auto text-center">          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
             animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -703,9 +697,8 @@ export default function Home() {
         </div>
       </section>      {/* Contact Section */}
       <section id="contact" ref={contactRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+        <div className="max-w-4xl mx-auto text-center">          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
             animate={contactInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
