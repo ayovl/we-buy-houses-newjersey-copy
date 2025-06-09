@@ -311,9 +311,7 @@ export default function Home() {
         </div>
       </section>      {/* Solution Section */}
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-pink-900/10"></div>
-          <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto">
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
