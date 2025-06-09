@@ -23,6 +23,7 @@ import {
   Phone,
   Mail,
   ChevronDown,
+  ChevronUp,
   Menu
 } from 'lucide-react';
 
@@ -68,6 +69,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNavBackground, setShowNavBackground] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
   const [viewportHeight, setViewportHeight] = useState('100vh');
   const [formData, setFormData] = useState({
     fullName: '',
@@ -113,12 +115,12 @@ export default function Home() {
       }
     };
   }, []);
-
-  // Scroll detection for navigation background
+  // Scroll detection for navigation background and scroll to top button
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setShowNavBackground(scrollY > 50); // Show background after scrolling 50px
+      setShowScrollToTop(scrollY > 300); // Show scroll to top after scrolling 300px
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -146,15 +148,21 @@ export default function Home() {
     e.preventDefault();
     // Redirect to thank you page
     window.location.href = '/thank-you';
-  };
-  const scrollToSection = (sectionId: string) => {
+  };  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     // Close mobile menu when section is clicked
     setIsMobileMenuOpen(false);
-  };  return (
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ 
+      top: 0, 
+      behavior: 'smooth' 
+    });
+  };return (
     <div className="min-h-screen text-white relative overflow-x-hidden">
       {/* Fixed Background - Prevents White Tiling */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)]"></div>
@@ -806,9 +814,33 @@ export default function Home() {
                 Proceed to Payment - $3,950
               </button>
             </form>
-          </motion.div>
-        </div>
-      )}
+          </motion.div>        </div>
+      )}      {/* Scroll to Top Button - Desktop Only (Hidden on Mobile) */}
+      <motion.button
+        onClick={scrollToTop}
+        className="hidden md:fixed bottom-6 right-6 z-[60] bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-colors duration-300"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ 
+          opacity: showScrollToTop ? 1 : 0, 
+          y: showScrollToTop ? 0 : 40 
+        }}
+        transition={{ 
+          duration: 0.4, 
+          ease: "easeInOut" 
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        style={{ 
+          pointerEvents: showScrollToTop ? 'auto' : 'none',
+          position: 'fixed',
+          bottom: '1.5rem',
+          right: '1.5rem',
+          zIndex: 60
+        }}
+        aria-label="Scroll to top"
+      >
+        <ChevronUp className="w-6 h-6" />
+      </motion.button>
     </div>
   );
 }
