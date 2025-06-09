@@ -22,7 +22,8 @@ import {
   FileText,
   Phone,
   Mail,
-  ChevronDown
+  ChevronDown,
+  Menu
 } from 'lucide-react';
 
 const fadeInUp = {
@@ -66,6 +67,7 @@ const staggerChild = {
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNavBackground, setShowNavBackground] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -105,12 +107,13 @@ export default function Home() {
     // Redirect to thank you page
     window.location.href = '/thank-you';
   };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    // Close mobile menu when section is clicked
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -121,19 +124,16 @@ export default function Home() {
         <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl"></div>
-      </div>
-
-      {/* Navigation */}
+      </div>      {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
         showNavBackground 
           ? 'bg-black/20 backdrop-blur-md border-white/10' 
           : 'bg-transparent border-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-12 lg:px-16">
-          <div className="flex justify-center items-center h-16 relative">
-            
-            
-            <div className="absolute left-0 flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="flex justify-between md:justify-center items-center h-16 relative">
+            {/* Logo - Absolute positioned on desktop for centering */}
+            <div className="flex items-center md:absolute md:left-0">
               <Image 
                 src="/logo.png" 
                 alt="WebBrand Pro" 
@@ -144,7 +144,7 @@ export default function Home() {
               />
             </div>
 
-
+            {/* Desktop Menu - Centered */}
             <div className="hidden md:flex space-x-8">
               <button onClick={() => scrollToSection('problem')} className="text-gray-300 hover:text-white transition-colors">Problem</button>
               <button onClick={() => scrollToSection('solution')} className="text-gray-300 hover:text-white transition-colors">Solution</button>
@@ -152,9 +152,37 @@ export default function Home() {
               <button onClick={() => scrollToSection('contact')} className="text-gray-300 hover:text-white transition-colors">Contact</button>
               <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">About Me</a>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile Menu - Frosted Glass Look */}
+          {isMobileMenuOpen && (
+            <motion.div 
+              className="md:hidden absolute top-full left-0 right-0 bg-white/5 backdrop-blur-xl border-b border-white/10"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="px-6 py-4 space-y-4">
+                <button onClick={() => scrollToSection('problem')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Problem</button>
+                <button onClick={() => scrollToSection('solution')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Solution</button>
+                <button onClick={() => scrollToSection('pricing')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Pricing</button>
+                <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Contact</button>
+                <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition-colors py-2">About Me</a>
+              </div>
+            </motion.div>
+          )}
         </div>
-      </nav>      {/* Hero Section - Full Viewport Height */}
+      </nav>{/* Hero Section - Full Viewport Height */}
       <section ref={heroRef} className="h-screen flex items-center justify-center px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto text-center">
           <motion.h1 
