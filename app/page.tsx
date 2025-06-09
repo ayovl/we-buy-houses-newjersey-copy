@@ -327,28 +327,32 @@ export default function Home() {
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >            {[
               { 
-                stat: "43%", 
+                stat: "234%", 
                 title: "Attract more Clients", 
-                description: "Professional websites convert 43% more visitors into clients",
-                icon: TrendingUp
+                description: "Professional websites can convert upto 234% more visitors into clients",
+                icon: TrendingUp,
+                proofLink: "https://casestudybuddy.com/case-studies/action-gator-tire/"
               },
               { 
                 stat: "75%", 
                 title: "Appear Trust Worthy", 
                 description: "75% of users judge credibility based on website design",
-                icon: Shield
+                icon: Shield,
+                proofLink: "https://www.webcredibility.org"
               },
               { 
-                stat: "94%", 
+                stat: "First Impressions", 
                 title: "Appear More Professional", 
-                description: "94% of first impressions are design-related",
-                icon: Zap
+                description: "First impressions are formed within milliseconds of viewing a website",
+                icon: Zap,
+                proofLink: "https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/"
               },
               { 
-                stat: "132%", 
+                stat: "ROI Impact", 
                 title: "Revenue Increase", 
-                description: "Well-designed websites can boost revenue by 132%",
-                icon: DollarSign
+                description: "Experience-driven businesses achieve superior business performance",
+                icon: DollarSign,
+                proofLink: "https://www.forrester.com/report/the-business-impact-of-investing-in-experience/"
               }
             ].map((item, index) => (
               <motion.div
@@ -363,7 +367,21 @@ export default function Home() {
                   <div className="relative z-10">
                     <item.icon className="w-12 h-12 text-purple-400 mb-6 mx-auto" />
                     <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{item.title}</h3>
-                    <p className="text-gray-300 text-base leading-relaxed">{item.description}</p>
+                    <p className="text-gray-300 text-base leading-relaxed mb-6">{item.description}</p>
+                      {/* See Proof Button */}
+                    {item.proofLink && (
+                      <a 
+                        href={item.proofLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-purple-400 hover:text-pink-400 text-sm font-medium transition-colors duration-300 group"
+                      >
+                        <span>See proof</span>
+                        <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
                   </div>
                   
                   {/* Hover effect border */}
