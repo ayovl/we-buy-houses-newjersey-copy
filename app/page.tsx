@@ -25,7 +25,10 @@ import {
   Smartphone,
   MousePointer,
   Frown,
-  Snail
+  Snail,
+  TrendingUp,
+  Zap,
+  DollarSign
 } from 'lucide-react';
 
 const fadeInUp = {
@@ -308,35 +311,100 @@ export default function Home() {
         </div>
       </section>      {/* Solution Section */}
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-pink-900/10"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"            initial={fadeInUp.initial}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4"
+            initial={fadeInUp.initial}
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
             A Professionally Designed Website <span className="text-green-400">Delivers Results</span>
-          </motion.h2>          <motion.div 
-            className="grid md:grid-cols-2 gap-8 px-4 md:px-8 lg:px-12 max-w-5xl mx-auto"
+          </motion.h2>
+
+          <motion.p 
+            className="text-lg md:text-xl text-gray-300 text-center mb-16 max-w-3xl mx-auto"
+            initial={fadeInUp.initial}
+            animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
+            transition={{ ...fadeInUp.transition, delay: 0.1 }}
+          >
+            Transform your online presence with data-driven design that converts visitors into clients
+          </motion.p>
+
+          <motion.div 
+            className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto"
             initial={staggerContainer.initial}
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
-          >
-            {[
-              { stat: "43%", title: "Increased Conversion Rate", description: "Professional websites convert 43% more visitors into clients" },
-              { stat: "75%", title: "Trust Factor", description: "75% of users judge credibility based on website design" },
-              { stat: "94%", title: "First Impressions", description: "94% of first impressions are design-related" },
-              { stat: "132%", title: "Revenue Increase", description: "Well-designed websites can boost revenue by 132%" }
-            ].map((item, index) => (              <motion.div
+          >            {[
+              { 
+                stat: "43%", 
+                title: "Increased Conversion Rate", 
+                description: "Professional websites convert 43% more visitors into clients",
+                icon: TrendingUp
+              },
+              { 
+                stat: "75%", 
+                title: "Trust Factor", 
+                description: "75% of users judge credibility based on website design",
+                icon: Shield
+              },
+              { 
+                stat: "94%", 
+                title: "First Impressions", 
+                description: "94% of first impressions are design-related",
+                icon: Zap
+              },
+              { 
+                stat: "132%", 
+                title: "Revenue Increase", 
+                description: "Well-designed websites can boost revenue by 132%",
+                icon: DollarSign
+              }
+            ].map((item, index) => (
+              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-8 rounded-lg text-center hover:scale-105 transition-transform duration-300"
+                className="relative group"
                 variants={staggerChild}
-              ><div className="text-5xl font-bold text-[hsl(267,75%,56%)] mb-4">{item.stat}</div>
-                <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-gray-300 text-base">{item.description}</p>
+              >
+                {/* Card with enhanced styling */}
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/25 p-8 rounded-xl text-center hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 relative overflow-hidden">
+                  {/* Subtle background pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/5 opacity-50"></div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <item.icon className="w-12 h-12 text-purple-400 mb-4 mx-auto" />
+                    <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">
+                      {item.stat}
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                    <p className="text-gray-300 text-base leading-relaxed">{item.description}</p>
+                  </div>
+                  
+                  {/* Hover effect border */}
+                  <div className="absolute inset-0 rounded-xl border border-purple-400/0 group-hover:border-purple-400/30 transition-colors duration-300"></div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Bottom accent badge */}
+          <motion.div 
+            className="flex justify-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={solutionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 px-6 py-3 rounded-full backdrop-blur-sm">
+              <p className="text-sm font-medium text-gray-300">
+                <span className="text-purple-400">Proven results</span> from professional web design
+              </p>
+            </div>
+          </motion.div>
         </div>
-      </section>      {/* Mid-Page CTA */}
+      </section>{/* Mid-Page CTA */}
       <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 relative">
         <div className="max-w-4xl mx-auto text-center">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
