@@ -130,7 +130,7 @@ export default function Home() {
       {/* Mobile-Only Simple Background - No Effects */}
       <div className="fixed inset-0 -z-10 pointer-events-none md:hidden bg-[rgb(19,17,28)]"></div>      {/* Navigation - Mobile Performance Optimized */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
-        showNavBackground 
+        showNavBackground || isMobileMenuOpen
           ? 'bg-black/40 md:bg-black/20 md:backdrop-blur-md border-white/10' 
           : 'bg-transparent border-transparent'
       }`}>
@@ -165,15 +165,11 @@ export default function Home() {
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
-          </div>          {/* Mobile Menu - Maximum Performance */}
-          {isMobileMenuOpen && (
-            <motion.div 
-              className="md:hidden absolute top-full left-0 right-0 bg-black/90 border-b border-white/10"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-            >
+          </div>          {/* Mobile Menu - Glitch-Free Animation */}
+          <div className={`md:hidden absolute top-full left-0 right-0 overflow-hidden transition-all duration-200 ${
+            isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          }`}>
+            <div className="bg-black/90 border-b border-white/10">
               <div className="px-6 py-4 space-y-4">
                 <button onClick={() => scrollToSection('problem')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Problem</button>
                 <button onClick={() => scrollToSection('solution')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Solution</button>
@@ -181,8 +177,8 @@ export default function Home() {
                 <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2">Contact</button>
                 <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition-colors py-2">About Me</a>
               </div>
-            </motion.div>
-          )}
+            </div>
+          </div>
         </div>
       </nav>{/* Hero Section - Mobile Performance Optimized */}
       <section ref={heroRef} className="h-screen flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation">
