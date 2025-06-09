@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { 
   Shield, 
@@ -41,26 +41,23 @@ const useScrollAnimation = (threshold = 0.2, triggerOnce = true) => {
   return [ref, isInView] as const; // Use 'as const' to preserve the exact tuple type
 };
 
-// Variants for staggered animations based on scroll position
-const staggeredFadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay: i * 0.1 // Staggered delay based on item index
-    }
-  })
-};
-
 const staggerContainer = {
   initial: {},
   animate: {
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1 // Small delay before starting children animations
+      delayChildren: 0 // Remove unnecessary delay for better performance
     }
+  }
+};
+
+// Optimized child variant for staggered animations
+const staggerChild = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6 }
   }
 };
 
@@ -181,9 +178,8 @@ export default function Home() {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg hover:scale-105 transition-transform duration-300"                initial={fadeInUp.initial}
-                animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
-                transition={{ ...fadeInUp.transition, delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg hover:scale-105 transition-transform duration-300"
+                variants={staggerChild}
               >
                 <item.icon className="w-12 h-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -215,9 +211,8 @@ export default function Home() {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg text-center hover:scale-105 transition-transform duration-300"                initial={fadeInUp.initial}
-                animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
-                transition={{ ...fadeInUp.transition, delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg text-center hover:scale-105 transition-transform duration-300"
+                variants={staggerChild}
               >
                 <div className="text-4xl font-bold text-[hsl(267,75%,56%)] mb-2">{item.stat}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -284,9 +279,8 @@ export default function Home() {
             ].map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"                initial={fadeInUp.initial}
-                animate={testimonialInView ? fadeInUp.animate : fadeInUp.initial}
-                transition={{ ...fadeInUp.transition, delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"
+                variants={staggerChild}
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -325,9 +319,8 @@ export default function Home() {
             animate={benefitsInView ? staggerContainer.animate : staggerContainer.initial}
           >
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"              initial={fadeInUp.initial}
-              animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-              transition={{ ...fadeInUp.transition, delay: 0.2 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"
+              variants={staggerChild}
             >
               <h3 className="text-2xl font-bold mb-4">Website Design & Development</h3>
               <ul className="space-y-3">
@@ -346,9 +339,8 @@ export default function Home() {
             </motion.div>
 
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"              initial={fadeInUp.initial}
-              animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-              transition={{ ...fadeInUp.transition, delay: 0.3 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg"
+              variants={staggerChild}
             >
               <h3 className="text-2xl font-bold mb-4">SEO & Copywriting</h3>
               <ul className="space-y-3">
@@ -367,9 +359,8 @@ export default function Home() {
             </motion.div>
 
             <motion.div 
-              className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden"              initial={fadeInUp.initial}
-              animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-              transition={{ ...fadeInUp.transition, delay: 0.4 }}
+              className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden"
+              variants={staggerChild}
             >
               <div className="absolute top-2 right-2">
                 <Gift className="w-6 h-6 text-[hsl(267,75%,56%)]" />
@@ -400,7 +391,7 @@ export default function Home() {
             className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg mb-8"
             initial={fadeInUp.initial}
             animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.5 }}
+            transition={{ ...fadeInUp.transition, delay: 0.1 }}
           >
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -442,7 +433,7 @@ export default function Home() {
             className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 p-6 rounded-lg"
             initial={fadeInUp.initial}
             animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.6 }}
+            transition={{ ...fadeInUp.transition, delay: 0.2 }}
           >
             <div className="flex flex-wrap justify-center gap-8 text-center">
               {[
@@ -579,7 +570,7 @@ export default function Home() {
             className="text-xl text-gray-300 mb-8"
             initial={fadeInUp.initial}
             animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.1 }}
+            transition={fadeInUp.transition}
           >
             Schedule a free, no-obligation 15-minute call to discuss your project in detail.
           </motion.p>          <motion.button
@@ -606,7 +597,7 @@ export default function Home() {
             className="text-xl text-gray-300 mb-8"
             initial={fadeInUp.initial}
             animate={contactInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.1 }}
+            transition={fadeInUp.transition}
           >
             For any other inquiries, feel free to send an email.
           </motion.p>          <motion.a
@@ -614,7 +605,7 @@ export default function Home() {
             className="text-[hsl(267,75%,56%)] hover:text-[hsl(267,75%,66%)] text-xl font-semibold hover:underline"
             initial={fadeInUp.initial}
             animate={contactInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
+            transition={{ ...fadeInUp.transition, delay: 0.1 }}
           >
             arsalmaab@gmail.com
           </motion.a>
