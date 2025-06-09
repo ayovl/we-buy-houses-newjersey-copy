@@ -817,22 +817,44 @@ export default function Home() {
             </form>
           </motion.div>        </div>
       )}      {/* Scroll to Top Button - Desktop Only */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {showScrollToTop && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hidden md:block"
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            transition={{ 
-              duration: 0.3, 
-              ease: "easeInOut" 
+            className="fixed bottom-6 right-6 bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 hidden md:block"
+            initial={{ 
+              opacity: 0, 
+              y: 60,
+              scale: 0.8
             }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              scale: 1
+            }}
+            exit={{ 
+              opacity: 0, 
+              y: 60,
+              scale: 0.8
+            }}
+            transition={{ 
+              duration: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94], // Smooth cubic-bezier
+              opacity: { duration: 0.3 },
+              y: { duration: 0.4 },
+              scale: { duration: 0.3 }
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.95,
+              transition: { duration: 0.1 }
+            }}
             style={{ 
-              zIndex: 9999
+              zIndex: 9999,
+              willChange: 'transform, opacity'
             }}
             aria-label="Scroll to top"
           >
