@@ -453,7 +453,7 @@ export default function Home() {
             animate={testimonialInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            Trusted by <span className="text-[hsl(267,75%,56%)]">Businesses Like Yours</span>
+            Trusted by <span className="text-[hsl(267,75%,56%)]">Clients Like You</span>
           </motion.h2>
           <motion.div 
             className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
@@ -463,13 +463,12 @@ export default function Home() {
             {[
               {
                 rating: 5,
-                quote: "Arslan delivered a fantastic website that exceeded all our expectations. The process was smooth, and the result was a game-changer for our online presence.",
+                quote: "Arsian is a pleasure to work with, understands the project and delivers above the expectations. Very easy to work with.",
                 author: "Client from Upwork"
               },
               {
                 rating: 5,
-                quote: "Professional, responsive, and incredibly talented. Our new website has significantly improved our conversion rates and client engagement.",
-                author: "Business Owner"
+                quote: "Arslan performs the task at hand quickly and effectively asking question to ensure the project is done right. Extremely professional"
               }
             ].map((testimonial, index) => (              <motion.div
                 key={index}
@@ -480,10 +479,9 @@ export default function Home() {
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
-                </div>
-                <p className="text-gray-300 mb-4 italic">"{testimonial.quote}"</p>
+                </div>                <p className="text-gray-300 mb-4 italic">"{testimonial.quote}"</p>
                 <p className="font-semibold">{testimonial.author}</p>
-                <a href="#" className="text-[hsl(267,75%,56%)] text-sm hover:underline">View on Upwork →</a>
+                <a href="https://www.upwork.com/freelancers/~01f45017511d101318" target="_blank" rel="noopener noreferrer" className="text-[hsl(267,75%,56%)] text-sm hover:underline">View on Upwork →</a>
               </motion.div>
             ))}
           </motion.div>
