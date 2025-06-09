@@ -329,11 +329,11 @@ export default function Home() {
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >            {[
               { 
-                stat: "43%", 
+                stat: "240%", 
                 title: "Atrract More Clients", 
-                description: "Professional websites convert 43% more visitors into clients",
+                description: "Professional websites can convert upto 240% more visitors into clients",
                 icon: TrendingUp,
-                proofLink: "https://www.digitalsilk.com/case-studies/xerox/"
+                proofLink: "https://www.uncommonlogic.com/case-studies/cro-240-increase-conversion-rate/"
               },
               { 
                 stat: "75%", 
@@ -409,9 +409,18 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </section>{/* Mid-Page CTA */}
-      <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 relative">
-        <div className="max-w-4xl mx-auto text-center">          <motion.h2 
+      </section>      {/* Mid-Page CTA */}
+      <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 relative overflow-hidden">
+        {/* Enhanced Background with Subtle Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-purple-800/20 to-pink-900/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+        
+        {/* Subtle Geometric Elements */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-blue-500/8 rounded-full blur-xl"></div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
             animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
