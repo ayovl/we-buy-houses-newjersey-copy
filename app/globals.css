@@ -78,5 +78,39 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Prevent mobile scroll bounce and improve performance */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile scroll performance optimizations */
+  @media (max-width: 768px) {
+    html, body {
+      /* Prevent white flashing during scroll */
+      background-color: rgb(19, 17, 28);
+      /* Disable scroll bounce */
+      overscroll-behavior-y: none;
+      /* Optimize rendering */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+    
+    /* Disable expensive effects on mobile */
+    [class*="backdrop-blur"] {
+      backdrop-filter: none !important;
+    }
+    
+    /* Simplify animations on mobile */
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    /* Re-enable specific animations we want to keep */
+    .keep-mobile-animation * {
+      animation-duration: revert !important;
+      transition-duration: revert !important;
+    }
   }
 }

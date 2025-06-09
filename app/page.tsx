@@ -114,20 +114,24 @@ export default function Home() {
     }
     // Close mobile menu when section is clicked
     setIsMobileMenuOpen(false);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] text-white relative overflow-x-hidden">
-      {/* Subtle Background Effects */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl"></div>
-      </div>      {/* Navigation */}
+  };  return (
+    <div className="min-h-screen text-white relative overflow-x-hidden">
+      {/* Fixed Background - Prevents White Tiling */}
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)]"></div>
+      
+      {/* Subtle Background Effects - Mobile Performance Optimized */}
+      <div className="fixed inset-0 -z-10 pointer-events-none hidden md:block">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl will-change-auto"></div>
+        <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl will-change-auto"></div>
+        <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl will-change-auto"></div>
+        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl will-change-auto"></div>
+      </div>
+      
+      {/* Mobile-Only Simple Background - No Effects */}
+      <div className="fixed inset-0 -z-10 pointer-events-none md:hidden bg-[rgb(19,17,28)]"></div>      {/* Navigation - Mobile Performance Optimized */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
         showNavBackground 
-          ? 'bg-black/20 backdrop-blur-md border-white/10' 
+          ? 'bg-black/40 md:bg-black/20 md:backdrop-blur-md border-white/10' 
           : 'bg-transparent border-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
@@ -161,12 +165,10 @@ export default function Home() {
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
-          </div>
-
-          {/* Mobile Menu - Frosted Glass Look */}
+          </div>          {/* Mobile Menu - Maximum Performance */}
           {isMobileMenuOpen && (
             <motion.div 
-              className="md:hidden absolute top-full left-0 right-0 bg-white/5 backdrop-blur-xl border-b border-white/10"
+              className="md:hidden absolute top-full left-0 right-0 bg-black/90 border-b border-white/10"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -182,8 +184,8 @@ export default function Home() {
             </motion.div>
           )}
         </div>
-      </nav>{/* Hero Section - Full Viewport Height */}
-      <section ref={heroRef} className="h-screen flex items-center justify-center px-6 lg:px-8 relative">
+      </nav>{/* Hero Section - Mobile Performance Optimized */}
+      <section ref={heroRef} className="h-screen flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation">
         <div className="max-w-7xl mx-auto text-center">
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"            initial={fadeInUp.initial}
@@ -210,9 +212,8 @@ export default function Home() {
           >
             Get Your Website Now
           </motion.button>
-        </div>
-          {/* Learn More Button (replacing scroll indicator) */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+        </div>          {/* Learn More Button (replacing scroll indicator) */}
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center keep-mobile-animation">
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
