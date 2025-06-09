@@ -311,7 +311,9 @@ export default function Home() {
         </div>
       </section>      {/* Solution Section */}
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-pink-900/10"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
@@ -327,35 +329,36 @@ export default function Home() {
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >            {[
               { 
-                stat: "234%", 
-                title: "Attract more Clients", 
-                description: "Professional websites can convert upto 234% more visitors into clients",
+                stat: "43%", 
+                title: "Atrract More Clients", 
+                description: "Professional websites convert 43% more visitors into clients",
                 icon: TrendingUp,
-                proofLink: "https://casestudybuddy.com/case-studies/action-gator-tire/"
+                proofLink: "https://www.digitalsilk.com/case-studies/xerox/"
               },
               { 
                 stat: "75%", 
                 title: "Appear Trust Worthy", 
                 description: "75% of users judge credibility based on website design",
                 icon: Shield,
-                proofLink: "https://www.webcredibility.org"
+                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
               },
               { 
-                stat: "First Impressions", 
-                title: "Appear More Professional", 
-                description: "First impressions are formed within milliseconds of viewing a website",
+                stat: "94%", 
+                title: "Appear Professional", 
+                description: "94% of first impressions are design-related",
                 icon: Zap,
-                proofLink: "https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/"
+                proofLink: "https://cxl.com/blog/first-impressions-matter-the-importance-of-great-visual-design/#h-first-impressions-are-94-design-related"
               },
               { 
-                stat: "ROI Impact", 
+                stat: "132%", 
                 title: "Revenue Increase", 
-                description: "Experience-driven businesses achieve superior business performance",
+                description: "Well-designed websites can boost revenue by 132%",
                 icon: DollarSign,
-                proofLink: "https://www.forrester.com/report/the-business-impact-of-investing-in-experience/"
+                proofLink: "https://thegood.com/results/swissgear/"
               }
             ].map((item, index) => (
               <motion.div
+
                 key={index}
                 className="relative group"
                 variants={staggerChild}
@@ -368,7 +371,8 @@ export default function Home() {
                     <item.icon className="w-12 h-12 text-purple-400 mb-6 mx-auto" />
                     <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{item.title}</h3>
                     <p className="text-gray-300 text-base leading-relaxed mb-6">{item.description}</p>
-                      {/* See Proof Button */}
+                    
+                    {/* See Proof Button */}
                     {item.proofLink && (
                       <a 
                         href={item.proofLink} 
