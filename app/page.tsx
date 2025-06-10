@@ -348,8 +348,8 @@ export default function Home() {
         </div>
       </section>      {/* Solution Section */}
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        {/* Seamless gradient overlay that continues from problem section */}
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-purple-900/8 to-purple-900/10"></div>
+        {/* Seamless gradient overlay that continues from problem section and blends into CTA section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-purple-900/8 to-purple-900/8"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/3 to-pink-900/8"></div>
           <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2 
@@ -438,34 +438,11 @@ export default function Home() {
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Bottom accent badge */}
-          <motion.div 
-            className="flex justify-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={solutionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 px-6 py-3 rounded-full backdrop-blur-sm">
-              <p className="text-sm font-medium text-gray-300">
-                <span className="text-purple-400">Proven results</span> from professional web design
-              </p>
-            </div>
-          </motion.div>
+            ))}          </motion.div>
         </div>
-      </section>      {/* Mid-Page CTA */}
-      <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 relative overflow-hidden">
-        {/* Enhanced Background with Subtle Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-purple-800/20 to-pink-900/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-        
-        {/* Subtle Geometric Elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-blue-500/8 rounded-full blur-xl"></div>
-        
+      </section>{/* Mid-Page CTA */}
+      <section ref={ctaRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">        {/* Subtle seamless background that blends with the rest */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/8 to-transparent"></div>        
         <div className="max-w-4xl mx-auto text-center relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
