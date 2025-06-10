@@ -494,7 +494,7 @@ export default function Home() {
             animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            Your Website Solution <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Will Include</span>
+            Your Website Solution <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Includes</span>
           </motion.h2>{/* Unified 6-Card Grid Layout */}
           <motion.div 
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12"
@@ -633,7 +633,7 @@ export default function Home() {
       </section>      {/* Professional Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">          <motion.div 
-            className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-xl border-2 border-white/30 shadow-2xl shadow-purple-500/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-5xl border-2 border-white/30 shadow-2xl shadow-purple-500/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
