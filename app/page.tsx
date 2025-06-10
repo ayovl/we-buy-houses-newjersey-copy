@@ -233,31 +233,50 @@ export default function Home() {
           </div>
         </div>
       </nav>{/* Hero Section - Chrome Mobile Viewport Fixed */}
-      <section ref={heroRef} className="flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation" style={{ height: viewportHeight }}>
-        <div className="max-w-7xl mx-auto text-center">          <motion.h1 
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"initial={fadeInUp.initial}
+      <section ref={heroRef} className="flex items-center justify-center px-6 lg:px-8 relative keep-mobile-animation" style={{ height: viewportHeight }}>        <div className="max-w-7xl mx-auto text-center">          <motion.h1 
+            className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-tight tracking-tight"
+            initial={fadeInUp.initial}
             animate={heroInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
+            style={{
+              textShadow: '0 0 30px rgba(147, 51, 234, 0.3), 0 0 60px rgba(147, 51, 234, 0.1)',
+              filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
+            }}
           >
             Your Current Website <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 animate-pulse">
               Isn't Converting
-            </span>
-          </motion.h1>          <motion.p 
+            </span>          </motion.h1>
+
+          <motion.p 
             className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
             initial={fadeInUp.initial}
             animate={heroInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
+            style={{
+              textShadow: '0 0 20px rgba(147, 51, 234, 0.2), 0 0 40px rgba(147, 51, 234, 0.1)',
+              filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))'
+            }}
           >
-            A new and improved cashforpropertiesnyc.com is ready for you.
-          </motion.p>          <motion.button
+            A new and improved <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 font-semibold">cashforpropertiesnyc.com</span> is ready for you.
+          </motion.p><motion.button
             onClick={() => scrollToSection('pricing')}
-            className="bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+            className="group relative bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-500 hover:via-purple-400 hover:to-pink-400 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/40 overflow-hidden"
             initial={fadeInUp.initial}
             animate={heroInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
+            style={{
+              boxShadow: '0 8px 32px rgba(147, 51, 234, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            }}
           >
-            Get Your Website Now
+            {/* Animated background shimmer */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+            
+            {/* Button content */}
+            <span className="relative flex items-center gap-2 justify-center">
+              Get Your Website Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
           </motion.button>
         </div>          {/* Learn More Button (replacing scroll indicator) */}
         <div className="absolute bottom-6 md:bottom-8 left-0 right-0 flex justify-center keep-mobile-animation">
