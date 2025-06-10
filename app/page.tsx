@@ -379,13 +379,9 @@ export default function Home() {
                 <div className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-md border border-white/30 p-7 rounded-xl text-center hover:border-purple-400/50 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group">
                   {/* Advanced colorful backdrop - better than problem cards by default */}
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-400/12 via-pink-400/8 to-blue-400/12 opacity-85"></div>
-                  
-                  {/* Subtle color shading layers for premium feel */}
+                    {/* Subtle color shading layers for premium feel */}
                   <div className="absolute inset-0 bg-gradient-to-t from-purple-500/8 via-transparent to-pink-500/6 opacity-70"></div>
                   <div className="absolute inset-0 bg-gradient-to-bl from-blue-400/6 via-transparent to-purple-400/8 opacity-60"></div>
-                  
-                  {/* Refined corner accent - less excessive */}
-                  <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-400/30 via-pink-400/20 to-transparent rounded-bl-2xl rounded-tr-xl opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
                   
                   {/* Content container */}
                   <div className="relative z-10">
