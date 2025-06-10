@@ -301,13 +301,13 @@ export default function Home() {
       <section id="problem" ref={problemRef} className="py-12 lg:py-16 px-6 lg:px-16 xl:px-24 relative">
         {/* Subtle gradient that blends into solution section */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-900/5"></div>
-        <div className="max-w-5xl mx-auto relative z-10"><motion.h2 
+        <div className="max-w-5xl mx-auto relative z-10">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}          >
             The Problem with <br className="sm:hidden" />
-            <span className="text-red-400 text-2xl md:text-3xl lg:text-4xl break-all">cashforpropertiesnyc.com</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 text-2xl md:text-3xl lg:text-4xl break-all">cashforpropertiesnyc.com</span>
           </motion.h2><motion.div 
             className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
             initial={staggerContainer.initial}
@@ -400,12 +400,8 @@ export default function Home() {
                 variants={staggerChild}
               >                {/* Premium solution card with enhanced backdrop and refined animations */}
                 <div className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-md border border-white/30 p-7 rounded-xl text-center hover:border-purple-400/50 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group">
-                  {/* Enhanced multi-layered backdrop - superior to problem cards */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/12 via-pink-500/8 to-blue-500/10 opacity-75"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-600/10 via-transparent to-pink-400/8 opacity-80"></div>
-                  <div className="absolute inset-0 bg-gradient-to-bl from-blue-400/8 via-transparent to-purple-500/12 opacity-65"></div>
-                  {/* Additional subtle shimmer layer */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent opacity-40"></div>                  {/* Content container */}
+                  {/* Subtle diagonal background pattern - matching problem cards style */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-60"></div>{/* Content container */}
                   <div className="relative z-10">
                     {/* Enhanced statistics badge with fixed size */}
                     <div className="absolute -top-3 -right-3 w-16 h-8 bg-gradient-to-r from-purple-500/15 via-white/10 to-pink-500/15 border border-purple-400/40 rounded-full text-xs font-medium text-white backdrop-blur-md group-hover:bg-gradient-to-r group-hover:from-purple-500/25 group-hover:via-white/15 group-hover:to-pink-500/25 group-hover:border-purple-400/60 group-hover:shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300 flex items-center justify-center select-none touch-manipulation" style={{WebkitTapHighlightColor: 'transparent', WebkitTouchCallout: 'none', WebkitUserSelect: 'none'}}>
