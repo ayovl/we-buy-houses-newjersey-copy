@@ -372,40 +372,54 @@ export default function Home() {
                 icon: DollarSign,
                 proofLink: "https://thegood.com/results/swissgear/"
               }
-            ].map((item, index) => (
-              <motion.div
-
+            ].map((item, index) => (              <motion.div
                 key={index}
                 className="relative group"
                 variants={staggerChild}
               >
-                {/* Card with enhanced styling */}
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/25 p-8 rounded-xl text-center hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 relative overflow-hidden">
-                  {/* Subtle background pattern */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/5 opacity-50"></div>                  {/* Content */}
-                  <div className="relative z-10">
-                    <item.icon className="w-12 h-12 text-purple-400 mb-6 mx-auto" />
-                    <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{item.title}</h3>
+                {/* Enhanced professional card styling */}
+                <div className="bg-gradient-to-br from-white/12 to-white/6 backdrop-blur-lg border border-white/30 p-8 rounded-2xl text-center hover:scale-[1.03] transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/15 relative overflow-hidden">
+                  {/* Enhanced background pattern with better visual depth */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/8 via-transparent to-pink-400/8 opacity-70"></div>
+                  
+                  {/* Floating orb effect for visual interest */}
+                  <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Content with improved layout and spacing */}
+                  <div className="relative z-10">                    {/* Icon with integrated statistics badge - smaller size */}
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-xl flex items-center justify-center backdrop-blur-sm border border-purple-400/20 group-hover:border-purple-400/40 transition-colors duration-300 relative">
+                        <item.icon className="w-7 h-7 text-purple-400" />
+                        {/* Statistics badge positioned as overlay */}
+                        <div className="absolute -top-3 -right-3 px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 border border-purple-400/50 rounded-full text-xs font-bold text-white shadow-lg backdrop-blur-sm">
+                          {item.stat}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-3xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{item.title}</h3>
                     <p className="text-gray-300 text-base leading-relaxed mb-6">{item.description}</p>
                     
-                    {/* See Proof Button */}
+                    {/* Enhanced See Proof Button */}
                     {item.proofLink && (
                       <a 
                         href={item.proofLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-purple-400 hover:text-pink-400 text-sm font-medium transition-colors duration-300 group"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-lg text-purple-400 hover:text-pink-400 text-sm font-medium transition-all duration-300 group/button hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 hover:border-purple-400/50"
                       >
                         <span>See proof</span>
-                        <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 group-hover/button:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
                     )}
                   </div>
                   
-                  {/* Hover effect border */}
-                  <div className="absolute inset-0 rounded-xl border border-purple-400/0 group-hover:border-purple-400/30 transition-colors duration-300"></div>
+                  {/* Enhanced hover effect border with gradient */}
+                  <div className="absolute inset-0 rounded-2xl border border-gradient-to-r from-purple-400/0 via-pink-400/0 to-purple-400/0 group-hover:from-purple-400/40 group-hover:via-pink-400/30 group-hover:to-purple-400/40 transition-all duration-500"></div>
+                  
+                  {/* Corner accent with enhanced styling */}
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-purple-500/15 via-pink-500/10 to-transparent rounded-bl-3xl rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </motion.div>
             ))}
