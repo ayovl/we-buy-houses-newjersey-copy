@@ -692,15 +692,22 @@ export default function Home() {
                 ))}
               </div>
             </div>            {/* Project Timeline */}
-            <div className="mb-6 p-3 bg-white/5 border border-white/10 rounded-lg">
-              <div className="grid md:grid-cols-2 gap-3 text-sm">
-                <div className="flex items-center justify-center space-x-2 text-gray-300">
-                  <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                  <span>Website live at <strong className="text-white">cashforpropertiesnyc.com</strong> in 4 business days</span>
+            <div className="mb-6 p-5 bg-gradient-to-r from-white/8 to-white/5 border border-white/15 rounded-xl shadow-lg">
+              <div className="text-center mb-3">
+                <h4 className="text-sm font-semibold text-white/90 uppercase tracking-wide">Project Delivery</h4>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center justify-center space-x-3 bg-green-500/10 border border-green-500/20 rounded-lg p-3">
+                  <div className="w-2.5 h-2.5 bg-green-400 rounded-full flex-shrink-0 shadow-sm"></div>
+                  <span className="text-center text-gray-200 font-medium">
+                    <strong className="text-white">cashforpropertiesnyc.com</strong> goes live in <strong className="text-green-400">4 business days</strong>
+                  </span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-gray-300">
-                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                  <span><strong className="text-white">100% satisfaction</strong> or full refund guaranteed</span>
+                <div className="flex items-center justify-center space-x-3 bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                  <div className="w-2.5 h-2.5 bg-blue-400 rounded-full flex-shrink-0 shadow-sm"></div>
+                  <span className="text-center text-gray-200 font-medium">
+                    <strong className="text-white">100% satisfaction</strong> or <strong className="text-blue-400">full refund</strong> guaranteed
+                  </span>
                 </div>
               </div>
             </div>
