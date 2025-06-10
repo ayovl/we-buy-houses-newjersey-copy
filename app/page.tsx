@@ -453,7 +453,7 @@ export default function Home() {
             animate={testimonialInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            Trusted by <span className="text-[hsl(267,75%,56%)]">Clients Like You</span>
+            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Clients Like You</span>
           </motion.h2>
           <motion.div 
             className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
@@ -481,7 +481,7 @@ export default function Home() {
                   ))}
                 </div>                <p className="text-gray-300 mb-4 italic">"{testimonial.quote}"</p>
                 <p className="font-semibold">{testimonial.author}</p>
-                <a href="https://www.upwork.com/freelancers/~01f45017511d101318" target="_blank" rel="noopener noreferrer" className="text-[hsl(267,75%,56%)] text-sm hover:underline">View on Upwork →</a>
+                <a href="https://www.upwork.com/freelancers/~01f45017511d101318" target="_blank" rel="noopener noreferrer" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 text-sm hover:underline">View on Upwork →</a>
               </motion.div>
             ))}
           </motion.div>
@@ -489,23 +489,15 @@ export default function Home() {
       </section>      {/* The Offer Section */}
       <section id="offer" ref={benefitsRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
             animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            Your All-In-One <span className="text-[hsl(267,75%,56%)]">Website Solution</span>
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-300 text-center mb-16"
-            initial={fadeInUp.initial}
-            animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.1 }}
-          >
-            Get a Fully Branded, Conversion-Optimized Website That Drives Results.
-          </motion.p>          {/* Unified 5-Card Grid Layout */}
+            Your Website Solution <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Will Include</span>
+          </motion.h2>{/* Unified 6-Card Grid Layout */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12"
             initial={staggerContainer.initial}
             animate={benefitsInView ? staggerContainer.animate : staggerContainer.initial}
           >
@@ -551,36 +543,57 @@ export default function Home() {
               </ul>
             </motion.div>
 
-            {/* Card 3: FREE Branding Package */}
+            {/* Card 3: Basic Branding */}
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+              variants={staggerChild}
+            >
+              <h3 className="text-xl font-bold mb-4">Basic Branding</h3>
+              <ul className="space-y-2 flex-1">
+                {[
+                  "Professional styling",
+                  "Color coordination",
+                  "Brand consistency",
+                  "Visual cohesion"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Card 4: FREE Premium Branding Package */}
             <motion.div 
               className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col"
               variants={staggerChild}
             >
               <div className="absolute top-2 right-2">
-                <Gift className="w-5 h-5 text-[hsl(267,75%,56%)]" />
+                <Gift className="w-5 h-5 text-cyan-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-[hsl(267,75%,56%)]">FREE Branding Package</h3>
-              <p className="text-xs text-gray-300 mb-3">Included at no extra cost!</p>
+              <h3 className="text-lg font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Premium Branding</h3>
+              <p className="text-xs text-gray-300 mb-3">Bonus package included!</p>
               <ul className="space-y-2 flex-1">
                 {[
                   { icon: Palette, text: "Logo refresh" },
-                  { icon: FileText, text: "Color palette & brand guidelines" },
+                  { icon: FileText, text: "Brand guidelines" },
                   { icon: Type, text: "Typography selection" }
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <item.icon className="w-4 h-4 text-[hsl(267,75%,56%)] mr-3 flex-shrink-0" />
+                    <item.icon className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
                     <span className="font-medium text-sm">{item.text}</span>
                   </li>
                 ))}
               </ul>
               <div className="mt-auto p-2 bg-[hsl(267,75%,56%)]/10 rounded-lg border border-[hsl(267,75%,56%)]/30">
-                <p className="text-xs text-center font-semibold text-[hsl(267,75%,56%)]">
+                <p className="text-xs text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                   Worth $800+ - Yours FREE!
                 </p>
               </div>
             </motion.div>
 
-            {/* Card 4: Hosting & Setup */}
+            {/* Card 5: Hosting & Setup */}
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
@@ -601,7 +614,7 @@ export default function Home() {
               </ul>
             </motion.div>
 
-            {/* Card 5: Lifetime Support */}
+            {/* Card 6: Lifetime Support */}
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
@@ -622,124 +635,141 @@ export default function Home() {
               </ul>
             </motion.div>
           </motion.div></div>
-      </section>{/* Pricing Section */}
+      </section>      {/* Professional Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">
           <motion.div 
-            className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border-2 border-[hsl(267,75%,56%)]/50 p-8 rounded-2xl text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/20 shadow-2xl shadow-black/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            {/* Enhanced Ribbon */}
-            <div className="absolute -top-1 -right-1">
-              <div className="bg-gradient-to-r from-[hsl(267,75%,56%)] via-purple-500 to-pink-500 text-white px-8 py-3 text-sm font-bold transform rotate-12 translate-x-4 -translate-y-2 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Gift className="w-4 h-4" />
-                  <span>Complete Solution</span>
+            {/* Professional Badge */}
+            <div className="absolute -top-2 -right-2">
+              <div className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] text-white px-4 py-1.5 text-xs font-semibold transform rotate-12 translate-x-2 -translate-y-1 shadow-lg rounded-md">
+                <div className="flex items-center space-x-1">
+                  <Gift className="w-3 h-3" />
+                  <span>COMPLETE SOLUTION</span>
+                </div>
+              </div>
+            </div>            {/* Header Section */}
+            <div className="relative z-10 mb-8">              
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+                Professional Website Solution
+              </h2>
+            </div>            {/* Professional Service Grid */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <div className="bg-white/8 backdrop-blur-sm p-4 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300">
+                <h4 className="font-bold text-lg mb-2 text-white">Complete Website</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">Custom design, 10 pages, mobile-responsive, professional branding</p>
+              </div>
+              <div className="bg-gradient-to-br from-[hsl(267,75%,56%)]/15 to-[hsl(267,75%,56%)]/5 p-4 rounded-lg border-2 border-[hsl(267,75%,56%)]/30 relative overflow-hidden">
+                <div className="absolute top-2 right-2">
+                  <Gift className="w-4 h-4 text-[hsl(267,75%,56%)]" />
+                </div>
+                <h4 className="font-bold text-lg mb-2 text-[hsl(267,75%,56%)]">Premium Branding</h4>
+                <p className="text-gray-200 text-sm leading-relaxed mb-2">Complete brand identity package included</p>
+                <div className="inline-block bg-[hsl(267,75%,56%)]/20 text-[hsl(267,75%,56%)] px-2 py-1 rounded-full text-xs font-semibold">
+                  Value: $800+
+                </div>
+              </div>
+              <div className="bg-white/8 backdrop-blur-sm p-4 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300">
+                <h4 className="font-bold text-lg mb-2 text-white">Lifetime Support</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">Hosting, maintenance, updates, and technical support included</p>
+              </div>
+            </div>{/* Professional Guarantees */}
+            <div className="mb-6 p-4 bg-gradient-to-r from-green-500/8 to-blue-500/8 border border-green-500/20 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-3">
+                {[
+                  { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-green-400" },
+                  { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
+                  { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center justify-center space-x-2 bg-white/5 px-3 py-2 rounded-lg border border-white/10">
+                    <item.icon className={`w-4 h-4 ${item.color}`} />
+                    <span className="font-medium text-white text-xs text-center">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>            {/* Project Timeline */}
+            <div className="mb-6 p-3 bg-white/5 border border-white/10 rounded-lg">
+              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                <div className="flex items-center justify-center space-x-2 text-gray-300">
+                  <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                  <span>Website live at <strong className="text-white">cashforpropertiesnyc.com</strong> in 4 business days</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2 text-gray-300">
+                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span><strong className="text-white">100% satisfaction</strong> or full refund guaranteed</span>
                 </div>
               </div>
             </div>
 
-            {/* Main Content */}
-            <div className="relative z-10">              <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                Everything You Need to <span className="text-[hsl(267,75%,56%)]">Succeed Online</span>
-              </h2>
-              
-              {/* Price */}
-              <div className="mb-6">
-                <div className="text-6xl md:text-7xl font-bold text-[hsl(267,75%,56%)] mb-2">
-                  $3,950
-                  <span className="text-2xl text-gray-300 ml-2">USD</span>
-                </div>
-                <p className="text-lg text-gray-300">
-                  <span className="line-through">Real value: $5,100</span> – You're saving over $1,000!
-                </p>
-              </div>
+            {/* Value Proposition Above Price */}
+            <div className="mb-6 text-center">
+              <p className="text-base text-gray-300 max-w-xl mx-auto">
+                Everything you need to <span className="text-[hsl(267,75%,56%)] font-semibold">establish a powerful online presence</span>
+              </p>
+            </div>
 
-              {/* What's Included - Highlighted Grid */}
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <h4 className="font-bold text-lg mb-2">Complete Website</h4>
-                  <p className="text-sm text-gray-300">Custom design, 10 pages, mobile-responsive</p>
+            {/* Price Display */}
+            <div className="mb-6 p-6 bg-gradient-to-br from-[hsl(267,75%,56%)]/10 to-[hsl(267,75%,56%)]/5 border-2 border-[hsl(267,75%,56%)]/30 rounded-xl">
+              <div className="text-center">
+                <div className="mb-2">
+                  <span className="text-4xl md:text-5xl font-bold text-white">$3,500</span>
+                  <span className="text-lg text-gray-300 ml-2">one-time</span>
                 </div>
-                <div className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 p-4 rounded-lg border-2 border-[hsl(267,75%,56%)]/50">
-                  <div className="flex items-center justify-center mb-2">
-                    <Gift className="w-5 h-5 text-[hsl(267,75%,56%)] mr-2" />
-                    <h4 className="font-bold text-lg text-[hsl(267,75%,56%)]">FREE Branding</h4>
-                  </div>
-                  <p className="text-sm">Logo, colors, typography - worth $800+</p>
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <h4 className="font-bold text-lg mb-2">Lifetime Support</h4>
-                  <p className="text-sm text-gray-300">Hosting, updates, and technical support</p>
-                </div>
-              </div>
+                <p className="text-[hsl(267,75%,56%)] font-semibold text-lg mb-2">Complete Website Solution</p>
+                <p className="text-gray-300 text-sm">Everything included • No hidden fees • No recurring costs</p>              </div>
+            </div>
 
-              {/* Prominent Contact Info */}
-              <div className="mb-6 p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-lg">
-                <p className="text-lg font-semibold text-blue-300 mb-3">
-                  📞 Schedule a call or email before moving forward
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <div className="flex items-center space-x-2 text-blue-300">
-                    <Phone className="w-5 h-5" />
-                    <span className="font-medium">Schedule a Call</span>
-                  </div>
-                  <div className="text-gray-400">or</div>
-                  <div className="flex items-center space-x-2 text-blue-300">
-                    <Mail className="w-5 h-5" />
-                    <a href="mailto:arsalmaab@gmail.com" className="font-medium hover:underline">
-                      arsalmaab@gmail.com
-                    </a>
-                  </div>
+            {/* Professional Contact Section */}
+            <div className="mb-6 p-4 bg-gradient-to-r from-blue-500/8 to-purple-500/8 border border-blue-500/20 rounded-lg">
+              <h3 className="text-lg font-semibold text-blue-200 mb-3">
+                Want to Discuss before moving forwad?
+              </h3>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-1.5 rounded-lg border border-blue-500/20">
+                  <Phone className="w-4 h-4" />
+                  <span className="font-medium text-sm">Schedule Consultation</span>
                 </div>
-              </div>              {/* CTA Button */}
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 mb-6"
-              >
-                Get Your New Website Now
-              </button>
-
-              {/* Trust Badges */}
-              <div className="mb-6 p-4 bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-lg">
-                <div className="flex flex-wrap justify-center gap-4 text-center">
-                  {[
-                    { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-green-400" },
-                    { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
-                    { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-2 bg-white/5 px-3 py-2 rounded-lg border border-white/20">
-                      <item.icon className={`w-5 h-5 ${item.color}`} />
-                      <span className="font-medium text-white text-sm">{item.text}</span>
-                    </div>
-                  ))}
+                <div className="text-gray-400 text-sm hidden sm:block">or</div>
+                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-1.5 rounded-lg border border-blue-500/20">
+                  <Mail className="w-4 h-4" />
+                  <a href="mailto:arsalmaab@gmail.com" className="font-medium text-sm hover:underline">
+                    arsalmaab@gmail.com
+                  </a>
                 </div>
               </div>
+            </div>
 
-              {/* Important Details */}
-              <div className="space-y-2 text-sm text-gray-300 mb-6">
-                <p>✅ Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days</p>
-                <p>💯 100% satisfaction or a full refund</p>
-              </div>              {/* Context Link */}
-              <button 
+            {/* Professional CTA */}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
+            >
+              Get Your Website Now
+            </button>
+
+            {/* Professional Footer */}
+            <div className="flex flex-col items-center space-y-3">              <button 
                 onClick={() => scrollToSection('problem')}
-                className="text-[hsl(267,75%,56%)] hover:underline text-sm mb-4 flex items-center justify-center mx-auto"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-300 hover:to-pink-300 font-medium text-sm flex items-center space-x-2 transition-colors duration-200"
               >
-                Why Do You Need This, Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                <span>Why do you need a better website?</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
-              {/* Lock-in Statement */}
-              <div className="bg-green-500/10 border border-green-500/30 p-3 rounded-lg">
-                <p className="text-green-400 font-semibold">
-                  🔒 Fully Managed. No Hosting Fees. No Tech Headaches.
+              <div className="bg-gradient-to-r from-green-500/10 to-green-500/5 border border-green-500/20 px-4 py-2 rounded-lg">
+                <p className="text-green-400 font-semibold flex items-center justify-center space-x-2 text-sm">
+                  <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                  <span>Fully Managed • No Hosting Fees • No Technical Hassles</span>
                 </p>
               </div>
             </div>
           </motion.div>
         </div>
-      </section>      {/* Schedule Meeting Section */}
+      </section>{/* Schedule Meeting Section */}
       <section className="py-20 lg:py-32 px-6 lg:px-8 relative" ref={meetingRef}>
         <div className="max-w-4xl mx-auto text-center">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
@@ -879,10 +909,9 @@ export default function Home() {
           </motion.div>        </div>
       )}      {/* Scroll to Top Button - Modern Glassmorphism Design */}
       <AnimatePresence mode="wait">
-        {showScrollToTop && (
-          <motion.button
+        {showScrollToTop && (          <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 hover:border-white/30 text-white p-3 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 hidden md:block group overflow-hidden"
+            className="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 hover:border-white/30 text-white p-3 rounded-full shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 hidden md:block group overflow-hidden"
             initial={{ 
               opacity: 0, 
               y: 60,
@@ -918,9 +947,8 @@ export default function Home() {
               willChange: 'transform, opacity'
             }}
             aria-label="Scroll to top"
-          >
-            {/* Subtle gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+          >            {/* Subtle gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
             
             {/* Icon with subtle animation */}
             <ChevronUp className="w-6 h-6 relative z-10 group-hover:translate-y-[-1px] transition-transform duration-200" />
