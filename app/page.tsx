@@ -633,11 +633,13 @@ export default function Home() {
       </section>      {/* Professional Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">          <motion.div 
-            className="bg-gradient-to-br from-gray-900/95 to-gray-800/90 backdrop-blur-xl border-2 border-purple-500/40 shadow-2xl shadow-purple-500/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-xl border-2 border-white/30 shadow-2xl shadow-purple-500/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
+            {/* Subtle background pattern for better contrast */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-400/8 via-transparent to-pink-400/8 opacity-60"></div>
             {/* Professional Badge */}
             <div className="absolute -top-2 -right-2">
               <div className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] text-white px-4 py-1.5 text-xs font-semibold transform rotate-12 translate-x-2 -translate-y-1 shadow-lg rounded-md">
