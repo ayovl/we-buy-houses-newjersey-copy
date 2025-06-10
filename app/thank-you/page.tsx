@@ -42,7 +42,7 @@ export default function ThankYou() {
             animate={fadeInUp.animate}
             transition={fadeInUp.transition}
           >
-            <CheckCircle className="w-24 h-24 text-green-400 mx-auto mb-6" />
+            <CheckCircle className="w-24 h-24 text-purple-400 mx-auto mb-6" />
           </motion.div>
 
           <motion.h1 
@@ -73,19 +73,19 @@ export default function ThankYou() {
               <h3 className="text-2xl font-bold mb-4 text-[hsl(267,75%,56%)]">What Happens Next?</h3>
               <ul className="space-y-3 text-left">
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
                   <span>You'll receive a confirmation email within 24 hours</span>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
                   <span>We'll schedule a brief call to discuss your preferences</span>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
                   <span>Your website will be live in 4 business days</span>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
                   <span>Brand assets and login details will be delivered</span>
                 </li>
               </ul>

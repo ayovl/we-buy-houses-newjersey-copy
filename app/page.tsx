@@ -320,7 +320,7 @@ export default function Home() {
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            A Professionally Designed Website <span className="text-green-400">Delivers Results</span>
+            A Professionally Designed Website <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Delivers Results</span>
           </motion.h2>
 
           <motion.div
@@ -505,8 +505,7 @@ export default function Home() {
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
-            >
-              <h3 className="text-xl font-bold mb-4">Website Design & Development</h3>
+            >              <h3 className="text-xl font-bold mb-4">Website Design & Development</h3>
               <ul className="space-y-2 flex-1">
                 {[
                   "Fully custom website",
@@ -515,7 +514,7 @@ export default function Home() {
                   "Contact form setup"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -526,8 +525,7 @@ export default function Home() {
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
-            >
-              <h3 className="text-xl font-bold mb-4">SEO & Copywriting</h3>
+            >              <h3 className="text-xl font-bold mb-4">SEO & Copywriting</h3>
               <ul className="space-y-2 flex-1">
                 {[
                   "SEO optimized",
@@ -536,7 +534,7 @@ export default function Home() {
                   "Conversion-optimized copy"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -547,8 +545,7 @@ export default function Home() {
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
-            >
-              <h3 className="text-xl font-bold mb-4">Basic Branding</h3>
+            >              <h3 className="text-xl font-bold mb-4">Basic Branding</h3>
               <ul className="space-y-2 flex-1">
                 {[
                   "Professional styling",
@@ -557,7 +554,7 @@ export default function Home() {
                   "Visual cohesion"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -597,8 +594,7 @@ export default function Home() {
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
-            >
-              <h3 className="text-xl font-bold mb-4">Hosting & Setup</h3>
+            >              <h3 className="text-xl font-bold mb-4">Hosting & Setup</h3>
               <ul className="space-y-2 flex-1">
                 {[
                   "Free setup",
@@ -607,7 +603,7 @@ export default function Home() {
                   "Free hosting"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -618,8 +614,7 @@ export default function Home() {
             <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
-            >
-              <h3 className="text-xl font-bold mb-4">Lifetime Support</h3>
+            >              <h3 className="text-xl font-bold mb-4">Lifetime Support</h3>
               <ul className="space-y-2 flex-1">
                 {[
                   "Minor edits",
@@ -628,7 +623,7 @@ export default function Home() {
                   "Technical support"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -734,11 +729,11 @@ export default function Home() {
                 {/* Subtle glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-transparent pointer-events-none"></div>
               </div>
-            </div>{/* Professional Guarantees */}
-            <div className="mb-6 p-4 bg-gradient-to-r from-green-500/8 to-blue-500/8 border border-green-500/20 rounded-lg">
+            </div>            {/* Professional Guarantees */}
+            <div className="mb-6 p-4 bg-gradient-to-r from-purple-500/8 to-blue-500/8 border border-purple-500/20 rounded-lg">
               <div className="grid md:grid-cols-3 gap-3">
                 {[
-                  { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-green-400" },
+                  { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-purple-400" },
                   { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
                   { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
                 ].map((item, index) => (
@@ -752,12 +747,11 @@ export default function Home() {
             <div className="mb-6 p-5 bg-gradient-to-r from-white/8 to-white/5 border border-white/15 rounded-xl shadow-lg">
               <div className="text-center mb-3">
                 <h4 className="text-sm font-semibold text-white/90 uppercase tracking-wide">Project Delivery</h4>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center justify-center space-x-3 bg-green-500/10 border border-green-500/20 rounded-lg p-3">
-                  <div className="w-2.5 h-2.5 bg-green-400 rounded-full flex-shrink-0 shadow-sm"></div>
+              </div>              <div className="space-y-4">
+                <div className="flex items-center justify-center space-x-3 bg-purple-500/10 border border-purple-500/20 rounded-lg p-3">
+                  <div className="w-2.5 h-2.5 bg-purple-400 rounded-full flex-shrink-0 shadow-sm"></div>
                   <span className="text-center text-gray-200 font-medium">
-                    <strong className="text-white">cashforpropertiesnyc.com</strong> goes live in <strong className="text-green-400">4 business days</strong>
+                    <strong className="text-white">cashforpropertiesnyc.com</strong> goes live in <strong className="text-purple-400">4 business days</strong>
                   </span>
                 </div>
                 <div className="flex items-center justify-center space-x-3 bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
@@ -819,11 +813,9 @@ export default function Home() {
               >
                 <span>Why do you need a better website?</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-
-              <div className="bg-gradient-to-r from-green-500/10 to-green-500/5 border border-green-500/20 px-4 py-2 rounded-lg">
-                <p className="text-green-400 font-semibold flex items-center justify-center space-x-2 text-sm">
-                  <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+              </button>              <div className="bg-gradient-to-r from-purple-500/10 to-purple-500/5 border border-purple-500/20 px-4 py-2 rounded-lg">
+                <p className="text-purple-400 font-semibold flex items-center justify-center space-x-2 text-sm">
+                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
                   <span>Fully Managed • No Hosting Fees • No Technical Hassles</span>
                 </p>
               </div>
