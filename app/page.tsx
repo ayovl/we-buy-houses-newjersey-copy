@@ -298,7 +298,10 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Problem Section */}
-      <section id="problem" ref={problemRef} className="py-12 lg:py-16 px-6 lg:px-16 xl:px-24 relative"><div className="max-w-5xl mx-auto">          <motion.h2 
+      <section id="problem" ref={problemRef} className="py-12 lg:py-16 px-6 lg:px-16 xl:px-24 relative">
+        {/* Subtle gradient that blends into solution section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-900/5"></div>
+        <div className="max-w-5xl mx-auto relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
@@ -345,8 +348,9 @@ export default function Home() {
         </div>
       </section>      {/* Solution Section */}
       <section id="solution" ref={solutionRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-pink-900/10"></div>
+        {/* Seamless gradient overlay that continues from problem section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-purple-900/8 to-purple-900/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/3 to-pink-900/8"></div>
           <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
@@ -401,13 +405,13 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-purple-600/10 via-transparent to-pink-400/8 opacity-80"></div>
                   <div className="absolute inset-0 bg-gradient-to-bl from-blue-400/8 via-transparent to-purple-500/12 opacity-65"></div>
                   {/* Additional subtle shimmer layer */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent opacity-40"></div>
-                  
-                  {/* Content container */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent opacity-40"></div>                  {/* Content container */}
                   <div className="relative z-10">
-                    {/* Empty/outline statistics badge */}
-                    <div className="absolute -top-3 -right-3 px-3 py-2 bg-white/10 border border-white/25 rounded-full text-xs font-medium text-white/90 backdrop-blur-sm group-hover:bg-white/15 group-hover:border-purple-400/40 group-hover:text-white transition-all duration-300">
-                      {item.stat}
+                    {/* Enhanced statistics badge with fixed size */}
+                    <div className="absolute -top-3 -right-3 w-16 h-8 bg-gradient-to-r from-purple-500/15 via-white/10 to-pink-500/15 border border-purple-400/40 rounded-full text-xs font-medium text-white backdrop-blur-md group-hover:bg-gradient-to-r group-hover:from-purple-500/25 group-hover:via-white/15 group-hover:to-pink-500/25 group-hover:border-purple-400/60 group-hover:shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300 flex items-center justify-center select-none touch-manipulation" style={{WebkitTapHighlightColor: 'transparent', WebkitTouchCallout: 'none', WebkitUserSelect: 'none'}}>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-white font-semibold pointer-events-none">
+                        {item.stat}
+                      </span>
                     </div>
                     
                     {/* Enhanced icon with refined styling */}
