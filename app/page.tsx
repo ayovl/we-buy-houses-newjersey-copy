@@ -401,18 +401,16 @@ export default function Home() {
                     <h3 className="text-2xl font-bold mb-4 text-white leading-tight group-hover:text-purple-50 transition-colors duration-300">{item.title}</h3>
                     
                     {/* Enhanced description */}
-                    <p className="text-gray-200 text-sm leading-relaxed mb-6 group-hover:text-gray-100 transition-colors duration-300">{item.description}</p>
-
-                    {/* Minimal See Proof button */}
+                    <p className="text-gray-200 text-sm leading-relaxed mb-6 group-hover:text-gray-100 transition-colors duration-300">{item.description}</p>                    {/* Clean text-only See Proof button */}
                     {item.proofLink && (
                       <a 
                         href={item.proofLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-2 py-1 bg-white/5 border border-white/15 rounded text-white/60 hover:text-white/80 hover:bg-white/8 text-xs font-light transition-all duration-300"
+                        className="inline-flex items-center gap-1 text-purple-300 hover:text-purple-200 text-xs font-medium transition-colors duration-300 hover:underline underline-offset-2"
                       >
                         <span>See proof</span>
-                        <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
