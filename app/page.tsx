@@ -375,13 +375,14 @@ export default function Home() {
                 key={index}
                 className="relative group"
                 variants={staggerChild}
-              >                {/* Premium solution card with advanced backdrop and refined animations */}
+              >                {/* Premium solution card with enhanced backdrop and refined animations */}
                 <div className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-md border border-white/30 p-7 rounded-xl text-center hover:border-purple-400/50 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group">
-                  {/* Advanced colorful backdrop - better than problem cards by default */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/12 via-pink-400/8 to-blue-400/12 opacity-85"></div>
-                    {/* Subtle color shading layers for premium feel */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-500/8 via-transparent to-pink-500/6 opacity-70"></div>
-                  <div className="absolute inset-0 bg-gradient-to-bl from-blue-400/6 via-transparent to-purple-400/8 opacity-60"></div>
+                  {/* Enhanced multi-layered backdrop - superior to problem cards */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/12 via-pink-500/8 to-blue-500/10 opacity-75"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-600/10 via-transparent to-pink-400/8 opacity-80"></div>
+                  <div className="absolute inset-0 bg-gradient-to-bl from-blue-400/8 via-transparent to-purple-500/12 opacity-65"></div>
+                  {/* Additional subtle shimmer layer */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent opacity-40"></div>
                   
                   {/* Content container */}
                   <div className="relative z-10">
