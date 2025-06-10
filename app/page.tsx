@@ -300,19 +300,18 @@ export default function Home() {
                 key={index}
                 className="relative group"
                 variants={staggerChild}
-              >
-                {/* Enhanced card with professional styling */}
-                <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 p-6 rounded-xl hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10 relative overflow-hidden">
+              >                {/* Enhanced card with professional styling */}
+                <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 p-6 rounded-xl hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10 relative overflow-hidden min-h-[200px] flex flex-col">
                   {/* Subtle background pattern */}
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-orange-500/5 opacity-60"></div>
                   
                   {/* Content */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col flex-1">
                     <div className="mb-4">
                       <item.icon className="w-10 h-10 text-red-400 mb-3" />
                     </div>
                     <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
-                    <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-gray-300 text-sm leading-relaxed flex-1">{item.description}</p>
                   </div>
                   
                   {/* Hover effect border glow */}
@@ -346,33 +345,33 @@ export default function Home() {
           >            {[
               { 
                 stat: "240%", 
-                title: "Atrract More Clients", 
-                description: "Professional websites can convert upto 240% more visitors into clients",
+                title: "Attract More Clients", 
+                description: "Professional websites can convert up to 240% more visitors into clients",
                 icon: TrendingUp,
                 proofLink: "https://www.uncommonlogic.com/case-studies/cro-240-increase-conversion-rate/"
               },
               { 
                 stat: "75%", 
                 title: "Appear Trust Worthy", 
-                description: "75% of users judge credibility based on website design",
+                description: "75% of users judge credibility based on website design and visual appeal",
                 icon: Shield,
                 proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
               },
               { 
                 stat: "94%", 
                 title: "Appear Professional", 
-                description: "94% of first impressions are design-related",
+                description: "94% of first impressions are design-related and impact user trust immediately",
                 icon: Zap,
                 proofLink: "https://cxl.com/blog/first-impressions-matter-the-importance-of-great-visual-design/#h-first-impressions-are-94-design-related"
               },
               { 
                 stat: "132%", 
                 title: "Revenue Increase", 
-                description: "Well-designed websites can boost revenue by 132%",
+                description: "Well-designed websites can boost revenue by 132% through better user experience",
                 icon: DollarSign,
                 proofLink: "https://thegood.com/results/swissgear/"
               }
-            ].map((item, index) => (              <motion.div
+            ].map((item, index) => (<motion.div
                 key={index}
                 className="relative group"
                 variants={staggerChild}
