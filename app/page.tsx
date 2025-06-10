@@ -296,15 +296,31 @@ export default function Home() {
               { icon: Smartphone, title: "Bad First Impression", description: "Causing potential clients to leave quickly." },
               { icon: MousePointer, title: "No Clear CTA", description: "Lack of a clear call-to-action is hurting your conversions." },
               { icon: Frown, title: "Unmotivating", description: "Failing to motivate users to explore your offerings." },
-              { icon: Snail, title: "Slow Loading", description: "Slow-loading, causing users to leave before they see your value." }
-            ].map((item, index) => (              <motion.div
+              { icon: Snail, title: "Slow Loading", description: "Slow-loading, causing users to leave before they see your value." }            ].map((item, index) => (              <motion.div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-4 rounded-lg hover:scale-105 transition-transform duration-300"
+                className="relative group"
                 variants={staggerChild}
               >
-                <item.icon className="w-8 h-8 text-red-400 mb-2" />
-                <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                <p className="text-gray-300 text-sm">{item.description}</p>
+                {/* Enhanced card with professional styling */}
+                <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 p-6 rounded-xl hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10 relative overflow-hidden">
+                  {/* Subtle background pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-orange-500/5 opacity-60"></div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <div className="mb-4">
+                      <item.icon className="w-10 h-10 text-red-400 mb-3" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                  
+                  {/* Hover effect border glow */}
+                  <div className="absolute inset-0 rounded-xl border border-red-400/0 group-hover:border-red-400/20 transition-colors duration-300"></div>
+                  
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-red-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
