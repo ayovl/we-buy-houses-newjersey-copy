@@ -193,8 +193,8 @@ export default function Home() {
               <Image 
                 src="/logo.png" 
                 alt="WebBrand Pro" 
-                width={33} 
-                height={33} 
+                width={34} 
+                height={34} 
                 className="mr-3" 
                 priority
               />
@@ -615,29 +615,8 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-          </motion.div>
-
-          {/* Enhanced Trust Badges */}          <motion.div 
-            className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 p-6 rounded-lg"
-            initial={fadeInUp.initial}
-            animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
-          >
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              {[
-                { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-green-400" },
-                { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
-                { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
-              ].map((item, index) => (
-                <div key={index} className="flex items-center space-x-3 bg-white/5 px-4 py-3 rounded-lg border border-white/20">
-                  <item.icon className={`w-6 h-6 ${item.color}`} />
-                  <span className="font-semibold text-white">{item.text}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>      {/* Pricing Section */}
+          </motion.div>        </div>
+      </section>{/* Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">
           <motion.div 
@@ -709,15 +688,29 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-              </div>
-
-              {/* CTA Button */}
+              </div>              {/* CTA Button */}
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 mb-6"
               >
                 Get Your New Website Now
               </button>
+
+              {/* Trust Badges */}
+              <div className="mb-6 p-4 bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-lg">
+                <div className="flex flex-wrap justify-center gap-4 text-center">
+                  {[
+                    { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-green-400" },
+                    { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
+                    { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-2 bg-white/5 px-3 py-2 rounded-lg border border-white/20">
+                      <item.icon className={`w-5 h-5 ${item.color}`} />
+                      <span className="font-medium text-white text-sm">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* Important Details */}
               <div className="space-y-2 text-sm text-gray-300 mb-6">
