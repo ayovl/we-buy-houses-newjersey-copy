@@ -503,17 +503,19 @@ export default function Home() {
             transition={{ ...fadeInUp.transition, delay: 0.1 }}
           >
             Get a Fully Branded, Conversion-Optimized Website That Drives Results.
-          </motion.p>
-            <motion.div 
-            className="grid md:grid-cols-3 gap-8 mb-16"
+          </motion.p>          {/* Unified 5-Card Grid Layout */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12"
             initial={staggerContainer.initial}
             animate={benefitsInView ? staggerContainer.animate : staggerContainer.initial}
-          >            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+          >
+            {/* Card 1: Website Design & Development */}
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
             >
-              <h3 className="text-2xl font-bold mb-4">Website Design & Development</h3>
-              <ul className="space-y-3">
+              <h3 className="text-xl font-bold mb-4">Website Design & Development</h3>
+              <ul className="space-y-2 flex-1">
                 {[
                   "Fully custom website",
                   "Responsive design",
@@ -521,17 +523,20 @@ export default function Home() {
                   "Contact form setup"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
-                    <span>{item}</span>
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
-            </motion.div>            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+            </motion.div>
+
+            {/* Card 2: SEO & Copywriting */}
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
             >
-              <h3 className="text-2xl font-bold mb-4">SEO & Copywriting</h3>
-              <ul className="space-y-3">
+              <h3 className="text-xl font-bold mb-4">SEO & Copywriting</h3>
+              <ul className="space-y-2 flex-1">
                 {[
                   "SEO optimized",
                   "Fast loading",
@@ -539,83 +544,84 @@ export default function Home() {
                   "Conversion-optimized copy"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
-                    <span>{item}</span>
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
             </motion.div>
 
+            {/* Card 3: FREE Branding Package */}
             <motion.div 
-              className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden"
+              className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col"
               variants={staggerChild}
             >
               <div className="absolute top-2 right-2">
-                <Gift className="w-6 h-6 text-[hsl(267,75%,56%)]" />
+                <Gift className="w-5 h-5 text-[hsl(267,75%,56%)]" />
               </div>
-              <h3 className="text-2xl font-bold mb-2 text-[hsl(267,75%,56%)]">FREE Branding Package</h3>
-              <p className="text-sm text-gray-300 mb-4">Included at no extra cost!</p>
-              <ul className="space-y-3">
+              <h3 className="text-xl font-bold mb-2 text-[hsl(267,75%,56%)]">FREE Branding Package</h3>
+              <p className="text-xs text-gray-300 mb-3">Included at no extra cost!</p>
+              <ul className="space-y-2 flex-1">
                 {[
                   { icon: Palette, text: "Logo refresh" },
                   { icon: FileText, text: "Color palette & brand guidelines" },
                   { icon: Type, text: "Typography selection" }
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <item.icon className="w-5 h-5 text-[hsl(267,75%,56%)] mr-3" />
-                    <span className="font-medium">{item.text}</span>
+                    <item.icon className="w-4 h-4 text-[hsl(267,75%,56%)] mr-3 flex-shrink-0" />
+                    <span className="font-medium text-sm">{item.text}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-4 p-3 bg-[hsl(267,75%,56%)]/10 rounded-lg border border-[hsl(267,75%,56%)]/30">
-                <p className="text-sm text-center font-semibold text-[hsl(267,75%,56%)]">
+              <div className="mt-auto p-2 bg-[hsl(267,75%,56%)]/10 rounded-lg border border-[hsl(267,75%,56%)]/30">
+                <p className="text-xs text-center font-semibold text-[hsl(267,75%,56%)]">
                   Worth $800+ - Yours FREE!
                 </p>
               </div>
             </motion.div>
-          </motion.div>
 
-          {/* Hosting & Support */}          <motion.div 
-            className="bg-white/5 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8"
-            initial={fadeInUp.initial}
-            animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.1 }}
-          >
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-4">Hosting & Setup</h3>
-                <ul className="space-y-3">
-                  {[
-                    "Free setup",
-                    "Custom domain",
-                    "Deployed live",
-                    "Free hosting"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-4">Lifetime Support</h3>
-                <ul className="space-y-3">
-                  {[
-                    "Minor edits",
-                    "Uptime monitoring",
-                    "Updates for life",
-                    "Technical support"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>        </div>
+            {/* Card 4: Hosting & Setup */}
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+              variants={staggerChild}
+            >
+              <h3 className="text-xl font-bold mb-4">Hosting & Setup</h3>
+              <ul className="space-y-2 flex-1">
+                {[
+                  "Free setup",
+                  "Custom domain", 
+                  "Deployed live",
+                  "Free hosting"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Card 5: Lifetime Support */}
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+              variants={staggerChild}
+            >
+              <h3 className="text-xl font-bold mb-4">Lifetime Support</h3>
+              <ul className="space-y-2 flex-1">
+                {[
+                  "Minor edits",
+                  "Uptime monitoring", 
+                  "Updates for life",
+                  "Technical support"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div></div>
       </section>{/* Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-20 lg:py-32 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">
