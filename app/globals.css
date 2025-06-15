@@ -159,6 +159,11 @@
         scroll-behavior: auto !important;
       }
     }
+    
+    /* Disable flashing pulse animation on mobile to prevent white tiling */
+    .animate-pulse {
+      animation: none !important;
+    }
   }
   
   /* Optimize for high-DPI mobile screens */
