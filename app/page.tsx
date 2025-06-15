@@ -1,8 +1,14 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import { motion, useInView, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import OptimizedImage from '../components/OptimizedImage';
+import LazyLoad from '../components/LazyLoad';
+import MobileMotion from '../components/MobileMotion';
+import ViewportOptimizer from '../components/ViewportOptimizer';
+import { usePerformanceMonitoring, useDeviceOptimization } from '../hooks/usePerformance';
 import { 
   Shield, 
   Award, 
@@ -31,41 +37,45 @@ import {
   DollarSign
 } from 'lucide-react';
 
+// Mobile-optimized animation variants with reduced complexity
+const isMobile = () => typeof window !== 'undefined' && window.innerWidth <= 768;
+
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: isMobile() ? 10 : 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: isMobile() ? 0.3 : 0.6, ease: 'easeOut' }
 };
 
-// Custom hook for triggering animations when elements enter the viewport
-const useScrollAnimation = (threshold = 0.2, triggerOnce = true) => {
+// Optimized custom hook for scroll animations with better mobile performance
+const useScrollAnimation = (threshold = 0.1, triggerOnce = true) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { 
-    once: triggerOnce, // Only trigger the animation once
-    amount: threshold, // The amount of the element that needs to be visible
-    margin: "-100px 0px" // Start animation 100px before the element enters viewport
+    once: triggerOnce,
+    amount: isMobile() ? 0.05 : threshold, // Lower threshold for mobile
+    margin: isMobile() ? "-50px 0px" : "-100px 0px" // Reduced margin for mobile
   });
   
-  return [ref, isInView] as const; // Use 'as const' to preserve the exact tuple type
+  return [ref, isInView] as const;
 };
 
+// Mobile-optimized stagger animations
 const staggerContainer = {
   initial: {},
   animate: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0 // Remove unnecessary delay for better performance
+      staggerChildren: isMobile() ? 0.05 : 0.1, // Faster stagger on mobile
+      delayChildren: 0
     }
   }
 };
 
 // Optimized child variant for staggered animations
 const staggerChild = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: isMobile() ? 10 : 20 },
   animate: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6 }
+    transition: { duration: isMobile() ? 0.3 : 0.6, ease: 'easeOut' }
   }
 };
 
@@ -81,13 +91,25 @@ export default function Home() {
     requests: ''
   });
 
-  // iOS Device Detection
-  const isIOS = () => {
+  // Initialize performance monitoring
+  usePerformanceMonitoring();
+  useDeviceOptimization();
+
+  // Memoized device detection for better performance
+  const isIOSDevice = useMemo(() => {
+    if (typeof window === 'undefined') return false;
     return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  };
+  }, []);
 
-  // Viewport Height Management - Chrome Mobile Fix
+  // Optimized scroll handler with debouncing for mobile performance
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    setShowNavBackground(scrollY > 50);
+    setShowScrollToTop(scrollY > 300);
+  }, []);
+
+  // Viewport Height Management - Optimized for mobile
   useEffect(() => {
     const updateViewportHeight = () => {
       const height = `${window.innerHeight}px`;
@@ -97,77 +119,97 @@ export default function Home() {
 
     const handleOrientationChange = () => {
       // Delay for iOS to complete orientation change
-      setTimeout(updateViewportHeight, 100);
+      setTimeout(updateViewportHeight, 150);
     };
 
     // Initial setup
     updateViewportHeight();
 
-    if (isIOS()) {
+    if (isIOSDevice) {
       // For iOS: only listen to orientation changes to prevent jerky behavior
-      window.addEventListener('orientationchange', handleOrientationChange);
+      window.addEventListener('orientationchange', handleOrientationChange, { passive: true });
     } else {
-      // For other devices: use resize listener
-      window.addEventListener('resize', updateViewportHeight);
+      // For other devices: use resize listener with throttling
+      let resizeTimeout: NodeJS.Timeout;
+      const throttledResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateViewportHeight, 100);
+      };
+      window.addEventListener('resize', throttledResize, { passive: true });
+      
+      return () => {
+        window.removeEventListener('resize', throttledResize);
+        clearTimeout(resizeTimeout);
+      };
     }
 
     return () => {
-      if (isIOS()) {
+      if (isIOSDevice) {
         window.removeEventListener('orientationchange', handleOrientationChange);
-      } else {
-        window.removeEventListener('resize', updateViewportHeight);
       }
     };
-  }, []);
-  // Scroll detection for navigation background and scroll to top button
+  }, [isIOSDevice]);
+
+  // Optimized scroll detection with passive listeners
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setShowNavBackground(scrollY > 50); // Show background after scrolling 50px
-      setShowScrollToTop(scrollY > 300); // Show scroll to top after scrolling 300px
+    let scrollTimeout: NodeJS.Timeout;
+    const throttledScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 16); // ~60fps throttling
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-    // Create refs for different sections with scroll-triggered animations
-  const [heroRef, heroInView] = useScrollAnimation(0.2);
-  const [problemRef, problemInView] = useScrollAnimation(0.2);
-  const [solutionRef, solutionInView] = useScrollAnimation(0.2);
-  const [benefitsRef, benefitsInView] = useScrollAnimation(0.2);
-  const [pricingRef, pricingInView] = useScrollAnimation(0.2);
-  const [ctaRef, ctaInView] = useScrollAnimation(0.2);
-  const [testimonialRef, testimonialInView] = useScrollAnimation(0.2);
-  const [contactRef, contactInView] = useScrollAnimation(0.2);
-  const [meetingRef, meetingInView] = useScrollAnimation(0.2);
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [handleScroll]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+  // Create refs for different sections with optimized thresholds for mobile
+  const [heroRef, heroInView] = useScrollAnimation(0.1);
+  const [problemRef, problemInView] = useScrollAnimation(0.1);
+  const [solutionRef, solutionInView] = useScrollAnimation(0.1);
+  const [benefitsRef, benefitsInView] = useScrollAnimation(0.1);
+  const [pricingRef, pricingInView] = useScrollAnimation(0.1);
+  const [ctaRef, ctaInView] = useScrollAnimation(0.1);
+  const [testimonialRef, testimonialInView] = useScrollAnimation(0.1);
+  const [contactRef, contactInView] = useScrollAnimation(0.1);
+  const [meetingRef, meetingInView] = useScrollAnimation(0.1);
+
+  // Memoized form handler
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-    });
-  };
+    }));
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Memoized submit handler
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     // Redirect to thank you page
     window.location.href = '/thank-you';
-  };  const scrollToSection = (sectionId: string) => {
+  }, []);
+
+  // Memoized scroll functions
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     // Close mobile menu when section is clicked
     setIsMobileMenuOpen(false);
-  };
+  }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ 
       top: 0, 
       behavior: 'smooth' 
     });
-  };return (
+  }, []);  return (
     <div className="min-h-screen text-white relative overflow-x-hidden">
+      <ViewportOptimizer />
+      
       {/* Fixed Background - Prevents White Tiling */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)]"></div>
       
@@ -187,16 +229,16 @@ export default function Home() {
           : 'bg-transparent border-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="flex justify-between md:justify-center items-center h-16 relative">
-            {/* Logo - Absolute positioned on desktop for centering */}
+          <div className="flex justify-between md:justify-center items-center h-16 relative">            {/* Logo - Absolute positioned on desktop for centering */}
             <div className="flex items-center md:absolute md:left-0">
-              <Image 
+              <OptimizedImage 
                 src="/logo.png" 
                 alt="WebBrand Pro" 
                 width={34} 
                 height={34} 
                 className="mr-3" 
-                priority
+                priority={true}
+                sizes="34px"
               />
             </div>
 
