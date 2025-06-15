@@ -206,14 +206,13 @@ export default function Home() {
       top: 0, 
       behavior: 'smooth' 
     });
-  }, []);  return (
-    <div className="min-h-screen text-white relative overflow-x-hidden">
+  }, []);  return (    <div className="min-h-screen text-white relative overflow-x-hidden">
       <ViewportOptimizer />
       
-      {/* Fixed Background - Prevents White Tiling */}
-      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)]"></div>
+      {/* Desktop-Only Gradient Background */}
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] hidden md:block"></div>
       
-      {/* Subtle Background Effects - Mobile Performance Optimized */}
+      {/* Subtle Background Effects - Desktop Only */}
       <div className="fixed inset-0 -z-10 pointer-events-none hidden md:block">
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl will-change-auto"></div>
         <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl will-change-auto"></div>
@@ -221,8 +220,8 @@ export default function Home() {
         <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl will-change-auto"></div>
       </div>
       
-      {/* Mobile-Only Simple Background - No Effects */}
-      <div className="fixed inset-0 -z-10 pointer-events-none md:hidden bg-[rgb(19,17,28)]"></div>      {/* Navigation - Mobile Performance Optimized */}
+      {/* Mobile-Only Lightweight Background - Solid Color */}
+      <div className="fixed inset-0 -z-10 md:hidden" style={{backgroundColor: 'rgb(19, 17, 28)'}}></div>{/* Navigation - Mobile Performance Optimized */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
         showNavBackground || isMobileMenuOpen
           ? 'bg-black/40 md:bg-black/20 md:backdrop-blur-md border-white/10' 
