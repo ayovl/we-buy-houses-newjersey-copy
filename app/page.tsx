@@ -696,28 +696,9 @@ export default function Home() {
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
-          >            {/* Clean header */}
-            <div className="mb-8">              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          >            {/* Clean header */}            <div className="mb-8">              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 Website Package
-              </h2></div>
-
-            {/* Clean pricing display */}
-            <div className="mb-8 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
-              <div className="text-center">
-                <p className="text-gray-300 text-base mb-3">
-                  Everything your business needs <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">to succeed</span>
-                </p>                <div className="mb-3 flex items-center justify-center space-x-4">                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
-                    $5,000
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-full h-0.5 bg-gray-400 opacity-90"></div>
-                    </div>
-                  </span>
-                  <span className="text-4xl md:text-5xl font-bold text-white">$3,500</span>
-                  <span className="text-lg text-gray-300 ml-2">one-time</span>
-                </div>
-                <p className="text-gray-400 text-sm">No hidden fees • <span className="text-white font-semibold">100% satisfaction or full refund</span></p>
-              </div>
-            </div>            {/* Professional trust badges */}
+              </h2></div>{/* Professional trust badges */}
             <div className="mb-8">
               <div className="grid md:grid-cols-3 gap-6">
                 {[
@@ -745,10 +726,29 @@ export default function Home() {
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
                 <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-purple-500/20 to-purple-600/15 hover:from-purple-500/30 hover:to-purple-600/25 px-6 py-3 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-sm">
                   <Mail className="w-5 h-5 text-purple-300" />
-                  <span className="font-semibold text-sm">arsalmaab@gmail.com</span>
-                </a>
+                  <span className="font-semibold text-sm">arsalmaab@gmail.com</span>                </a>
               </div>
-            </div>{/* Professional CTA */}
+            </div>
+
+            {/* Clean pricing display */}
+            <div className="mb-8 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
+              <div className="text-center">
+                <p className="text-gray-300 text-base mb-3">
+                  Everything your business needs <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">to succeed</span>
+                </p>                <div className="mb-3 flex items-center justify-center space-x-4">                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
+                    $5,000
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-full h-0.5 bg-gray-400 opacity-90"></div>
+                    </div>
+                  </span>
+                  <span className="text-4xl md:text-5xl font-bold text-white">$3,500</span>
+                  <span className="text-lg text-gray-300 ml-2">one-time</span>
+                </div>
+                <p className="text-gray-400 text-sm">No hidden fees • <span className="text-white font-semibold">100% satisfaction or full refund</span></p>
+              </div>
+            </div>
+
+            {/* Professional CTA */}
             <button
               onClick={() => setIsModalOpen(true)}
               className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
@@ -763,7 +763,8 @@ export default function Home() {
               >
                 <span>Why do you need a better website?</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button><div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm">
+              </button>
+              <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm">
                 <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
                   <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
                   <span>Fully Managed • No Hosting Fees • No Technical Hassles</span>
