@@ -507,7 +507,10 @@ export default function Home() {
         </div>
       </section>      {/* Testimonials Section */}
       <section ref={testimonialRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">          <motion.h2 
+        {/* Subtle gradient that blends into pricing section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-900/3"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
             animate={testimonialInView ? fadeInUp.animate : fadeInUp.initial}
@@ -590,35 +593,65 @@ export default function Home() {
         </div>
       </section>      {/* Complete Solution Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
-        <div className="max-w-5xl mx-auto">
-          <motion.div 
-            className="bg-white/5 backdrop-blur-sm border border-white/20 shadow-xl p-8 md:p-12 rounded-2xl relative overflow-hidden"
+        {/* Seamless background blending - flows from testimonials above and into meeting section below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>
+        
+        <div className="max-w-5xl mx-auto relative z-10">          <motion.div 
+            className="bg-gradient-to-br from-white/8 via-white/5 to-white/3 backdrop-blur-md border border-white/25 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden group"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
-          >
-            {/* Header */}
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          >            {/* Subtle background effects */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-500/5 to-transparent rounded-full blur-2xl opacity-40"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-pink-500/5 to-transparent rounded-full blur-2xl opacity-40"></div>
+            
+            {/* Subtle border glow */}
+            <div className="absolute inset-0 rounded-3xl border border-purple-400/0 group-hover:border-purple-400/10 transition-colors duration-500"></div>{/* Professional Header */}
+            <div className="text-center mb-10 relative z-10">
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold mb-4 text-white"
+                initial={fadeInUp.initial}
+                animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.1 }}
+              >
                 Website Package
-              </h2>
-              <p className="text-gray-300 text-lg">
+              </motion.h2>
+              <motion.p 
+                className="text-gray-300 text-lg"
+                initial={fadeInUp.initial}
+                animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.2 }}
+              >
                 Fully Branded, Conversion-Optimized Website<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-semibold"> That Drive Results</span>
-              </p>
-            </div>
-
-            {/* Features Grid */}
+              </motion.p>
+            </div>{/* Enhanced Features Grid */}
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 relative z-10"
               initial={staggerContainer.initial}
               animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
             >              {/* Feature Card 1: Website Design & Development */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
                 variants={staggerChild}
+                whileHover={{ 
+                  y: -4, 
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">Website Design</h3>
-                <ul className="space-y-2 flex-1">
+                {/* Enhanced hover effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <h3 className="text-lg font-bold mb-3 text-white relative z-10">Website Design</h3>
+                <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "Fully custom website",
                     "Responsive design",
@@ -631,15 +664,32 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
               </motion.div>
 
               {/* Feature Card 2: SEO & Copywriting */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
                 variants={staggerChild}
+                whileHover={{ 
+                  y: -4, 
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">SEO & Copywriting</h3>
-                <ul className="space-y-2 flex-1">
+                {/* Enhanced hover effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <h3 className="text-lg font-bold mb-3 text-white relative z-10">SEO & Copywriting</h3>
+                <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "SEO optimized",
                     "Fast loading",
@@ -652,15 +702,32 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
               </motion.div>
 
               {/* Feature Card 3: Branding */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
                 variants={staggerChild}
+                whileHover={{ 
+                  y: -4, 
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">Branding</h3>
-                <ul className="space-y-2 flex-1">
+                {/* Enhanced hover effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <h3 className="text-lg font-bold mb-3 text-white relative z-10">Branding</h3>
+                <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "Professional styling",
                     "Color coordination",
@@ -673,21 +740,39 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>              {/* Feature Card 4: FREE Premium Branding Package */}
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
+              </motion.div>              {/* Feature Card 4: FREE Premium Branding Package - Professional */}
               <motion.div 
-                className="bg-gradient-to-br from-purple-600/30 to-pink-600/30 border-2 border-purple-400 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col shadow-lg shadow-purple-500/20"
+                className="group relative bg-gradient-to-br from-purple-600/25 to-pink-600/25 border-2 border-purple-400/50 p-6 rounded-xl overflow-hidden h-64 flex flex-col shadow-lg will-change-transform"
                 variants={staggerChild}
+                whileHover={{ 
+                  y: -4, 
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                {/* Enhanced FREE badge with neon-like glow */}
-                <div className="absolute top-0 left-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1.5 rounded-br-lg text-xs font-bold shadow-lg shadow-purple-500/50">
+                {/* Subtle background effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Professional FREE badge */}
+                <div className="absolute top-0 left-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-br-xl text-xs font-bold shadow-lg z-20">
                   FREE
                 </div>
                 
-                <div className="absolute top-2 right-2">
-                  <Gift className="w-5 h-5 text-cyan-300 drop-shadow-sm" />
+                {/* Gift icon */}
+                <div className="absolute top-2 right-2 z-10">
+                  <Gift className="w-6 h-6 text-cyan-300" />
                 </div>
 
-                <h3 className="text-lg font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">FREE Branding Refresh</h3>                <ul className="space-y-2 flex-1">
+                {/* Professional corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                <h3 className="text-lg font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 relative z-10">FREE Branding Refresh</h3>                <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "Brand identity ",
                     "New logo design",
@@ -696,20 +781,35 @@ export default function Home() {
                     "Custom business card design"
                   ].map((item, index) => (
                     <li key={index} className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-cyan-300 mr-3 flex-shrink-0 drop-shadow-sm" />
+                      <CheckCircle className="w-4 h-4 text-cyan-300 mr-3 flex-shrink-0" />
                       <span className="text-sm text-gray-200 font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-
-              {/* Feature Card 5: Hosting & Setup */}
+                
+                {/* Professional bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
+              </motion.div>{/* Feature Card 5: Hosting & Setup */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
                 variants={staggerChild}
+                whileHover={{ 
+                  y: -4, 
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">Hosting & Setup</h3>
-                <ul className="space-y-2 flex-1">
+                {/* Enhanced hover effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <h3 className="text-lg font-bold mb-3 text-white relative z-10">Hosting & Setup</h3>
+                <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "Fully free setup included",
                     "Custom domain", 
@@ -722,15 +822,32 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
               </motion.div>
 
-              {/* Feature Card 6: Lifetime Support */}
+              {/* Feature Card 6: Technical Support */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
                 variants={staggerChild}
+                whileHover={{ 
+                  y: -4, 
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">Technical Support</h3>
-                <ul className="space-y-2 flex-1">
+                {/* Enhanced hover effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-3xl rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <h3 className="text-lg font-bold mb-3 text-white relative z-10">Technical Support</h3>
+                <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "Tech support included",
                     "Never worry about updates or bugs again", 
@@ -742,128 +859,200 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
               </motion.div>
             </motion.div>            {/* Professional trust badges */}
-            <div className="mb-6">
-              <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="mb-6 relative z-10">
+              <motion.div 
+                className="flex flex-wrap items-center justify-center gap-4"
+                initial={staggerContainer.initial}
+                animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
+              >
                 {[
                   { 
                     icon: Shield, 
                     text: "7-Day Money-Back", 
                     color: "text-emerald-400", 
-                    bgColor: "bg-gray-800/40", 
-                    borderColor: "border-emerald-400/30"
+                    bgColor: "bg-gray-800/60", 
+                    borderColor: "border-emerald-400/40"
                   },
                   { 
                     icon: Award, 
                     text: "1 Year Support", 
                     color: "text-blue-400", 
-                    bgColor: "bg-gray-800/40", 
-                    borderColor: "border-blue-400/30"
+                    bgColor: "bg-gray-800/60", 
+                    borderColor: "border-blue-400/40"
                   },
                   { 
                     icon: BarChart3, 
                     text: "4-Day Delivery", 
                     color: "text-amber-400", 
-                    bgColor: "bg-gray-800/40", 
-                    borderColor: "border-amber-400/30"
+                    bgColor: "bg-gray-800/60", 
+                    borderColor: "border-amber-400/40"
                   }
                 ].map((item, index) => (
-                  <div 
+                  <motion.div 
                     key={index} 
-                    className={`inline-flex items-center gap-2 ${item.bgColor} border ${item.borderColor} px-3 py-1.5 rounded-full backdrop-blur-sm transition-all duration-100 hover:border-opacity-70 will-change-transform`}
+                    className={`group inline-flex items-center gap-3 ${item.bgColor} border ${item.borderColor} px-4 py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
+                    variants={staggerChild}
+                    whileHover={{ 
+                      y: -2,
+                      transition: { duration: 0.12 }
+                    }}
                   >
-                    {/* Icon */}
-                    <item.icon className={`w-3.5 h-3.5 ${item.color}`} strokeWidth={2.5} />
+                    {/* Professional Icon */}
+                    <item.icon 
+                      className={`w-4 h-4 ${item.color} group-hover:scale-110 transition-transform duration-200`} 
+                      strokeWidth={2.5}
+                    />
                     
                     {/* Text */}
-                    <span className="text-white text-xs font-medium">{item.text}</span>
+                    <span className="text-white text-sm font-semibold">{item.text}</span>
                     
                     {/* Verification mark */}
-                    <CheckCircle className="w-3 h-3 text-green-400" strokeWidth={3} />
-                  </div>
+                    <CheckCircle 
+                      className="w-4 h-4 text-green-400 group-hover:scale-110 transition-transform duration-200" 
+                      strokeWidth={3}
+                    />
+                  </motion.div>
                 ))}
-              </div>
-            </div>{/* Professional contact */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-slate-800/30 to-slate-700/20 border border-slate-600/30 rounded-xl shadow-sm">
-              <h3 className="text-lg font-semibold text-white mb-4 text-center">
+              </motion.div>
+            </div>{/* Enhanced Professional contact section */}
+            <motion.div 
+              className="mb-8 p-6 bg-gradient-to-r from-slate-800/40 via-slate-700/30 to-slate-800/40 border border-slate-600/40 rounded-2xl shadow-lg backdrop-blur-md relative overflow-hidden group"
+              initial={fadeInUp.initial}
+              animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+              transition={{ ...fadeInUp.transition, delay: 0.3 }}
+            >
+              {/* Subtle background pattern */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-500/5 via-transparent to-slate-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <h3 className="text-lg font-semibold text-white mb-4 text-center relative z-10">
                 Want to discuss before moving forward?
               </h3>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button className="flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/40 to-slate-800/30 hover:from-slate-600/50 hover:to-slate-700/40 px-6 py-3 rounded-lg border border-slate-500/40 hover:border-slate-400/60 transition-all duration-300 hover:scale-[1.01] shadow-sm hover:shadow-md">
-                  <Phone className="w-5 h-5 text-slate-300" />
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+                <motion.button 
+                  className="group flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/50 to-slate-800/40 hover:from-slate-600/60 hover:to-slate-700/50 px-6 py-3.5 rounded-xl border border-slate-500/50 hover:border-slate-400/70 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl backdrop-blur-sm will-change-transform"
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Phone className="w-5 h-5 text-slate-300 group-hover:text-slate-200 transition-colors duration-200" />
                   <span className="font-semibold text-sm">Schedule a Call</span>
-                </button>
+                </motion.button>
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
-                <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/40 to-slate-800/30 hover:from-slate-600/50 hover:to-slate-700/40 px-6 py-3 rounded-lg border border-slate-500/40 hover:border-slate-400/60 transition-all duration-300 hover:scale-[1.01] hover:underline shadow-sm hover:shadow-md">
-                  <Mail className="w-5 h-5 text-slate-300" />
+                <motion.a 
+                  href="mailto:arsalmaab@gmail.com" 
+                  className="group flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/50 to-slate-800/40 hover:from-slate-600/60 hover:to-slate-700/50 px-6 py-3.5 rounded-xl border border-slate-500/50 hover:border-slate-400/70 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-lg hover:shadow-xl backdrop-blur-sm will-change-transform"
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Mail className="w-5 h-5 text-slate-300 group-hover:text-slate-200 transition-colors duration-200" />
                   <span className="font-semibold text-sm">Email</span>
-                </a>
+                </motion.a>
               </div>
-            </div>{/* Pricing & CTA Section */}
-            <div className="space-y-8">
-              {/* Pricing & Guarantee Row */}
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">{/* Guarantee - Left Side */}
+              
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-slate-400/10 to-transparent rounded-bl-3xl rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </motion.div>{/* Enhanced Pricing & CTA Section */}
+            <div className="space-y-8 relative z-10">
+              {/* Enhanced Pricing & Guarantee Row */}
+              <motion.div 
+                className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+                initial={fadeInUp.initial}
+                animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.4 }}
+              >                {/* Professional Guarantee - Left Side */}
                 <div className="flex justify-center lg:justify-start">
-                  <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-green-500/30 to-emerald-500/30 border-2 border-green-400/60 rounded-xl px-6 py-3.5 backdrop-blur-sm shadow-lg shadow-green-500/20 hover:shadow-green-500/25 transition-all duration-300 hover:scale-[1.02]">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-400/20 rounded-full flex items-center justify-center border border-green-400/40">
-                      <Shield className="w-4 h-4 text-green-400" />
+                  <motion.div 
+                    className="group inline-flex items-center space-x-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-2xl px-8 py-4 backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-[1.02] will-change-transform relative overflow-hidden"
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 bg-green-400/20 rounded-full flex items-center justify-center border-2 border-green-400/50 relative z-10">
+                      <Shield className="w-5 h-5 text-green-300" />
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-green-200 font-bold text-base leading-tight">Money Back Guarantee</span>
-                      <span className="text-green-300/80 text-sm leading-tight">Full refund if not satisfied</span>
+                    <div className="flex flex-col relative z-10">
+                      <span className="text-green-100 font-bold text-lg leading-tight">Money Back Guarantee</span>
+                      <span className="text-green-200/90 text-sm leading-tight">Full refund if not satisfied</span>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
-                {/* Pricing - Right Side */}
-                <div className="flex items-baseline justify-center lg:justify-end space-x-3">
+                {/* Professional Pricing - Right Side */}
+                <div className="flex items-baseline justify-center lg:justify-end space-x-4">
                   <span className="text-3xl lg:text-4xl font-semibold text-gray-500 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-full h-0.5 bg-gray-500 opacity-80"></div>
                     </div>
                   </span>
-                  <span className="text-5xl lg:text-6xl font-bold text-white">$3,500</span>
+                  <motion.span 
+                    className="text-5xl lg:text-6xl font-bold text-white"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    $3,500
+                  </motion.span>
                   <span className="text-xl text-gray-300 font-medium">USD</span>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Subtle Divider */}
+              {/* Enhanced Divider */}
               <div className="flex items-center justify-center">
-                <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                <div className="w-full max-w-lg h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"></div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col items-center space-y-4">
-                <button
+              {/* Enhanced Action Buttons */}
+              <motion.div 
+                className="flex flex-col items-center space-y-4"
+                initial={fadeInUp.initial}
+                animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.5 }}
+              >                <motion.button
                   onClick={() => setIsModalOpen(true)}
-                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 lg:px-16 py-4 rounded-xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/40 border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg"
+                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 lg:px-16 py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.15 }}
                 >
-                  <span className="relative z-10">Get Your Website Now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
+                  {/* Subtle shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                  
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Get Your Website Now
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </motion.button>
 
-                <div className="flex items-center space-x-2 text-xs text-gray-400">
+                <motion.div 
+                  className="flex items-center space-x-2 text-xs text-gray-400"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
+                >
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   <span className="font-medium">4-day delivery • Tech support included</span>
-                </div>
+                </motion.div>
 
-                <button 
+                <motion.button 
                   onClick={() => scrollToSection('problem')}
-                  className="group text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center space-x-2 transition-all duration-200 hover:scale-105 py-2 px-3 rounded-lg hover:bg-white/5"
+                  className="group text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center space-x-2 transition-all duration-200 hover:scale-105 py-3 px-4 rounded-xl hover:bg-white/5 will-change-transform"
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.12 }}
                 >
                   <span>Why do you need this website?</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
-                </button>
-              </div>            </div>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+                </motion.button>
+              </motion.div>            </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* Schedule Meeting Section */}
+      </section>      {/* Schedule Meeting Section */}
       <section className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative" ref={meetingRef}>
-        <div className="max-w-4xl mx-auto text-center">          <motion.h2 
+        {/* Subtle gradient that blends from pricing section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/3 via-transparent to-transparent"></div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
             animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
