@@ -514,34 +514,76 @@ export default function Home() {
             transition={fadeInUp.transition}
           >
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Clients Like You</span>
-          </motion.h2>
-          <motion.div 
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          </motion.h2>          <motion.div 
+            className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto"
             initial={staggerContainer.initial}
             animate={testimonialInView ? staggerContainer.animate : staggerContainer.initial}
-          >
-            {[
+          >{[
               {
                 rating: 5,
                 quote: "Arsian is a pleasure to work with, understands the project and delivers above the expectations. Very easy to work with.",
-                author: "Client from Upwork"
+                author: "Client from Upwork",
+                verified: true
               },
               {
                 rating: 5,
-                quote: "Arslan performs the task at hand quickly and effectively asking question to ensure the project is done right. Extremely professional"
-              }
-            ].map((testimonial, index) => (              <motion.div
-                key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                quote: "Arslan performs the task at hand quickly and effectively asking question to ensure the project is done right. Extremely professional",
+                author: "Client from Upwork",
+                verified: true
+              }            ].map((testimonial, index) => (              <motion.div                key={index}
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg overflow-hidden will-change-transform"
                 variants={staggerChild}
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>                <p className="text-gray-300 mb-4 italic">"{testimonial.quote}"</p>
-                <p className="font-semibold">{testimonial.author}</p>
-                <a href="https://www.upwork.com/freelancers/~01f45017511d101318" target="_blank" rel="noopener noreferrer" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 text-sm hover:underline">View on Upwork →</a>
+                whileHover={{ 
+                  y: -8, 
+                  transition: { duration: 0.12, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden'
+                }}
+              >                {/* Optimized hover effects using transform only */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-out" />
+                
+                {/* Top section with rating and verified badge */}
+                <div className="relative flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  {testimonial.verified && (
+                    <div className="flex items-center gap-1 bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-xs font-medium">
+                      <CheckCircle className="w-3 h-3" />
+                      Verified
+                    </div>
+                  )}
+                </div>
+                
+                {/* Quote with enhanced typography */}
+                <div className="relative mb-6">
+                  <div className="absolute -top-2 -left-1 text-4xl text-purple-400/30 font-serif leading-none select-none">"</div>
+                  <p className="text-gray-200 text-lg leading-relaxed pl-6 italic font-light">
+                    {testimonial.quote}
+                  </p>
+                  <div className="absolute -bottom-4 -right-1 text-4xl text-purple-400/30 font-serif leading-none rotate-180 select-none">"</div>
+                </div>
+                  {/* Author and link section */}
+                <div className="relative">
+                  <div>
+                    <p className="font-semibold text-white text-sm">{testimonial.author || 'Upwork Client'}</p>
+                    <p className="text-gray-400 text-xs">Verified Client</p>
+                  </div>                  <a 
+                    href="https://www.upwork.com/freelancers/~01f45017511d101318" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-block mt-3 text-gray-400 hover:text-purple-400 text-xs font-normal transition-colors duration-100 ease-out"
+                  >
+                    View on Upwork
+                  </a>
+                </div>
+                
+                {/* Optimized border accent */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-150 ease-out origin-left" />
               </motion.div>
             ))}
           </motion.div>
@@ -631,24 +673,21 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-
-              {/* Feature Card 4: FREE Premium Branding Package */}
+              </motion.div>              {/* Feature Card 4: FREE Premium Branding Package */}
               <motion.div 
-                className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col"
+                className="bg-gradient-to-br from-purple-600/30 to-pink-600/30 border-2 border-purple-400 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col shadow-lg shadow-purple-500/20"
                 variants={staggerChild}
               >
-                {/* Compact FREE badge positioned right against top-left edge */}
-                <div className="absolute top-0 left-0 bg-gradient-to-r from-[hsl(267,75%,56%)]/90 to-pink-400/90 text-white px-2 py-1 rounded-br-lg text-xs font-bold shadow-sm">
+                {/* Enhanced FREE badge with neon-like glow */}
+                <div className="absolute top-0 left-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1.5 rounded-br-lg text-xs font-bold shadow-lg shadow-purple-500/50">
                   FREE
                 </div>
                 
                 <div className="absolute top-2 right-2">
-                  <Gift className="w-5 h-5 text-cyan-400" />
+                  <Gift className="w-5 h-5 text-cyan-300 drop-shadow-sm" />
                 </div>
 
-                <h3 className="text-lg font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Branding Refresh</h3>
-                <ul className="space-y-2 flex-1">
+                <h3 className="text-lg font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">FREE Branding Refresh</h3>                <ul className="space-y-2 flex-1">
                   {[
                     "Brand identity ",
                     "New logo design",
@@ -657,8 +696,8 @@ export default function Home() {
                     "Custom business card design"
                   ].map((item, index) => (
                     <li key={index} className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                      <span className="text-sm text-gray-300">{item}</span>
+                      <CheckCircle className="w-4 h-4 text-cyan-300 mr-3 flex-shrink-0 drop-shadow-sm" />
+                      <span className="text-sm text-gray-200 font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -704,89 +743,125 @@ export default function Home() {
                   ))}
                 </ul>
               </motion.div>
-            </motion.div>
-
-            {/* Professional trust badges */}
-            <div className="mb-8">
-              <div className="grid md:grid-cols-3 gap-6">
+            </motion.div>            {/* Professional trust badges */}
+            <div className="mb-6">
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 {[
-                  { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-purple-400", bgColor: "from-purple-500/10 to-purple-600/5", borderColor: "border-purple-500/20" },
-                  { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400", bgColor: "from-blue-500/10 to-blue-600/5", borderColor: "border-blue-500/20" },
-                  { icon: BarChart3, text: "Fast 4-Day Delivery", color: "text-purple-400", bgColor: "from-purple-500/10 to-purple-600/5", borderColor: "border-purple-500/20" }
+                  { 
+                    icon: Shield, 
+                    text: "7-Day Money-Back", 
+                    color: "text-emerald-400", 
+                    bgColor: "bg-gray-800/40", 
+                    borderColor: "border-emerald-400/30"
+                  },
+                  { 
+                    icon: Award, 
+                    text: "1 Year Support", 
+                    color: "text-blue-400", 
+                    bgColor: "bg-gray-800/40", 
+                    borderColor: "border-blue-400/30"
+                  },
+                  { 
+                    icon: BarChart3, 
+                    text: "4-Day Delivery", 
+                    color: "text-amber-400", 
+                    bgColor: "bg-gray-800/40", 
+                    borderColor: "border-amber-400/30"
+                  }
                 ].map((item, index) => (
-                  <div key={index} className={`flex flex-col items-center text-center bg-gradient-to-b ${item.bgColor} border ${item.borderColor} px-6 py-5 rounded-xl hover:scale-[1.02] transition-all duration-300 hover:shadow-lg`}>
-                    <div className={`w-12 h-12 ${item.color} bg-white/5 rounded-full flex items-center justify-center mb-3 border border-white/10`}>
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <span className="font-semibold text-white text-sm leading-tight">{item.text}</span>
+                  <div 
+                    key={index} 
+                    className={`inline-flex items-center gap-2 ${item.bgColor} border ${item.borderColor} px-3 py-1.5 rounded-full backdrop-blur-sm transition-all duration-100 hover:border-opacity-70 will-change-transform`}
+                  >
+                    {/* Icon */}
+                    <item.icon className={`w-3.5 h-3.5 ${item.color}`} strokeWidth={2.5} />
+                    
+                    {/* Text */}
+                    <span className="text-white text-xs font-medium">{item.text}</span>
+                    
+                    {/* Verification mark */}
+                    <CheckCircle className="w-3 h-3 text-green-400" strokeWidth={3} />
                   </div>
                 ))}
               </div>
-            </div>            {/* Professional contact */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-blue-500/8 to-purple-500/8 border border-blue-500/25 rounded-xl shadow-sm">
+            </div>{/* Professional contact */}
+            <div className="mb-8 p-6 bg-gradient-to-r from-slate-800/30 to-slate-700/20 border border-slate-600/30 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-white mb-4 text-center">
                 Want to discuss before moving forward?
               </h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button className="flex items-center space-x-3 text-white bg-gradient-to-r from-blue-500/20 to-blue-600/15 hover:from-blue-500/30 hover:to-blue-600/25 px-6 py-3 rounded-lg border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02] shadow-sm">
-                  <Phone className="w-5 h-5 text-blue-300" />
+                <button className="flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/40 to-slate-800/30 hover:from-slate-600/50 hover:to-slate-700/40 px-6 py-3 rounded-lg border border-slate-500/40 hover:border-slate-400/60 transition-all duration-300 hover:scale-[1.01] shadow-sm hover:shadow-md">
+                  <Phone className="w-5 h-5 text-slate-300" />
                   <span className="font-semibold text-sm">Schedule a Call</span>
                 </button>
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
-                <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-purple-500/20 to-purple-600/15 hover:from-purple-500/30 hover:to-purple-600/25 px-6 py-3 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-sm">
-                  <Mail className="w-5 h-5 text-purple-300" />
+                <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/40 to-slate-800/30 hover:from-slate-600/50 hover:to-slate-700/40 px-6 py-3 rounded-lg border border-slate-500/40 hover:border-slate-400/60 transition-all duration-300 hover:scale-[1.01] hover:underline shadow-sm hover:shadow-md">
+                  <Mail className="w-5 h-5 text-slate-300" />
                   <span className="font-semibold text-sm">Email</span>
                 </a>
               </div>
-            </div>
+            </div>{/* Pricing & CTA Section */}
+            <div className="space-y-8">
+              {/* Pricing & Guarantee Row */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">{/* Guarantee - Left Side */}
+                <div className="flex justify-center lg:justify-start">
+                  <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-green-500/30 to-emerald-500/30 border-2 border-green-400/60 rounded-xl px-6 py-3.5 backdrop-blur-sm shadow-lg shadow-green-500/20 hover:shadow-green-500/25 transition-all duration-300 hover:scale-[1.02]">
+                    <div className="flex-shrink-0 w-6 h-6 bg-green-400/20 rounded-full flex items-center justify-center border border-green-400/40">
+                      <Shield className="w-4 h-4 text-green-400" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-green-200 font-bold text-base leading-tight">Money Back Guarantee</span>
+                      <span className="text-green-300/80 text-sm leading-tight">Full refund if not satisfied</span>
+                    </div>
+                  </div>
+                </div>
 
-            {/* Pricing Section */}
-            <div className="text-center mb-8">
-              <div className="mb-6 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
-                <p className="text-gray-300 text-base mb-4">
-                  Everything your business needs <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">to succeed</span>
-                </p>
-                <div className="mb-4 flex items-center justify-center space-x-4">
-                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
+                {/* Pricing - Right Side */}
+                <div className="flex items-baseline justify-center lg:justify-end space-x-3">
+                  <span className="text-3xl lg:text-4xl font-semibold text-gray-500 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-full h-0.5 bg-gray-400 opacity-90"></div>
+                      <div className="w-full h-0.5 bg-gray-500 opacity-80"></div>
                     </div>
                   </span>
-                  <span className="text-4xl md:text-5xl font-bold text-white">$3,500</span>
-                  <span className="text-lg text-gray-300 ml-2">USD</span>
+                  <span className="text-5xl lg:text-6xl font-bold text-white">$3,500</span>
+                  <span className="text-xl text-gray-300 font-medium">USD</span>
                 </div>
-                <p className="text-gray-400 text-sm">No hidden fees • <span className="text-white font-semibold">100% satisfaction or full refund</span></p>
               </div>
 
-              {/* Main CTA */}
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
-              >
-                Get Your Website Now
-              </button>
+              {/* Subtle Divider */}
+              <div className="flex items-center justify-center">
+                <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+              </div>
 
-              {/* Trust message */}
-              {/* <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm mb-4">
-                <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  <span>Fully Managed. No Hosting Fees. No Tech Headaches.</span>
-                </p>
-              </div> */}
+              {/* Action Buttons */}
+              <div className="flex flex-col items-center space-y-4">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 lg:px-16 py-4 rounded-xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/40 border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg"
+                >
+                  <span className="relative z-10">Get Your Website Now</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
 
-              {/* Footer link */}
-              <button 
-                onClick={() => scrollToSection('problem')}
-                className="text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center justify-center space-x-2 transition-colors duration-200 mx-auto"
-              >
-                <span>Why do you need a better website?</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+                <div className="flex items-center space-x-2 text-xs text-gray-400">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="font-medium">4-day delivery • Tech support included</span>
+                </div>
+
+                <button 
+                  onClick={() => scrollToSection('problem')}
+                  className="group text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center space-x-2 transition-all duration-200 hover:scale-105 py-2 px-3 rounded-lg hover:bg-white/5"
+                >
+                  <span>Why do you need this website?</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
+                </button>
+              </div>            </div>
           </motion.div>
         </div>
-      </section>      {/* Schedule Meeting Section */}
+      </section>
+
+      {/* Schedule Meeting Section */}
       <section className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative" ref={meetingRef}>
         <div className="max-w-4xl mx-auto text-center">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
