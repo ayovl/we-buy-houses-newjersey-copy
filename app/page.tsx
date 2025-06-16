@@ -605,11 +605,10 @@ export default function Home() {
               </ul>
             </motion.div>
 
-            {/* Card 3: Basic Branding */}
-            <motion.div 
+            {/* Card 3: Basic Branding */}            <motion.div 
               className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
               variants={staggerChild}
-            >              <h3 className="text-xl font-bold mb-4">Basic Branding</h3>
+            >              <h3 className="text-xl font-bold mb-4">Branding</h3>
               <ul className="space-y-2 flex-1">
                 {[
                   "Professional styling",
@@ -623,35 +622,33 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
-
-            {/* Card 4: FREE Premium Branding Package */}
+            </motion.div>            {/* Card 4: FREE Premium Branding Package */}
             <motion.div 
               className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col"
               variants={staggerChild}
-            >
+            >              {/* Compact FREE badge positioned right against top-left edge */}
+              <div className="absolute top-0 left-0 bg-gradient-to-r from-[hsl(267,75%,56%)]/90 to-pink-400/90 text-white px-2 py-1 rounded-br-lg text-xs font-bold shadow-sm">
+                FREE
+              </div>
+              
               <div className="absolute top-2 right-2">
                 <Gift className="w-5 h-5 text-cyan-400" />
-              </div>
-              <h3 className="text-lg font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Premium Branding</h3>
-              <p className="text-xs text-gray-300 mb-3">Bonus package included!</p>
+              </div><h3 className="text-lg font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Branding Refresh</h3>
               <ul className="space-y-2 flex-1">
                 {[
-                  { icon: Palette, text: "Logo refresh" },
-                  { icon: FileText, text: "Brand guidelines" },
-                  { icon: Type, text: "Typography selection" }
+                  "Brand identity development",
+                  "Detailed brand guidelines", 
+                  "New logo design",
+                  "Social media profile assets",
+                  "Professional letterhead design",
+                  "Custom business card design"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <item.icon className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                    <span className="font-medium text-sm">{item.text}</span>
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto p-2 bg-[hsl(267,75%,56%)]/10 rounded-lg border border-[hsl(267,75%,56%)]/30">
-                <p className="text-xs text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                  Worth $800+ - Yours FREE!
-                </p>
-              </div>
             </motion.div>
 
             {/* Card 5: Hosting & Setup */}
