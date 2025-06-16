@@ -598,11 +598,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>
         
         <div className="max-w-5xl mx-auto relative z-10">          <motion.div 
-            className="bg-gradient-to-br from-white/8 via-white/5 to-white/3 backdrop-blur-md border border-white/25 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden group"
+            className="bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/60 backdrop-blur-md border border-slate-600/40 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden group"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
-          >            {/* Subtle background effects */}
+          >{/* Subtle background effects */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-500/5 to-transparent rounded-full blur-2xl opacity-40"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-pink-500/5 to-transparent rounded-full blur-2xl opacity-40"></div>
