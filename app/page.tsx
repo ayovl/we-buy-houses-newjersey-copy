@@ -570,14 +570,13 @@ export default function Home() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
               initial={staggerContainer.initial}
               animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
-            >
-              {/* Feature Card 1: Website Design & Development */}
+            >              {/* Feature Card 1: Website Design & Development */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
                 variants={staggerChild}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">Website Design & Development</h3>
-                <ul className="space-y-2">
+                <h3 className="text-lg font-bold mb-3 text-white">Website Design</h3>
+                <ul className="space-y-2 flex-1">
                   {[
                     "Fully custom website",
                     "Responsive design",
@@ -594,11 +593,11 @@ export default function Home() {
 
               {/* Feature Card 2: SEO & Copywriting */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
                 variants={staggerChild}
               >
                 <h3 className="text-lg font-bold mb-3 text-white">SEO & Copywriting</h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 flex-1">
                   {[
                     "SEO optimized",
                     "Fast loading",
@@ -615,11 +614,11 @@ export default function Home() {
 
               {/* Feature Card 3: Branding */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
                 variants={staggerChild}
               >
                 <h3 className="text-lg font-bold mb-3 text-white">Branding</h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 flex-1">
                   {[
                     "Professional styling",
                     "Color coordination",
@@ -636,7 +635,7 @@ export default function Home() {
 
               {/* Feature Card 4: FREE Premium Branding Package */}
               <motion.div 
-                className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden"
+                className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col"
                 variants={staggerChild}
               >
                 {/* Compact FREE badge positioned right against top-left edge */}
@@ -649,10 +648,9 @@ export default function Home() {
                 </div>
 
                 <h3 className="text-lg font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Branding Refresh</h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 flex-1">
                   {[
-                    "Brand identity development",
-                    "Detailed brand guidelines", 
+                    "Brand identity ",
                     "New logo design",
                     "Social media profile assets",
                     "Professional letterhead design",
@@ -668,16 +666,16 @@ export default function Home() {
 
               {/* Feature Card 5: Hosting & Setup */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
                 variants={staggerChild}
               >
                 <h3 className="text-lg font-bold mb-3 text-white">Hosting & Setup</h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 flex-1">
                   {[
                     "Fully free setup included",
                     "Custom domain", 
                     "Deployed & live with blazing-fast performance",
-                    "Free hosting included (Netlify/Vercel)"
+                    "Free hosting included"
                   ].map((item, index) => (
                     <li key={index} className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
@@ -689,15 +687,15 @@ export default function Home() {
 
               {/* Feature Card 6: Lifetime Support */}
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
                 variants={staggerChild}
               >
-                <h3 className="text-lg font-bold mb-3 text-white">Lifetime Support</h3>
-                <ul className="space-y-2">
+                <h3 className="text-lg font-bold mb-3 text-white">Technical Support</h3>
+                <ul className="space-y-2 flex-1">
                   {[
-                    "Tech support — included for life",
+                    "Tech support included",
                     "Never worry about updates or bugs again", 
-                    "Updates, edits, fixes for life"
+                    "Updates and edits"
                   ].map((item, index) => (
                     <li key={index} className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
@@ -732,12 +730,12 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button className="flex items-center space-x-3 text-white bg-gradient-to-r from-blue-500/20 to-blue-600/15 hover:from-blue-500/30 hover:to-blue-600/25 px-6 py-3 rounded-lg border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02] shadow-sm">
                   <Phone className="w-5 h-5 text-blue-300" />
-                  <span className="font-semibold text-sm">Schedule Consultation</span>
+                  <span className="font-semibold text-sm">Schedule a Call</span>
                 </button>
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
                 <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-purple-500/20 to-purple-600/15 hover:from-purple-500/30 hover:to-purple-600/25 px-6 py-3 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-sm">
                   <Mail className="w-5 h-5 text-purple-300" />
-                  <span className="font-semibold text-sm">arsalmaab@gmail.com</span>
+                  <span className="font-semibold text-sm">Email</span>
                 </a>
               </div>
             </div>
@@ -770,12 +768,12 @@ export default function Home() {
               </button>
 
               {/* Trust message */}
-              <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm mb-4">
+              {/* <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm mb-4">
                 <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
                   <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
                   <span>Fully Managed. No Hosting Fees. No Tech Headaches.</span>
                 </p>
-              </div>
+              </div> */}
 
               {/* Footer link */}
               <button 
