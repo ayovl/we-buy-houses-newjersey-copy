@@ -168,9 +168,7 @@ export default function Home() {
   // Create refs for different sections with optimized thresholds for mobile
   const [heroRef, heroInView] = useScrollAnimation(0.1);
   const [problemRef, problemInView] = useScrollAnimation(0.1);
-  const [solutionRef, solutionInView] = useScrollAnimation(0.1);
-  const [benefitsRef, benefitsInView] = useScrollAnimation(0.1);
-  const [pricingRef, pricingInView] = useScrollAnimation(0.1);
+  const [solutionRef, solutionInView] = useScrollAnimation(0.1);  const [pricingRef, pricingInView] = useScrollAnimation(0.1);
   const [ctaRef, ctaInView] = useScrollAnimation(0.1);
   const [testimonialRef, testimonialInView] = useScrollAnimation(0.1);
   const [contactRef, contactInView] = useScrollAnimation(0.1);
@@ -548,157 +546,169 @@ export default function Home() {
             ))}
           </motion.div>
         </div>
-      </section>      {/* The Offer Section */}
-      <section id="offer" ref={benefitsRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
-            initial={fadeInUp.initial}
-            animate={benefitsInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={fadeInUp.transition}
-          >
-            Your Website Solution <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Includes</span>
-          </motion.h2>{/* Unified 6-Card Grid Layout */}
-          <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12"
-            initial={staggerContainer.initial}
-            animate={benefitsInView ? staggerContainer.animate : staggerContainer.initial}
-          >
-            {/* Card 1: Website Design & Development */}
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
-              variants={staggerChild}
-            >              <h3 className="text-xl font-bold mb-4">Website Design & Development</h3>
-              <ul className="space-y-2 flex-1">
-                {[
-                  "Fully custom website",
-                  "Responsive design",
-                  "Up to 10 pages",
-                  "Contact form setup"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Card 2: SEO & Copywriting */}
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
-              variants={staggerChild}
-            >              <h3 className="text-xl font-bold mb-4">SEO & Copywriting</h3>
-              <ul className="space-y-2 flex-1">
-                {[
-                  "SEO optimized",
-                  "Fast loading",
-                  "Clear user flow",
-                  "Conversion-optimized copy"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Card 3: Basic Branding */}            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
-              variants={staggerChild}
-            >              <h3 className="text-xl font-bold mb-4">Branding</h3>
-              <ul className="space-y-2 flex-1">
-                {[
-                  "Professional styling",
-                  "Color coordination",
-                  "Brand consistency",
-                  "Visual cohesion"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>            {/* Card 4: FREE Premium Branding Package */}
-            <motion.div 
-              className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden h-64 flex flex-col"
-              variants={staggerChild}
-            >              {/* Compact FREE badge positioned right against top-left edge */}
-              <div className="absolute top-0 left-0 bg-gradient-to-r from-[hsl(267,75%,56%)]/90 to-pink-400/90 text-white px-2 py-1 rounded-br-lg text-xs font-bold shadow-sm">
-                FREE
-              </div>
-              
-              <div className="absolute top-2 right-2">
-                <Gift className="w-5 h-5 text-cyan-400" />
-              </div><h3 className="text-lg font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Branding Refresh</h3>
-              <ul className="space-y-2 flex-1">
-                {[
-                  "Brand identity development",
-                  "Detailed brand guidelines", 
-                  "New logo design",
-                  "Social media profile assets",
-                  "Professional letterhead design",
-                  "Custom business card design"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Card 5: Hosting & Setup */}
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
-              variants={staggerChild}
-            >              <h3 className="text-xl font-bold mb-4">Hosting & Setup</h3>
-              <ul className="space-y-2 flex-1">
-                {[
-                  "Free setup",
-                  "Custom domain", 
-                  "Deployed live",
-                  "Free hosting"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Card 6: Lifetime Support */}
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg h-64 flex flex-col"
-              variants={staggerChild}
-            >              <h3 className="text-xl font-bold mb-4">Lifetime Support</h3>
-              <ul className="space-y-2 flex-1">
-                {[
-                  "Minor edits",
-                  "Uptime monitoring", 
-                  "Updates for life",
-                  "Technical support"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div></div>
-      </section>      {/* Professional Pricing Section */}
+      </section>      {/* Complete Solution Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
-        <div className="max-w-4xl mx-auto">          <motion.div 
-            className="bg-white/5 backdrop-blur-sm border border-white/20 shadow-xl p-8 md:p-12 rounded-2xl text-center relative overflow-hidden max-w-2xl mx-auto"
+        <div className="max-w-5xl mx-auto">
+          <motion.div 
+            className="bg-white/5 backdrop-blur-sm border border-white/20 shadow-xl p-8 md:p-12 rounded-2xl relative overflow-hidden"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
-          >            {/* Clean header */}            <div className="mb-8">              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          >
+            {/* Header */}
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 Website Package
-              </h2></div>{/* Professional trust badges */}
+              </h2>
+              <p className="text-gray-300 text-lg">
+                Fully Branded, Conversion-Optimized Website<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-semibold"> That Drive Results</span>
+              </p>
+            </div>
+
+            {/* Features Grid */}
+            <motion.div 
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
+              initial={staggerContainer.initial}
+              animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
+            >
+              {/* Feature Card 1: Website Design & Development */}
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                variants={staggerChild}
+              >
+                <h3 className="text-lg font-bold mb-3 text-white">Website Design & Development</h3>
+                <ul className="space-y-2">
+                  {[
+                    "Fully custom website",
+                    "Responsive design",
+                    "Up to 10 pages",
+                    "Contact form setup"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Feature Card 2: SEO & Copywriting */}
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                variants={staggerChild}
+              >
+                <h3 className="text-lg font-bold mb-3 text-white">SEO & Copywriting</h3>
+                <ul className="space-y-2">
+                  {[
+                    "SEO optimized",
+                    "Fast loading",
+                    "Clear user flow",
+                    "Conversion-optimized copy"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Feature Card 3: Branding */}
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                variants={staggerChild}
+              >
+                <h3 className="text-lg font-bold mb-3 text-white">Branding</h3>
+                <ul className="space-y-2">
+                  {[
+                    "Professional styling",
+                    "Color coordination",
+                    "Brand consistency",
+                    "Visual cohesion"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Feature Card 4: FREE Premium Branding Package */}
+              <motion.div 
+                className="bg-gradient-to-br from-[hsl(267,75%,56%)]/20 to-pink-500/20 border-2 border-[hsl(267,75%,56%)]/50 p-6 rounded-lg relative overflow-hidden"
+                variants={staggerChild}
+              >
+                {/* Compact FREE badge positioned right against top-left edge */}
+                <div className="absolute top-0 left-0 bg-gradient-to-r from-[hsl(267,75%,56%)]/90 to-pink-400/90 text-white px-2 py-1 rounded-br-lg text-xs font-bold shadow-sm">
+                  FREE
+                </div>
+                
+                <div className="absolute top-2 right-2">
+                  <Gift className="w-5 h-5 text-cyan-400" />
+                </div>
+
+                <h3 className="text-lg font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">FREE Branding Refresh</h3>
+                <ul className="space-y-2">
+                  {[
+                    "Brand identity development",
+                    "Detailed brand guidelines", 
+                    "New logo design",
+                    "Social media profile assets",
+                    "Professional letterhead design",
+                    "Custom business card design"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Feature Card 5: Hosting & Setup */}
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                variants={staggerChild}
+              >
+                <h3 className="text-lg font-bold mb-3 text-white">Hosting & Setup</h3>
+                <ul className="space-y-2">
+                  {[
+                    "Fully free setup included",
+                    "Custom domain", 
+                    "Deployed & live with blazing-fast performance",
+                    "Free hosting included (Netlify/Vercel)"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Feature Card 6: Lifetime Support */}
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg"
+                variants={staggerChild}
+              >
+                <h3 className="text-lg font-bold mb-3 text-white">Lifetime Support</h3>
+                <ul className="space-y-2">
+                  {[
+                    "Tech support — included for life",
+                    "Never worry about updates or bugs again", 
+                    "Updates, edits, fixes for life"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.div>
+
+            {/* Professional trust badges */}
             <div className="mb-8">
               <div className="grid md:grid-cols-3 gap-6">
                 {[
@@ -715,7 +725,8 @@ export default function Home() {
                 ))}
               </div>
             </div>            {/* Professional contact */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-blue-500/8 to-purple-500/8 border border-blue-500/25 rounded-xl shadow-sm">              <h3 className="text-lg font-semibold text-white mb-4">
+            <div className="mb-8 p-6 bg-gradient-to-r from-blue-500/8 to-purple-500/8 border border-blue-500/25 rounded-xl shadow-sm">
+              <h3 className="text-lg font-semibold text-white mb-4 text-center">
                 Want to discuss before moving forward?
               </h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -726,50 +737,54 @@ export default function Home() {
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
                 <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-purple-500/20 to-purple-600/15 hover:from-purple-500/30 hover:to-purple-600/25 px-6 py-3 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-sm">
                   <Mail className="w-5 h-5 text-purple-300" />
-                  <span className="font-semibold text-sm">arsalmaab@gmail.com</span>                </a>
+                  <span className="font-semibold text-sm">arsalmaab@gmail.com</span>
+                </a>
               </div>
             </div>
 
-            {/* Clean pricing display */}
-            <div className="mb-8 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
-              <div className="text-center">
-                <p className="text-gray-300 text-base mb-3">
+            {/* Pricing Section */}
+            <div className="text-center mb-8">
+              <div className="mb-6 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
+                <p className="text-gray-300 text-base mb-4">
                   Everything your business needs <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">to succeed</span>
-                </p>                <div className="mb-3 flex items-center justify-center space-x-4">                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
+                </p>
+                <div className="mb-4 flex items-center justify-center space-x-4">
+                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-full h-0.5 bg-gray-400 opacity-90"></div>
                     </div>
                   </span>
                   <span className="text-4xl md:text-5xl font-bold text-white">$3,500</span>
-                  <span className="text-lg text-gray-300 ml-2">one-time</span>
+                  <span className="text-lg text-gray-300 ml-2">USD</span>
                 </div>
                 <p className="text-gray-400 text-sm">No hidden fees • <span className="text-white font-semibold">100% satisfaction or full refund</span></p>
               </div>
-            </div>
 
-            {/* Professional CTA */}
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
-            >
-              Get Your Website Now
-            </button>
+              {/* Main CTA */}
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
+              >
+                Get Your Website Now
+              </button>
 
-            {/* Professional Footer */}
-            <div className="flex flex-col items-center space-y-3">              <button 
+              {/* Trust message */}
+              <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm mb-4">
+                <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
+                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
+                  <span>Fully Managed. No Hosting Fees. No Tech Headaches.</span>
+                </p>
+              </div>
+
+              {/* Footer link */}
+              <button 
                 onClick={() => scrollToSection('problem')}
-                className="text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center space-x-2 transition-colors duration-200"
+                className="text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center justify-center space-x-2 transition-colors duration-200 mx-auto"
               >
                 <span>Why do you need a better website?</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
-              {/* <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm">
-                <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  <span>Fully Managed • No Hosting Fees • No Technical Hassles</span>
-                </p>
-              </div> */}
             </div>
           </motion.div>
         </div>
