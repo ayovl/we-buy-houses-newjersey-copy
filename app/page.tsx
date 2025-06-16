@@ -311,9 +311,7 @@ export default function Home() {
             }}
           >
             {/* Animated background shimmer */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-            
-            {/* Button content */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />            {/* Button content */}
             <span className="relative flex items-center gap-2 justify-center">
               Get Your Website Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -694,174 +692,67 @@ export default function Home() {
       </section>      {/* Professional Pricing Section */}
       <section id="pricing" ref={pricingRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">          <motion.div 
-            className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-5xl border-2 border-white/30 shadow-2xl shadow-purple-500/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
+            className="bg-white/5 backdrop-blur-sm border border-white/20 shadow-xl p-8 md:p-12 rounded-2xl text-center relative overflow-hidden max-w-2xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
-          >
-            {/* Subtle background pattern for better contrast */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-400/8 via-transparent to-pink-400/8 opacity-60"></div>
-            {/* Professional Badge */}
-            <div className="absolute -top-2 -right-2">
-              <div className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] text-white px-4 py-1.5 text-xs font-semibold transform rotate-12 translate-x-2 -translate-y-1 shadow-lg rounded-md">
-                <div className="flex items-center space-x-1">
-                  <Gift className="w-3 h-3" />
-                  <span>COMPLETE SOLUTION</span>
-                </div>
-              </div>
-            </div>            {/* Header Section */}
-            <div className="relative z-10 mb-8">              
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
-                Professional Website Solution
-              </h2>
-            </div>            {/* Professional Service Grid */}            <div className="grid md:grid-cols-3 gap-4 mb-8">              <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/15 p-5 rounded-xl border-2 border-purple-400/50 relative overflow-hidden shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02]">
-                {/* Professional badge */}
-                <div className="absolute top-2 right-2 bg-gradient-to-r from-purple-400 to-blue-400 text-white px-2 py-1 rounded-md text-xs font-bold shadow-sm">
-                  CORE
-                </div>
-                
-                <div className="mt-4">
-                  <h4 className="font-bold text-xl mb-3 text-white leading-tight">Complete Website</h4>
-                  <p className="text-purple-100 text-sm leading-relaxed mb-4">Custom design, 10 pages, mobile-responsive, professional branding</p>
-                  
-                  {/* Feature highlights */}
-                  <div className="space-y-2">
-                    <div className="flex items-center text-xs text-purple-200">
-                      <div className="w-1.5 h-1.5 bg-purple-300 rounded-full mr-2"></div>
-                      Mobile-responsive design
-                    </div>
-                    <div className="flex items-center text-xs text-purple-200">
-                      <div className="w-1.5 h-1.5 bg-purple-300 rounded-full mr-2"></div>
-                      Up to 10 custom pages
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Subtle glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 to-transparent pointer-events-none"></div>
-              </div>              <div className="bg-gradient-to-br from-pink-500/25 to-purple-500/20 p-5 rounded-xl border-2 border-pink-400/60 relative overflow-hidden shadow-lg hover:shadow-pink-500/20 transition-all duration-300 hover:scale-[1.02]">
-                {/* Sparkle accent in top corner */}
-                <div className="absolute top-3 right-3 flex items-center space-x-1">
-                  <Gift className="w-5 h-5 text-pink-300" />
-                  <div className="w-1 h-1 bg-pink-300 rounded-full animate-pulse"></div>
-                </div>
-                
-                {/* FREE badge */}
-                <div className="absolute top-2 left-2 bg-gradient-to-r from-pink-400 to-purple-400 text-white px-2 py-1 rounded-md text-xs font-bold shadow-sm">
-                  FREE
-                </div>
-                
-                <div className="mt-6">
-                  <h4 className="font-bold text-xl mb-2 text-white leading-tight">Premium Branding Package</h4>
-                  <p className="text-pink-100 text-sm leading-relaxed mb-3">Complete brand identity with logo, colors & guidelines</p>
-                  
-                  {/* Value highlight */}
-                  <div className="flex items-center justify-between">
-                    <div className="bg-gradient-to-r from-pink-400/30 to-purple-400/20 text-pink-200 px-3 py-1.5 rounded-lg text-sm font-semibold border border-pink-400/30">
-                      Worth $800+
-                    </div>
-                    <div className="text-pink-300 text-xs font-medium">Included</div>
-                  </div>
-                </div>
-                
-                {/* Subtle glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-400/5 to-transparent pointer-events-none"></div>
-              </div>              <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/15 p-5 rounded-xl border-2 border-blue-400/50 relative overflow-hidden shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02]">
-                {/* Support badge */}
-                <div className="absolute top-2 right-2 bg-gradient-to-r from-blue-400 to-purple-400 text-white px-2 py-1 rounded-md text-xs font-bold shadow-sm">
-                  SUPPORT
-                </div>
-                
-                <div className="mt-4">
-                  <h4 className="font-bold text-xl mb-3 text-white leading-tight">Lifetime Support</h4>
-                  <p className="text-blue-100 text-sm leading-relaxed mb-4">Hosting, maintenance, updates, and technical support included</p>
-                  
-                  {/* Feature highlights */}
-                  <div className="space-y-2">
-                    <div className="flex items-center text-xs text-blue-200">
-                      <div className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2"></div>
-                      Free hosting & maintenance
-                    </div>
-                    <div className="flex items-center text-xs text-blue-200">
-                      <div className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2"></div>
-                      24/7 technical support
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Subtle glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-transparent pointer-events-none"></div>
-              </div>
-            </div>            {/* Professional Guarantees */}
-            <div className="mb-6 p-4 bg-gradient-to-r from-purple-500/8 to-blue-500/8 border border-purple-500/20 rounded-lg">
-              <div className="grid md:grid-cols-3 gap-3">
-                {[
-                  { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-purple-400" },
-                  { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400" },
-                  { icon: BarChart3, text: "Blazing-Fast Hosting Included", color: "text-purple-400" }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center justify-center space-x-2 bg-white/5 px-3 py-2 rounded-lg border border-white/10">
-                    <item.icon className={`w-4 h-4 ${item.color}`} />
-                    <span className="font-medium text-white text-xs text-center">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>            {/* Project Timeline */}
-            <div className="mb-6 p-5 bg-gradient-to-r from-white/8 to-white/5 border border-white/15 rounded-xl shadow-lg">
-              <div className="text-center mb-3">
-                <h4 className="text-sm font-semibold text-white/90 uppercase tracking-wide">Project Delivery</h4>
-              </div>              <div className="space-y-4">
-                <div className="flex items-center justify-center space-x-3 bg-purple-500/10 border border-purple-500/20 rounded-lg p-3">
-                  <div className="w-2.5 h-2.5 bg-purple-400 rounded-full flex-shrink-0 shadow-sm"></div>
-                  <span className="text-center text-gray-200 font-medium">
-                    <strong className="text-white">cashforpropertiesnyc.com</strong> goes live in <strong className="text-purple-400">4 business days</strong>
-                  </span>
-                </div>
-                <div className="flex items-center justify-center space-x-3 bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-                  <div className="w-2.5 h-2.5 bg-blue-400 rounded-full flex-shrink-0 shadow-sm"></div>
-                  <span className="text-center text-gray-200 font-medium">
-                    <strong className="text-white">100% satisfaction</strong> or <strong className="text-blue-400">full refund</strong> guaranteed
-                  </span>
-                </div>
-              </div>
-            </div>            {/* Value Proposition Above Price */}
-            <div className="mb-6 text-center">
-              <p className="text-base text-gray-300 max-w-xl mx-auto">
-                Everything you need to <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">establish a powerful online presence</span>
-              </p>
-            </div>
+          >            {/* Clean header */}
+            <div className="mb-8">              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                Website Package
+              </h2></div>
 
-            {/* Price Display */}            <div className="mb-6 p-6 bg-gradient-to-br from-white/8 to-white/5 border-2 border-purple-400/40 rounded-xl">
+            {/* Clean pricing display */}
+            <div className="mb-8 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
               <div className="text-center">
-                <div className="mb-2">
+                <p className="text-gray-300 text-base mb-3">
+                  Everything your business needs to <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">succeed</span>
+                </p>                <div className="mb-3 flex items-center justify-center space-x-4">                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
+                    $5,000
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-full h-0.5 bg-gray-400 opacity-90"></div>
+                    </div>
+                  </span>
                   <span className="text-4xl md:text-5xl font-bold text-white">$3,500</span>
                   <span className="text-lg text-gray-300 ml-2">one-time</span>
                 </div>
-                <p className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold text-lg mb-2">Complete Website Solution</p>
-                <p className="text-gray-300 text-sm">Everything included • No hidden fees • No recurring costs</p></div>
+                <p className="text-gray-400 text-sm">No hidden fees • <span className="text-white font-semibold">100% satisfaction or full refund</span></p>
+              </div>
+            </div>            {/* Professional trust badges */}
+            <div className="mb-8">
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { icon: Shield, text: "7-Day Money-Back Guarantee", color: "text-purple-400", bgColor: "from-purple-500/10 to-purple-600/5", borderColor: "border-purple-500/20" },
+                  { icon: Award, text: "Lifetime Technical Support", color: "text-blue-400", bgColor: "from-blue-500/10 to-blue-600/5", borderColor: "border-blue-500/20" },
+                  { icon: BarChart3, text: "Fast 4-Day Delivery", color: "text-purple-400", bgColor: "from-purple-500/10 to-purple-600/5", borderColor: "border-purple-500/20" }
+                ].map((item, index) => (
+                  <div key={index} className={`flex flex-col items-center text-center bg-gradient-to-b ${item.bgColor} border ${item.borderColor} px-6 py-5 rounded-xl hover:scale-[1.02] transition-all duration-300 hover:shadow-lg`}>
+                    <div className={`w-12 h-12 ${item.color} bg-white/5 rounded-full flex items-center justify-center mb-3 border border-white/10`}>
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <span className="font-semibold text-white text-sm leading-tight">{item.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Professional Contact Section */}
-            <div className="mb-6 p-4 bg-gradient-to-r from-blue-500/8 to-purple-500/8 border border-blue-500/20 rounded-lg">
-              <h3 className="text-lg font-semibold text-blue-200 mb-3">
-                Want to Discuss before moving forwad?
+            {/* Professional contact */}
+            <div className="mb-8 p-4 bg-gradient-to-r from-blue-500/5 to-purple-500/5 border border-blue-500/20 rounded-lg">              <h3 className="text-lg font-semibold text-white mb-3">
+                Want to discuss before moving forward?
               </h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-1.5 rounded-lg border border-blue-500/20">
+                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-2 rounded-lg border border-blue-500/20">
                   <Phone className="w-4 h-4" />
                   <span className="font-medium text-sm">Schedule Consultation</span>
                 </div>
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
-                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-1.5 rounded-lg border border-blue-500/20">
+                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-2 rounded-lg border border-blue-500/20">
                   <Mail className="w-4 h-4" />
                   <a href="mailto:arsalmaab@gmail.com" className="font-medium text-sm hover:underline">
                     arsalmaab@gmail.com
                   </a>
                 </div>
               </div>
-            </div>
-
-            {/* Professional CTA */}
+            </div>            {/* Professional CTA */}
             <button
               onClick={() => setIsModalOpen(true)}
               className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
@@ -872,12 +763,12 @@ export default function Home() {
             {/* Professional Footer */}
             <div className="flex flex-col items-center space-y-3">              <button 
                 onClick={() => scrollToSection('problem')}
-                className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-300 hover:to-pink-300 font-medium text-sm flex items-center space-x-2 transition-colors duration-200"
+                className="text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center space-x-2 transition-colors duration-200"
               >
                 <span>Why do you need a better website?</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>              <div className="bg-gradient-to-r from-purple-500/10 to-purple-500/5 border border-purple-500/20 px-4 py-2 rounded-lg">
-                <p className="text-purple-400 font-semibold flex items-center justify-center space-x-2 text-sm">
+              </button><div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm">
+                <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
                   <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
                   <span>Fully Managed • No Hosting Fees • No Technical Hassles</span>
                 </p>
