@@ -339,7 +339,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Problem Section */}
-      <section id="problem" ref={problemRef} className="py-12 lg:py-16 px-6 lg:px-16 xl:px-24 relative">
+      <section id="problem" ref={problemRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-16 xl:px-24 relative">
         {/* Subtle gradient that blends into solution section */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-900/5"></div>
         <div className="max-w-5xl mx-auto relative z-10">          <motion.h2 
@@ -388,7 +388,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* Solution Section */}
-      <section id="solution" ref={solutionRef} className="py-12 lg:py-16 px-6 lg:px-8 relative">
+      <section id="solution" ref={solutionRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         {/* Seamless gradient overlay that continues from problem section and blends into CTA section */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-purple-900/8 to-purple-900/8"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/3 to-pink-900/8"></div>
@@ -482,7 +482,7 @@ export default function Home() {
             ))}          </motion.div>
         </div>
       </section>{/* Mid-Page CTA */}
-      <section ref={ctaRef} className="py-12 lg:py-16 px-6 lg:px-8 relative">        {/* Subtle seamless background that blends with the rest */}
+      <section ref={ctaRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">        {/* Subtle seamless background that blends with the rest */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/8 to-transparent"></div>        
         <div className="max-w-4xl mx-auto text-center relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
@@ -510,7 +510,7 @@ export default function Home() {
           </motion.button>
         </div>
       </section>      {/* Testimonials Section */}
-      <section ref={testimonialRef} className="py-12 lg:py-16 px-6 lg:px-8 relative">
+      <section ref={testimonialRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
@@ -551,7 +551,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>      {/* The Offer Section */}
-      <section id="offer" ref={benefitsRef} className="py-12 lg:py-16 px-6 lg:px-8 relative">
+      <section id="offer" ref={benefitsRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16"
             initial={fadeInUp.initial}
@@ -695,7 +695,7 @@ export default function Home() {
             </motion.div>
           </motion.div></div>
       </section>      {/* Professional Pricing Section */}
-      <section id="pricing" ref={pricingRef} className="py-12 lg:py-16 px-6 lg:px-8 relative">
+      <section id="pricing" ref={pricingRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">          <motion.div 
             className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-5xl border-2 border-white/30 shadow-2xl shadow-purple-500/20 p-8 md:p-10 rounded-2xl text-center relative overflow-hidden"
             initial={fadeInUp.initial}
@@ -888,8 +888,8 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </section>{/* Schedule Meeting Section */}
-      <section className="py-12 lg:py-16 px-6 lg:px-8 relative" ref={meetingRef}>
+      </section>      {/* Schedule Meeting Section */}
+      <section className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative" ref={meetingRef}>
         <div className="max-w-4xl mx-auto text-center">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
@@ -915,7 +915,7 @@ export default function Home() {
           </motion.button>
         </div>
       </section>      {/* Contact Section */}
-      <section id="contact" ref={contactRef} className="py-12 lg:py-16 px-6 lg:px-8 relative">
+      <section id="contact" ref={contactRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto text-center">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
