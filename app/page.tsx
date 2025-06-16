@@ -705,7 +705,7 @@ export default function Home() {
             <div className="mb-8 p-8 bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl">
               <div className="text-center">
                 <p className="text-gray-300 text-base mb-3">
-                  Everything your business needs to <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">succeed</span>
+                  Everything your business needs <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold">to succeed</span>
                 </p>                <div className="mb-3 flex items-center justify-center space-x-4">                  <span className="text-3xl md:text-4xl font-semibold text-gray-400 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -733,26 +733,22 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Professional contact */}
-            <div className="mb-8 p-4 bg-gradient-to-r from-blue-500/5 to-purple-500/5 border border-blue-500/20 rounded-lg">              <h3 className="text-lg font-semibold text-white mb-3">
+            </div>            {/* Professional contact */}
+            <div className="mb-8 p-6 bg-gradient-to-r from-blue-500/8 to-purple-500/8 border border-blue-500/25 rounded-xl shadow-sm">              <h3 className="text-lg font-semibold text-white mb-4">
                 Want to discuss before moving forward?
               </h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-2 rounded-lg border border-blue-500/20">
-                  <Phone className="w-4 h-4" />
-                  <span className="font-medium text-sm">Schedule Consultation</span>
-                </div>
+                <button className="flex items-center space-x-3 text-white bg-gradient-to-r from-blue-500/20 to-blue-600/15 hover:from-blue-500/30 hover:to-blue-600/25 px-6 py-3 rounded-lg border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02] shadow-sm">
+                  <Phone className="w-5 h-5 text-blue-300" />
+                  <span className="font-semibold text-sm">Schedule Consultation</span>
+                </button>
                 <div className="text-gray-400 text-sm hidden sm:block">or</div>
-                <div className="flex items-center space-x-2 text-blue-300 bg-blue-500/10 px-3 py-2 rounded-lg border border-blue-500/20">
-                  <Mail className="w-4 h-4" />
-                  <a href="mailto:arsalmaab@gmail.com" className="font-medium text-sm hover:underline">
-                    arsalmaab@gmail.com
-                  </a>
-                </div>
+                <a href="mailto:arsalmaab@gmail.com" className="flex items-center space-x-3 text-white bg-gradient-to-r from-purple-500/20 to-purple-600/15 hover:from-purple-500/30 hover:to-purple-600/25 px-6 py-3 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-sm">
+                  <Mail className="w-5 h-5 text-purple-300" />
+                  <span className="font-semibold text-sm">arsalmaab@gmail.com</span>
+                </a>
               </div>
-            </div>            {/* Professional CTA */}
+            </div>{/* Professional CTA */}
             <button
               onClick={() => setIsModalOpen(true)}
               className="bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 mb-6 border border-[hsl(267,75%,56%)]/50 w-full md:w-auto"
