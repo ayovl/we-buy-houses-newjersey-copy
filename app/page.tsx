@@ -598,17 +598,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>
         
         <div className="max-w-5xl mx-auto relative z-10">          <motion.div 
-            className="bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/60 backdrop-blur-md border border-slate-600/40 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden group"
+            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
-          >{/* Subtle background effects */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 via-transparent to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-500/5 to-transparent rounded-full blur-2xl opacity-40"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-pink-500/5 to-transparent rounded-full blur-2xl opacity-40"></div>
-            
-            {/* Subtle border glow */}
-            <div className="absolute inset-0 rounded-3xl border border-purple-400/0 group-hover:border-purple-400/10 transition-colors duration-500"></div>{/* Professional Header */}
+          >{/* Professional Header */}
             <div className="text-center mb-10 relative z-10">
               <motion.h2 
                 className="text-3xl md:text-4xl font-bold mb-4 text-white"
