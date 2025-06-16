@@ -764,12 +764,12 @@ export default function Home() {
                 <span>Why do you need a better website?</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
-              <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm">
+              {/* <div className="bg-gradient-to-r from-purple-500/15 to-purple-500/10 border border-purple-500/30 px-4 py-2 rounded-lg shadow-sm">
                 <p className="text-white font-semibold flex items-center justify-center space-x-2 text-sm">
                   <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
                   <span>Fully Managed • No Hosting Fees • No Technical Hassles</span>
                 </p>
-              </div>
+              </div> */}
             </div>
           </motion.div>
         </div>
