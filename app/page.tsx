@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
-import { motion, useInView, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import OptimizedImage from '../components/OptimizedImage';
@@ -21,10 +21,8 @@ import {
   Palette,
   Type,
   FileText,  Phone,
-  Mail,
-  Copy,
+  Mail,  Copy,
   ChevronDown,
-  ChevronUp,
   Menu,
   AlertTriangle,
   Ban,
@@ -83,7 +81,6 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNavBackground, setShowNavBackground] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
   const [viewportHeight, setViewportHeight] = useState('100vh');
   const [formData, setFormData] = useState({
     fullName: '',
@@ -101,12 +98,10 @@ export default function Home() {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   }, []);
-
   // Optimized scroll handler with debouncing for mobile performance
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
     setShowNavBackground(scrollY > 50);
-    setShowScrollToTop(scrollY > 300);
   }, []);
 
   // Viewport Height Management - Optimized for mobile
@@ -196,15 +191,9 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     // Close mobile menu when section is clicked
-    setIsMobileMenuOpen(false);
-  }, []);
+    setIsMobileMenuOpen(false);  }, []);
 
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({ 
-      top: 0, 
-      behavior: 'smooth' 
-    });
-  }, []);  return (    <div className="min-h-screen text-white relative overflow-x-hidden">
+  return (<div className="min-h-screen text-white relative overflow-x-hidden">
       <ViewportOptimizer />
       
       {/* Desktop-Only Gradient Background */}
@@ -245,7 +234,7 @@ export default function Home() {
               <button onClick={() => scrollToSection('solution')} className="text-gray-300 hover:text-white transition-colors">Solution</button>
               <button onClick={() => scrollToSection('pricing')} className="text-gray-300 hover:text-white transition-colors">Pricing</button>
               <button onClick={() => scrollToSection('contact')} className="text-gray-300 hover:text-white transition-colors">Contact</button>
-              <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">Abouts</a>
+              <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">About</a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -338,7 +327,7 @@ export default function Home() {
       <section id="problem" ref={problemRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-16 xl:px-24 relative">
         {/* Subtle gradient that blends into solution section */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-900/5"></div>
-        <div className="max-w-5xl mx-auto relative z-10">          <motion.h2 
+        <div className="max-w-7xl mx-auto relative z-10">          <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 leading-tight"
             initial={fadeInUp.initial}
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
@@ -346,7 +335,7 @@ export default function Home() {
             The Problem with <br className="sm:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 text-2xl md:text-3xl lg:text-4xl break-all">cashforpropertiesnyc.com</span>
           </motion.h2><motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto"
             initial={staggerContainer.initial}
             animate={problemInView ? staggerContainer.animate : staggerContainer.initial}
           >{[
@@ -399,7 +388,7 @@ export default function Home() {
           </motion.h2>
 
           <motion.div
-            className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto"
+            className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto"
             initial={staggerContainer.initial}
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >            {[
@@ -480,7 +469,7 @@ export default function Home() {
       </section>{/* Mid-Page CTA */}
       <section ref={ctaRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">        {/* Subtle seamless background that blends with the rest */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/8 to-transparent"></div>        
-        <div className="max-w-4xl mx-auto text-center relative z-10"><motion.h2 
+        <div className="max-w-7xl mx-auto text-center relative z-10"><motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
             initial={fadeInUp.initial}
             animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
@@ -518,7 +507,7 @@ export default function Home() {
           >
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Clients Like You</span>
           </motion.h2>          <motion.div 
-            className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto"
+            className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto"
             initial={staggerContainer.initial}
             animate={testimonialInView ? staggerContainer.animate : staggerContainer.initial}
           >{[
@@ -597,7 +586,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>
         
-        <div className="max-w-5xl mx-auto relative z-10">          <motion.div 
+        <div className="max-w-7xl mx-auto relative z-10">          <motion.div 
             className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
@@ -1007,9 +996,14 @@ export default function Home() {
                   <span className="text-lg text-gray-300 font-medium">USD</span>
                 </div>
               </motion.div>              {/* Refined Divider */}
-              <div className="flex items-center justify-center">
+              <motion.div 
+                className="flex items-center justify-center"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
                 <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"></div>
-              </div>
+              </motion.div>
 
               {/* Enhanced Action Buttons */}
               <motion.div 
@@ -1060,7 +1054,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/3 via-transparent to-transparent"></div>
         
         {/* Content Container */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
           {/* Main Heading */}
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-12"
@@ -1135,17 +1129,153 @@ export default function Home() {
               Schedule a call with me
             </motion.button>
           </motion.div>        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-6 lg:px-8 border-t border-white/10 relative">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400">© 2025 WebBrand Pro. All rights reserved.</p>
-          <p className="text-gray-400 text-center my-4 md:my-0">Made with ❤️ for amazing clients</p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white">Terms</a>
-            <a href="#" className="text-gray-400 hover:text-white">Privacy</a>
-          </div>
+      </section>      {/* Enhanced Professional Footer with animations */}
+      <footer className="relative py-16 px-6 lg:px-8 border-t border-white/10 bg-gradient-to-b from-transparent to-black/20">
+        <div className="max-w-7xl mx-auto">          {/* Main footer content */}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, staggerChildren: 0.1 }}
+          >
+            
+            {/* Navigation Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h4 className="text-white font-semibold text-lg mb-6">Navigation</h4>
+              <nav className="space-y-3">
+                <motion.a 
+                  href="#hero" 
+                  className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm"
+                  whileHover={{ x: 4 }}
+                >
+                  Home
+                </motion.a>
+                <motion.a 
+                  href="#problem" 
+                  className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm"
+                  whileHover={{ x: 4 }}
+                >
+                  About
+                </motion.a>
+                <motion.a 
+                  href="#solution" 
+                  className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm"
+                  whileHover={{ x: 4 }}
+                >
+                  Skills
+                </motion.a>
+                <motion.a 
+                  href="#features" 
+                  className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm"
+                  whileHover={{ x: 4 }}
+                >
+                  Services
+                </motion.a>
+                <motion.a 
+                  href="#contact" 
+                  className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm"
+                  whileHover={{ x: 4 }}
+                >
+                  Contact
+                </motion.a>
+              </nav>
+            </motion.div>
+            
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h4 className="text-white font-semibold text-lg mb-6">Get in Touch</h4>
+              <div className="space-y-4">
+                <motion.div 
+                  className="flex items-start space-x-3"
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Mail className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <a 
+                      href="mailto:arsalmaab@gmail.com" 
+                      className="text-slate-400 hover:text-white transition-colors duration-200 text-sm block"
+                    >
+                      arsalmaab@gmail.com
+                    </a>
+                    <span className="text-slate-500 text-xs">Available 24/7</span>
+                  </div>
+                </motion.div>
+                <motion.div 
+                  className="flex items-start space-x-3"
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Phone className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="text-slate-400 text-sm block">Schedule a Call</span>
+                    <span className="text-slate-500 text-xs">Free consultation</span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+          
+          {/* Divider with gradient */}
+          <motion.div 
+            className="mb-8"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+          </motion.div>
+          
+          {/* Bottom section with enhanced design */}
+          <motion.div 
+            className="flex flex-col md:flex-row justify-between items-center gap-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+              <p className="text-slate-500 text-sm">
+                © 2025 Arsal Maab. All rights reserved.
+              </p>
+              <div className="hidden md:block w-px h-4 bg-slate-600"></div>
+              <p className="text-slate-500 text-sm flex items-center">
+                Made with 
+                <motion.span 
+                  className="text-red-400 mx-1.5"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  ❤️
+                </motion.span> 
+                using Next.js & Tailwind CSS
+              </p>
+            </div>
+            
+            <div className="flex items-center space-x-6 text-xs text-slate-500">
+              <motion.a 
+                href="#" 
+                className="hover:text-slate-400 transition-colors duration-200"
+                whileHover={{ y: -1 }}
+              >
+                Privacy Policy
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="hover:text-slate-400 transition-colors duration-200"
+                whileHover={{ y: -1 }}
+              >
+                Terms of Service
+              </motion.a>
+            </div>
+          </motion.div>
         </div>
       </footer>
 
@@ -1219,55 +1349,81 @@ export default function Home() {
                 Proceed to Payment - $3,950
               </button>
             </form>
-          </motion.div>        </div>
-      )}      {/* Scroll to Top Button - Modern Glassmorphism Design */}
-      <AnimatePresence mode="wait">
-        {showScrollToTop && (          <motion.button
-            onClick={scrollToTop}
-            className="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 hover:border-white/30 text-white p-3 rounded-full shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 hidden md:block group overflow-hidden"
-            initial={{ 
-              opacity: 0, 
-              y: 60,
-              scale: 0.8
-            }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              scale: 1
-            }}
-            exit={{ 
-              opacity: 0, 
-              y: 60,
-              scale: 0.8
-            }}
-            transition={{ 
-              duration: 0.4,
-              ease: [0.25, 0.46, 0.45, 0.94], // Smooth cubic-bezier
-              opacity: { duration: 0.3 },
-              y: { duration: 0.4 },
-              scale: { duration: 0.3 }
-            }}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-            whileTap={{ 
-              scale: 0.95,
-              transition: { duration: 0.1 }
-            }}
-            style={{ 
-              zIndex: 9999,
-              willChange: 'transform, opacity'
-            }}
-            aria-label="Scroll to top"
-          >            {/* Subtle gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-            
-            {/* Icon with subtle animation */}
-            <ChevronUp className="w-6 h-6 relative z-10 group-hover:translate-y-[-1px] transition-transform duration-200" />
-          </motion.button>
-        )}
-      </AnimatePresence>
+          </motion.div>        </div>      )}      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-xl p-8 max-w-md w-full relative"
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">
+              Claim Your New Website
+            </h3>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="john@example.com"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Special Requests (Optional)
+                </label>
+                <textarea
+                  value={formData.requests}
+                  onChange={(e) => setFormData({...formData, requests: e.target.value})}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent h-24 resize-none"
+                  placeholder="Any specific requirements or preferences..."
+                />
+              </div>
+              
+              <p className="text-sm text-gray-300 text-center">
+                Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
+                We'll email your brand assets and login details upon completion.
+              </p>
+              
+              <button
+                type="submit"
+                className="w-full bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105"
+              >
+                Proceed to Payment - $3,950
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
