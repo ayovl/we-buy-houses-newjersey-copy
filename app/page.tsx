@@ -1061,35 +1061,6 @@ export default function Home() {
               </motion.div>            </div>
           </motion.div>
         </div>
-      </section>      {/* Schedule Meeting Section */}
-      <section className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative" ref={meetingRef}>
-        {/* Subtle gradient that blends from pricing section */}
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/3 via-transparent to-transparent"></div>
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10"><motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
-            initial={fadeInUp.initial}
-            animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={fadeInUp.transition}
-          >
-            Have Questions? <span className="text-[hsl(267,75%,56%)]">Let's Talk.</span>
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-300 mb-8"
-            initial={fadeInUp.initial}
-            animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={fadeInUp.transition}
-          >
-            Schedule a free, no-obligation 15-minute call to discuss your project in detail.
-          </motion.p>          <motion.button
-            className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105"
-            initial={fadeInUp.initial}
-            animate={meetingInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
-          >
-            Schedule on Calendly
-          </motion.button>
-        </div>
       </section>      {/* Let's Connect Section - Matching Screenshot Design */}
       <section id="contact" ref={contactRef} className="py-20 px-6 lg:px-8 relative overflow-hidden">
         {/* Background Gradient */}
@@ -1099,12 +1070,12 @@ export default function Home() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Main Heading */}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Let's <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Connect</span>
+            Have a question? <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Reach out.</span>
           </motion.h2>
 
           {/* Email Contact Card */}
@@ -1149,17 +1120,10 @@ export default function Home() {
                 </motion.a>
               </div>
             </div>
-          </motion.div>
-
-          {/* Availability Notice */}
-          <motion.div 
-            className="mb-8"
-            initial={{ opacity: 0 }}
-            animate={contactInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <p className="text-slate-400 text-lg">Available June 2025</p>
-          </motion.div>
+          </motion.div>          {/* Simple Horizontal Divider */}
+          <div className="mb-8 flex justify-center">
+            <div className="w-32 h-px bg-slate-600/40"></div>
+          </div>
 
           {/* Schedule Call Button */}
           <motion.div
@@ -1178,36 +1142,7 @@ export default function Home() {
             >
               Schedule a call with me
             </motion.button>
-          </motion.div>
-
-          {/* Social Media Icons */}
-          <motion.div 
-            className="mt-12 flex items-center justify-center space-x-6"
-            initial={{ opacity: 0 }}
-            animate={contactInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-          >
-            {[
-              { icon: '📷', label: 'Instagram', href: '#' },
-              { icon: '📺', label: 'YouTube', href: '#' },
-              { icon: '👤', label: 'Facebook', href: '#' },
-              { icon: '💼', label: 'LinkedIn', href: '#' }
-            ].map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                className="w-12 h-12 bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600/40 hover:border-slate-500/60 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
-              >
-                <span className="text-xl">{social.icon}</span>
-              </motion.a>
-            ))}
-          </motion.div>
-        </div>
+          </motion.div>        </div>
       </section>
 
       {/* Footer */}
