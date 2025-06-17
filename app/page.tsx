@@ -20,9 +20,9 @@ import {
   Gift,
   Palette,
   Type,
-  FileText,
-  Phone,
+  FileText,  Phone,
   Mail,
+  Copy,
   ChevronDown,
   ChevronUp,
   Menu,
@@ -913,89 +913,109 @@ export default function Home() {
                   </motion.div>
                 ))}
               </motion.div>
-            </div>{/* Enhanced Professional contact section */}
+            </div>            {/* Professional Contact Section */}
             <motion.div 
-              className="mb-8 p-6 bg-gradient-to-r from-slate-800/40 via-slate-700/30 to-slate-800/40 border border-slate-600/40 rounded-2xl shadow-lg backdrop-blur-md relative overflow-hidden group"
+              className="mb-8 mx-0 px-6 py-4 bg-gradient-to-r from-slate-900/95 via-slate-800/90 to-slate-900/95 border border-slate-500/30 rounded-2xl shadow-2xl backdrop-blur-lg relative overflow-hidden group"
               initial={fadeInUp.initial}
               animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
               transition={{ ...fadeInUp.transition, delay: 0.3 }}
             >
-              {/* Subtle background pattern */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-500/5 via-transparent to-slate-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Enhanced background effects */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(56,189,248,0.1),transparent)] opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
               
-              <h3 className="text-lg font-semibold text-white mb-4 text-center relative z-10">
-                Want to discuss before moving forward?
-              </h3>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-                <motion.button 
-                  className="group flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/50 to-slate-800/40 hover:from-slate-600/60 hover:to-slate-700/50 px-6 py-3.5 rounded-xl border border-slate-500/50 hover:border-slate-400/70 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl backdrop-blur-sm will-change-transform"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Phone className="w-5 h-5 text-slate-300 group-hover:text-slate-200 transition-colors duration-200" />
-                  <span className="font-semibold text-sm">Schedule a Call</span>
-                </motion.button>
-                <div className="text-gray-400 text-sm hidden sm:block">or</div>
-                <motion.a 
-                  href="mailto:arsalmaab@gmail.com" 
-                  className="group flex items-center space-x-3 text-white bg-gradient-to-r from-slate-700/50 to-slate-800/40 hover:from-slate-600/60 hover:to-slate-700/50 px-6 py-3.5 rounded-xl border border-slate-500/50 hover:border-slate-400/70 transition-all duration-300 hover:scale-[1.02] hover:underline shadow-lg hover:shadow-xl backdrop-blur-sm will-change-transform"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Mail className="w-5 h-5 text-slate-300 group-hover:text-slate-200 transition-colors duration-200" />
-                  <span className="font-semibold text-sm">Email</span>
-                </motion.a>
+              {/* Content */}
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 relative z-10">
+                {/* Left side: Professional discussion text */}
+                <div className="text-center md:text-left flex-1">
+                  <h3 className="text-lg font-semibold text-white mb-1">
+                    Ready to discuss your project?
+                  </h3>
+                  <p className="text-slate-300 text-sm opacity-90">
+                    Let's connect and bring your vision to life
+                  </p>
+                </div>
+                
+                {/* Right side: Professional action buttons */}
+                <div className="flex items-center justify-center md:justify-end gap-3 flex-shrink-0">
+                  <motion.button 
+                    className="group relative flex items-center space-x-2.5 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-5 py-3 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm"
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <Phone className="w-4 h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
+                    <span className="font-semibold text-sm relative z-10">Schedule Call</span>
+                  </motion.button>
+                  
+                  <div className="flex items-center">
+                    <div className="w-px h-6 bg-slate-400/30 mx-2"></div>
+                    <span className="text-slate-400 text-xs font-medium">or</span>
+                    <div className="w-px h-6 bg-slate-400/30 mx-2"></div>
+                  </div>
+                  
+                  <motion.a 
+                    href="mailto:arsalmaab@gmail.com" 
+                    className="group relative flex items-center space-x-2.5 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-5 py-3 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm"
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-400/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <Mail className="w-4 h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
+                    <span className="font-semibold text-sm relative z-10">Send Email</span>
+                  </motion.a>
+                </div>
               </div>
-              
-              {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-slate-400/10 to-transparent rounded-bl-3xl rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </motion.div>{/* Enhanced Pricing & CTA Section */}
-            <div className="space-y-8 relative z-10">
-              {/* Enhanced Pricing & Guarantee Row */}
+            </motion.div>{/* Refined Pricing & CTA Section */}
+            <div className="space-y-6 relative z-10">
+              {/* Refined Pricing & Guarantee Row */}
               <motion.div 
-                className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+                className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5"
                 initial={fadeInUp.initial}
                 animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
                 transition={{ ...fadeInUp.transition, delay: 0.4 }}
-              >                {/* Professional Guarantee - Left Side */}
+              >
+                {/* Prominent Money Back Guarantee - Left Side */}
                 <div className="flex justify-center lg:justify-start">
                   <motion.div 
-                    className="group inline-flex items-center space-x-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-2xl px-8 py-4 backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-[1.02] will-change-transform relative overflow-hidden"
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.15 }}
+                    className="group inline-flex items-center space-x-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-xl px-6 py-3 backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-[1.02] will-change-transform relative overflow-hidden"
+                    whileHover={{ y: -1 }}
+                    transition={{ duration: 0.12 }}
                   >
-                    <div className="flex-shrink-0 w-8 h-8 bg-green-400/20 rounded-full flex items-center justify-center border-2 border-green-400/50 relative z-10">
-                      <Shield className="w-5 h-5 text-green-300" />
+                    <div className="flex-shrink-0 w-7 h-7 bg-green-400/20 rounded-full flex items-center justify-center border-2 border-green-400/50 relative z-10">
+                      <Shield className="w-4 h-4 text-green-300" />
                     </div>
                     <div className="flex flex-col relative z-10">
-                      <span className="text-green-100 font-bold text-lg leading-tight">Money Back Guarantee</span>
-                      <span className="text-green-200/90 text-sm leading-tight">Full refund if not satisfied</span>
+                      <span className="text-green-100 font-bold text-base leading-tight">Money Back Guarantee</span>
+                      <span className="text-green-200/90 text-xs leading-tight">Full refund if not satisfied</span>
                     </div>
                   </motion.div>
                 </div>
 
-                {/* Professional Pricing - Right Side */}
-                <div className="flex items-baseline justify-center lg:justify-end space-x-4">
-                  <span className="text-3xl lg:text-4xl font-semibold text-gray-500 relative">
+                {/* Balanced Pricing - Right Side */}
+                <div className="flex items-baseline justify-center lg:justify-end space-x-3">
+                  <span className="text-2xl lg:text-3xl font-semibold text-gray-500 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-full h-0.5 bg-gray-500 opacity-80"></div>
                     </div>
                   </span>
                   <motion.span 
-                    className="text-5xl lg:text-6xl font-bold text-white"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
+                    className="text-4xl lg:text-5xl font-bold text-white"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.15 }}
                   >
                     $3,500
                   </motion.span>
-                  <span className="text-xl text-gray-300 font-medium">USD</span>
+                  <span className="text-lg text-gray-300 font-medium">USD</span>
                 </div>
               </motion.div>
 
-              {/* Enhanced Divider */}
+              {/* Refined Divider */}
               <div className="flex items-center justify-center">
-                <div className="w-full max-w-lg h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"></div>
+                <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"></div>
               </div>
 
               {/* Enhanced Action Buttons */}
@@ -1070,32 +1090,123 @@ export default function Home() {
             Schedule on Calendly
           </motion.button>
         </div>
-      </section>      {/* Contact Section */}
-      <section id="contact" ref={contactRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
-        <div className="max-w-4xl mx-auto text-center">          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6"
-            initial={fadeInUp.initial}
-            animate={contactInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={fadeInUp.transition}
+      </section>      {/* Let's Connect Section - Matching Screenshot Design */}
+      <section id="contact" ref={contactRef} className="py-20 px-6 lg:px-8 relative overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/3 via-transparent to-transparent"></div>
+        
+        {/* Content Container */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Main Heading */}
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Contact Me <span className="text-[hsl(267,75%,56%)]">Directly</span>
+            Let's <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Connect</span>
           </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-300 mb-8"
-            initial={fadeInUp.initial}
-            animate={contactInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={fadeInUp.transition}
+
+          {/* Email Contact Card */}
+          <motion.div 
+            className="mb-8 max-w-lg mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            For any other inquiries, feel free to send an email.
-          </motion.p>          <motion.a
-            href="mailto:arsalmaab@gmail.com"
-            className="text-[hsl(267,75%,56%)] hover:text-[hsl(267,75%,66%)] text-xl font-semibold hover:underline"
-            initial={fadeInUp.initial}
-            animate={contactInView ? fadeInUp.animate : fadeInUp.initial}
-            transition={{ ...fadeInUp.transition, delay: 0.1 }}
+            <div className="bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-lg border border-slate-600/40 rounded-2xl p-6 shadow-2xl">
+              <div className="flex items-center justify-between gap-4">
+                {/* Email Section */}
+                <div className="flex items-center space-x-4 flex-1">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-blue-600/20 border border-blue-500/30 rounded-xl flex items-center justify-center">
+                      <Mail className="w-5 h-5 text-blue-400" strokeWidth={2} />
+                    </div>
+                  </div>
+                  <div className="text-left flex-1 min-w-0">
+                    <div className="text-white font-semibold text-lg">arsalmaab@gmail.com</div>
+                    <button 
+                      className="text-slate-400 text-sm hover:text-slate-300 transition-colors duration-200 flex items-center space-x-1 group"
+                      onClick={() => {
+                        navigator.clipboard.writeText('arsalmaab@gmail.com');
+                        // You can add a toast notification here
+                      }}
+                    >
+                      <span>Click to copy</span>
+                      <Copy className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Email Now Button */}
+                <motion.a 
+                  href="mailto:arsalmaab@gmail.com"
+                  className="flex-shrink-0 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Email Now
+                </motion.a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Availability Notice */}
+          <motion.div 
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={contactInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
-            arsalmaab@gmail.com
-          </motion.a>
+            <p className="text-slate-400 text-lg">Available June 2025</p>
+          </motion.div>
+
+          {/* Schedule Call Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <motion.button 
+              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-purple-500/30 backdrop-blur-sm border border-purple-500/30"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                // Add your scheduling logic here
+                window.open('https://calendly.com/your-calendar', '_blank');
+              }}
+            >
+              Schedule a call with me
+            </motion.button>
+          </motion.div>
+
+          {/* Social Media Icons */}
+          <motion.div 
+            className="mt-12 flex items-center justify-center space-x-6"
+            initial={{ opacity: 0 }}
+            animate={contactInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            {[
+              { icon: '📷', label: 'Instagram', href: '#' },
+              { icon: '📺', label: 'YouTube', href: '#' },
+              { icon: '👤', label: 'Facebook', href: '#' },
+              { icon: '💼', label: 'LinkedIn', href: '#' }
+            ].map((social, index) => (
+              <motion.a
+                key={social.label}
+                href={social.href}
+                className="w-12 h-12 bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600/40 hover:border-slate-500/60 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+              >
+                <span className="text-xl">{social.icon}</span>
+              </motion.a>
+            ))}
+          </motion.div>
         </div>
       </section>
 
