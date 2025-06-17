@@ -245,7 +245,7 @@ export default function Home() {
               <button onClick={() => scrollToSection('solution')} className="text-gray-300 hover:text-white transition-colors">Solution</button>
               <button onClick={() => scrollToSection('pricing')} className="text-gray-300 hover:text-white transition-colors">Pricing</button>
               <button onClick={() => scrollToSection('contact')} className="text-gray-300 hover:text-white transition-colors">Contact</button>
-              <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">About Me</a>
+              <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">Abouts</a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -915,7 +915,7 @@ export default function Home() {
               </motion.div>
             </div>            {/* Professional Contact Section */}
             <motion.div 
-              className="mb-8 mx-0 px-6 py-4 bg-gradient-to-r from-slate-900/95 via-slate-800/90 to-slate-900/95 border border-slate-500/30 rounded-2xl shadow-2xl backdrop-blur-lg relative overflow-hidden group"
+              className="mb-6 mx-0 px-4 py-3 bg-gradient-to-r from-slate-900/95 via-slate-800/90 to-slate-900/95 border border-slate-500/30 rounded-2xl shadow-2xl backdrop-blur-lg relative overflow-hidden group"
               initial={fadeInUp.initial}
               animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
               transition={{ ...fadeInUp.transition, delay: 0.3 }}
@@ -925,10 +925,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(56,189,248,0.1),transparent)] opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
               
               {/* Content */}
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 relative z-10">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4 relative z-10">
                 {/* Left side: Professional discussion text */}
                 <div className="text-center md:text-left flex-1">
-                  <h3 className="text-lg font-semibold text-white mb-1">
+                  <h3 className="text-base font-semibold text-white mb-1">
                     Ready to discuss your project?
                   </h3>
                   <p className="text-slate-300 text-sm opacity-90">
@@ -937,9 +937,9 @@ export default function Home() {
                 </div>
                 
                 {/* Right side: Professional action buttons */}
-                <div className="flex items-center justify-center md:justify-end gap-3 flex-shrink-0">
+                <div className="flex items-center justify-center md:justify-end gap-2 flex-shrink-0">
                   <motion.button 
-                    className="group relative flex items-center space-x-2.5 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-5 py-3 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm"
+                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-4 py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
@@ -948,16 +948,11 @@ export default function Home() {
                     <Phone className="w-4 h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
                     <span className="font-semibold text-sm relative z-10">Schedule Call</span>
                   </motion.button>
-                  
-                  <div className="flex items-center">
-                    <div className="w-px h-6 bg-slate-400/30 mx-2"></div>
                     <span className="text-slate-400 text-xs font-medium">or</span>
-                    <div className="w-px h-6 bg-slate-400/30 mx-2"></div>
-                  </div>
                   
                   <motion.a 
                     href="mailto:arsalmaab@gmail.com" 
-                    className="group relative flex items-center space-x-2.5 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-5 py-3 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm"
+                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-4 py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
@@ -1011,11 +1006,9 @@ export default function Home() {
                   </motion.span>
                   <span className="text-lg text-gray-300 font-medium">USD</span>
                 </div>
-              </motion.div>
-
-              {/* Refined Divider */}
+              </motion.div>              {/* Refined Divider */}
               <div className="flex items-center justify-center">
-                <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"></div>
+                <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"></div>
               </div>
 
               {/* Enhanced Action Buttons */}
@@ -1061,7 +1054,7 @@ export default function Home() {
               </motion.div>            </div>
           </motion.div>
         </div>
-      </section>      {/* Let's Connect Section - Matching Screenshot Design */}
+      </section>      {/* Have a question? Reach out Section */}
       <section id="contact" ref={contactRef} className="py-20 px-6 lg:px-8 relative overflow-hidden">
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/3 via-transparent to-transparent"></div>
@@ -1084,8 +1077,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-lg border border-slate-600/40 rounded-2xl p-6 shadow-2xl">
+          >            <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 rounded-2xl p-6 shadow-xl">
               <div className="flex items-center justify-between gap-4">
                 {/* Email Section */}
                 <div className="flex items-center space-x-4 flex-1">
@@ -1097,7 +1089,7 @@ export default function Home() {
                   <div className="text-left flex-1 min-w-0">
                     <div className="text-white font-semibold text-lg">arsalmaab@gmail.com</div>
                     <button 
-                      className="text-slate-400 text-sm hover:text-slate-300 transition-colors duration-200 flex items-center space-x-1 group"
+                      className="text-gray-300 text-sm hover:text-white transition-colors duration-200 flex items-center space-x-1 group"
                       onClick={() => {
                         navigator.clipboard.writeText('arsalmaab@gmail.com');
                         // You can add a toast notification here
