@@ -1139,6 +1139,7 @@ export default function Home() {
             
             {/* Navigation Links */}
             <motion.div
+              className="text-center md:text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -1185,6 +1186,7 @@ export default function Home() {
             
             {/* Contact Info */}
             <motion.div
+              className="text-center md:text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -1192,12 +1194,12 @@ export default function Home() {
               <h4 className="text-white font-semibold text-lg mb-6">Get in Touch</h4>
               <div className="space-y-4">
                 <motion.div 
-                  className="flex items-start space-x-3"
+                  className="flex items-center justify-center space-x-3"
                   whileHover={{ x: 2 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Mail className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                  <div>
+                  <Mail className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                  <div className="text-center">
                     <a 
                       href="mailto:arsalmaab@gmail.com" 
                       className="text-slate-400 hover:text-white transition-colors duration-200 text-sm block"
@@ -1208,12 +1210,12 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <motion.div 
-                  className="flex items-start space-x-3"
+                  className="flex items-center justify-center space-x-3"
                   whileHover={{ x: 2 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Phone className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                  <div>
+                  <Phone className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                  <div className="text-center">
                     <span className="text-slate-400 text-sm block">Schedule a Call</span>
                     <span className="text-slate-500 text-xs">Free consultation</span>
                   </div>
@@ -1230,21 +1232,19 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
-          </motion.div>
-          
-          {/* Bottom section with enhanced design */}
+          </motion.div>          {/* Bottom section with enhanced design */}
           <motion.div 
-            className="flex flex-col md:flex-row justify-between items-center gap-6"
+            className="flex flex-col md:flex-row justify-center items-center gap-6 text-center"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+            <div className="flex flex-col md:flex-row items-center gap-4">
               <p className="text-slate-500 text-sm">
                 © 2025 Arsal Maab. All rights reserved.
               </p>
               <div className="hidden md:block w-px h-4 bg-slate-600"></div>
-              <p className="text-slate-500 text-sm flex items-center">
+              <p className="text-slate-500 text-sm flex items-center justify-center">
                 Made with 
                 <motion.span 
                   className="text-red-400 mx-1.5"
@@ -1257,7 +1257,7 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="flex items-center space-x-6 text-xs text-slate-500">
+            <div className="flex items-center justify-center space-x-6 text-xs text-slate-500">
               <motion.a 
                 href="#" 
                 className="hover:text-slate-400 transition-colors duration-200"
