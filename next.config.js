@@ -17,7 +17,6 @@ const nextConfig = {
   compress: true,
   // Optimize for mobile performance
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'lucide-react'],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
