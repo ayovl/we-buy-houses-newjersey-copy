@@ -8,6 +8,7 @@ import OptimizedImage from '../components/OptimizedImage';
 import LazyLoad from '../components/LazyLoad';
 import MobileMotion from '../components/MobileMotion';
 import ViewportOptimizer from '../components/ViewportOptimizer';
+import ContactFormModal from '../components/ContactFormModal';
 import { usePerformanceMonitoring, useDeviceOptimization } from '../hooks/usePerformance';
 import { 
   Shield, 
@@ -79,6 +80,7 @@ const staggerChild = {
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [showNavBackground, setShowNavBackground] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [viewportHeight, setViewportHeight] = useState('100vh');
@@ -87,6 +89,9 @@ export default function Home() {
     email: '',
     requests: ''
   });
+
+  // Ref for positioning the contact form modal
+  const emailButtonRef = useRef<HTMLButtonElement>(null);
 
   // Initialize performance monitoring
   usePerformanceMonitoring();
@@ -936,9 +941,8 @@ export default function Home() {
                     <span className="font-semibold text-sm relative z-10">Schedule Call</span>
                   </motion.button>
                     <span className="text-slate-400 text-xs font-medium">or</span>
-                  
-                  <motion.a 
-                    href="mailto:arsalmaab@gmail.com" 
+                    <motion.button 
+                    onClick={() => setIsContactFormOpen(true)}
                     className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-4 py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -947,7 +951,7 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-r from-slate-400/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <Mail className="w-4 h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
                     <span className="font-semibold text-sm relative z-10">Send Email</span>
-                  </motion.a>
+                  </motion.button>
                 </div>
               </div>
             </motion.div>{/* Refined Pricing & CTA Section */}
@@ -1091,17 +1095,16 @@ export default function Home() {
                       <Copy className="w-3 h-3 group-hover:scale-110 transition-transform" />
                     </button>
                   </div>
-                </div>
-                
-                {/* Email Now Button */}
-                <motion.a 
-                  href="mailto:arsalmaab@gmail.com"
+                </div>                  {/* Email Now Button */}
+                <motion.button 
+                  ref={emailButtonRef}
+                  onClick={() => setIsContactFormOpen(true)}
                   className="flex-shrink-0 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Email Now
-                </motion.a>
+                </motion.button>
               </div>
             </div>
           </motion.div>          {/* Simple Horizontal Divider */}
@@ -1199,13 +1202,12 @@ export default function Home() {
                   transition={{ duration: 0.2 }}
                 >
                   <Mail className="w-4 h-4 text-purple-400 flex-shrink-0" />
-                  <div className="text-center">
-                    <a 
-                      href="mailto:arsalmaab@gmail.com" 
+                  <div className="text-center">                    <button 
+                      onClick={() => setIsContactFormOpen(true)}
                       className="text-slate-400 hover:text-white transition-colors duration-200 text-sm block"
                     >
                       arsalmaab@gmail.com
-                    </a>
+                    </button>
                     <span className="text-slate-500 text-xs">Available 24/7</span>
                   </div>
                 </motion.div>
@@ -1420,8 +1422,12 @@ export default function Home() {
               </button>
             </form>
           </motion.div>
-        </div>
-      )}
+        </div>      )}      {/* Contact Form Modal */}
+      <ContactFormModal 
+        isOpen={isContactFormOpen} 
+        onClose={() => setIsContactFormOpen(false)} 
+        triggerRef={emailButtonRef}
+      />
     </div>
   );
 }
