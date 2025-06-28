@@ -22,7 +22,6 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, triggerRef }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [modalPosition, setModalPosition] = useState({ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' });
   
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -110,66 +109,10 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
     }
   };
 
-  useEffect(() => {
-    if (isOpen && triggerRef?.current && modalRef.current) {
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const modalRect = modalRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const viewportWidth = window.innerWidth;
-      const PADDING = 8; // 8px offset/padding
-
-      // Calculate initial centered left position
-      let left = triggerRect.left + window.scrollX + (triggerRect.width / 2) - (modalRect.width / 2);
-
-      // Adjust left position to stay within viewport
-      if (left + modalRect.width > viewportWidth + window.scrollX - PADDING) {
-        left = viewportWidth + window.scrollX - modalRect.width - PADDING;
-      }
-      if (left < window.scrollX + PADDING) {
-        left = window.scrollX + PADDING;
-      }
-
-      // Try positioning below the button first
-      let top = triggerRect.bottom + window.scrollY + PADDING;
-
-      // If modal goes off-screen below, try positioning above
-      if (top + modalRect.height > viewportHeight + window.scrollY - PADDING) {
-        top = triggerRect.top + window.scrollY - modalRect.height - PADDING;
-      }
-
-      // Ensure modal top is not off-screen upwards
-      if (top < window.scrollY + PADDING) {
-        top = window.scrollY + PADDING;
-        // If it was adjusted and still goes off-screen below (because it's too tall for viewport),
-        // it will be clamped by the viewport height, but this is a rare case for modals.
-        // We prioritize keeping the top visible.
-      }
-
-      // Final check to ensure it's not pushed too far down if there wasn't space above either
-      // and it got clamped to the top of viewport, but is too tall.
-      if (top + modalRect.height > viewportHeight + window.scrollY - PADDING) {
-        // This case means the modal is taller than the viewport minus padding.
-        // We'll keep it clamped to the top and let it overflow at the bottom,
-        // or consider making the modal itself scrollable internally if this is a common issue.
-        // For now, clamping to top is the primary goal.
-      }
-
-
-      setModalPosition({
-        top: `${top}px`,
-        left: `${left}px`,
-        transform: 'translate(0, 0)', // Reset transform if positioning absolutely
-      });
-    } else if (isOpen) {
-      // Default to center if no triggerRef or modalRef (though modalRef should always exist)
-      setModalPosition({ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' });
-    }
-  }, [isOpen, triggerRef]);
-
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50"> {/* Removed flex items-center justify-center */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center"> {/* Restored flex items-center justify-center */}
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -185,12 +128,11 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="absolute w-full max-w-md px-4" // Use absolute positioning
-            style={modalPosition}
+            className="relative w-full max-w-md mx-auto px-4" // Restored relative, mx-auto for centering with flex
             onClick={(e) => e.stopPropagation()}
           >
             {/* Main modal container with your website's design language */}
-            <div className="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 rounded-2xl shadow-2xl relative overflow-hidden group">
+            <div className="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 rounded-2xl shadow-2xl relative overflow-hidden group max-h-[90vh] flex flex-col">
               {/* Enhanced background effects matching your website's design */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 opacity-70"></div>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(147,51,234,0.1),transparent)] opacity-50"></div>
@@ -215,7 +157,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
               </div>
 
               {/* Form Content */}
-              <div className="relative z-10 p-6">
+              <div className="relative z-10 p-6 overflow-y-auto">
                 {submitStatus === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
