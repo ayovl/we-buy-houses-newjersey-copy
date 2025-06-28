@@ -22,6 +22,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, triggerRef }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [modalPosition, setModalPosition] = useState({ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' });
   
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -107,10 +108,46 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
       setSubmitStatus('idle');
       setSubmitMessage('');
     }
-  };  return (
+  };
+
+  useEffect(() => {
+    if (isOpen && triggerRef?.current && modalRef.current) {
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const modalRect = modalRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth;
+
+      let top = triggerRect.bottom + window.scrollY + 8; // 8px offset
+      let left = triggerRect.left + window.scrollX;
+
+      // Adjust if modal goes off-screen vertically
+      if (top + modalRect.height > viewportHeight + window.scrollY) {
+        top = triggerRect.top + window.scrollY - modalRect.height - 8;
+      }
+      // Adjust if modal goes off-screen horizontally
+      if (left + modalRect.width > viewportWidth + window.scrollX) {
+        left = viewportWidth + window.scrollX - modalRect.width - 8; // 8px padding from edge
+      }
+      if (left < window.scrollX + 8) {
+        left = window.scrollX + 8; // 8px padding from edge
+      }
+
+
+      setModalPosition({
+        top: `${top}px`,
+        left: `${left}px`,
+        transform: 'translate(0, 0)', // Reset transform if positioning absolutely
+      });
+    } else if (isOpen) {
+      // Default to center if no triggerRef or modalRef (though modalRef should always exist)
+      setModalPosition({ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' });
+    }
+  }, [isOpen, triggerRef]);
+
+  return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50"> {/* Removed flex items-center justify-center */}
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -126,7 +163,8 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-md mx-auto px-4"
+            className="absolute w-full max-w-md px-4" // Use absolute positioning
+            style={modalPosition}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Main modal container with your website's design language */}

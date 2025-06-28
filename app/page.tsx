@@ -92,6 +92,7 @@ export default function Home() {
 
   // Ref for positioning the contact form modal
   const emailButtonRef = useRef<HTMLButtonElement>(null);
+  const scheduleCallButtonRef = useRef<HTMLButtonElement>(null);
 
   // Initialize performance monitoring
   usePerformanceMonitoring();
@@ -1117,7 +1118,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-          >            <motion.button 
+          >            <motion.button
+              ref={scheduleCallButtonRef}
               className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-purple-500/30 backdrop-blur-sm border border-purple-500/30"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -1424,7 +1426,7 @@ export default function Home() {
       <ContactFormModal 
         isOpen={isContactFormOpen} 
         onClose={() => setIsContactFormOpen(false)} 
-        triggerRef={emailButtonRef}
+        triggerRef={scheduleCallButtonRef}
       />
     </div>
   );
