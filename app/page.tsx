@@ -1075,7 +1075,7 @@ export default function Home() {
             animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >            <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 rounded-2xl p-6 shadow-xl">
-              <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4">
+              <div className="flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-between gap-4">
                 {/* Email Section */}
                 <div className="flex items-center space-x-4 flex-1">
                   <div className="flex-shrink-0">
