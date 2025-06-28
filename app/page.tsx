@@ -1124,7 +1124,7 @@ export default function Home() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
-                setIsContactFormOpen(true);
+                window.open('https://calendly.com/arsalmaab/30min', '_blank');
               }}
             >
               Schedule a call with me
