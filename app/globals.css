@@ -81,9 +81,8 @@
     /* Improve mobile scroll performance while keeping pull-to-refresh */
     overscroll-behavior-x: none;
     -webkit-overflow-scrolling: touch;
-    /* Force hardware acceleration */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    /* Force hardware acceleration - REMOVED transform: translateZ(0); */
+    /* -webkit-transform: translateZ(0); REMOVED */
   }
   
   /* Enhanced mobile scroll performance optimizations */
@@ -93,9 +92,8 @@
       background-color: rgb(19, 17, 28);
       /* Disable horizontal scroll bounce only */
       overscroll-behavior-x: none;
-      /* Optimize rendering with GPU acceleration */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
+      /* Optimize rendering with GPU acceleration - REMOVED transform: translateZ(0); */
+      /* -webkit-transform: translateZ(0); REMOVED */
       /* Improve scroll performance */
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
