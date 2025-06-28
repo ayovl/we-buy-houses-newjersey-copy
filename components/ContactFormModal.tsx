@@ -116,20 +116,42 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
       const modalRect = modalRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const viewportWidth = window.innerWidth;
+      const PADDING = 8; // 8px offset/padding
 
-      let top = triggerRect.bottom + window.scrollY + 8; // 8px offset
-      let left = triggerRect.left + window.scrollX;
+      // Calculate initial centered left position
+      let left = triggerRect.left + window.scrollX + (triggerRect.width / 2) - (modalRect.width / 2);
 
-      // Adjust if modal goes off-screen vertically
-      if (top + modalRect.height > viewportHeight + window.scrollY) {
-        top = triggerRect.top + window.scrollY - modalRect.height - 8;
+      // Adjust left position to stay within viewport
+      if (left + modalRect.width > viewportWidth + window.scrollX - PADDING) {
+        left = viewportWidth + window.scrollX - modalRect.width - PADDING;
       }
-      // Adjust if modal goes off-screen horizontally
-      if (left + modalRect.width > viewportWidth + window.scrollX) {
-        left = viewportWidth + window.scrollX - modalRect.width - 8; // 8px padding from edge
+      if (left < window.scrollX + PADDING) {
+        left = window.scrollX + PADDING;
       }
-      if (left < window.scrollX + 8) {
-        left = window.scrollX + 8; // 8px padding from edge
+
+      // Try positioning below the button first
+      let top = triggerRect.bottom + window.scrollY + PADDING;
+
+      // If modal goes off-screen below, try positioning above
+      if (top + modalRect.height > viewportHeight + window.scrollY - PADDING) {
+        top = triggerRect.top + window.scrollY - modalRect.height - PADDING;
+      }
+
+      // Ensure modal top is not off-screen upwards
+      if (top < window.scrollY + PADDING) {
+        top = window.scrollY + PADDING;
+        // If it was adjusted and still goes off-screen below (because it's too tall for viewport),
+        // it will be clamped by the viewport height, but this is a rare case for modals.
+        // We prioritize keeping the top visible.
+      }
+
+      // Final check to ensure it's not pushed too far down if there wasn't space above either
+      // and it got clamped to the top of viewport, but is too tall.
+      if (top + modalRect.height > viewportHeight + window.scrollY - PADDING) {
+        // This case means the modal is taller than the viewport minus padding.
+        // We'll keep it clamped to the top and let it overflow at the bottom,
+        // or consider making the modal itself scrollable internally if this is a common issue.
+        // For now, clamping to top is the primary goal.
       }
 
 
