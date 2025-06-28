@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { z } from 'zod';
@@ -22,6 +23,11 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, triggerRef }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -109,7 +115,11 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
     }
   };
 
-  return (
+  if (!isMounted) {
+    return null; // Don't render anything on the server or before hydration
+  }
+
+  return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center"> {/* Restored flex items-center justify-center */}
@@ -280,7 +290,8 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
