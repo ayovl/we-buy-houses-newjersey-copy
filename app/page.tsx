@@ -640,8 +640,8 @@ export default function Home() {
                 <ul className="space-y-2 flex-1 relative z-10">
                   {[
                     "Fully custom website",
-                    "Responsive design",
-                    "Up to 10 pages",
+                    "Responsive",
+                    "Improved design",
                     "Contact form setup"
                   ].map((item, index) => (
                     <li key={index} className="flex items-center">
@@ -1117,14 +1117,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <motion.button 
+          >            <motion.button 
               className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-purple-500/30 backdrop-blur-sm border border-purple-500/30"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
-                // Add your scheduling logic here
-                window.open('https://calendly.com/your-calendar', '_blank');
+                setIsContactFormOpen(true);
               }}
             >
               Schedule a call with me

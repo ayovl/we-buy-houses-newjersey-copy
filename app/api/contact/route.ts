@@ -3,7 +3,13 @@ import { Resend } from 'resend';
 import { z } from 'zod';
 import { ContactEmailTemplate } from '@/components/ContactEmailTemplate';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend lazily to avoid build-time errors
+const getResendClient = () => {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY is not configured');
+  }
+  return new Resend(process.env.RESEND_API_KEY);
+};
 
 // Validation schema
 const contactSchema = z.object({
@@ -32,42 +38,45 @@ export async function POST(req: NextRequest) {
 
     const { name, email, message } = validation.data;
 
-    // Check if API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
+    // Check if API key is configured and get Resend client
+    try {
+      const resend = getResendClient();
+      
+      // Send email using Resend
+      const { data, error } = await resend.emails.send({
+        from: 'Contact Form <onboarding@resend.dev>', // This will be from your verified domain
+        to: ['arsalmaab@gmail.com'],
+        subject: `New Contact Form Submission from ${name}`,
+        react: ContactEmailTemplate({ name, email, message }),
+        replyTo: email, // This allows you to reply directly to the sender
+      });
+
+      if (error) {
+        console.error('Resend error:', error);
+        return NextResponse.json(
+          { success: false, error: 'Failed to send email' },
+          { status: 500 }
+        );
+      }
+
+      console.log('Email sent successfully:', data);
+
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Email sent successfully!',
+          id: data?.id 
+        },
+        { status: 200 }
+      );
+      
+    } catch (initError) {
+      console.error('Email service initialization error:', initError);
       return NextResponse.json(
         { success: false, error: 'Email service not configured' },
         { status: 500 }
       );
     }
-
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // This will be from your verified domain
-      to: ['arsalmaab@gmail.com'],
-      subject: `New Contact Form Submission from ${name}`,
-      react: ContactEmailTemplate({ name, email, message }),
-      replyTo: email, // This allows you to reply directly to the sender
-    });
-
-    if (error) {
-      console.error('Resend error:', error);
-      return NextResponse.json(
-        { success: false, error: 'Failed to send email' },
-        { status: 500 }
-      );
-    }
-
-    console.log('Email sent successfully:', data);
-
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Email sent successfully!',
-        id: data?.id 
-      },
-      { status: 200 }
-    );
 
   } catch (error) {
     console.error('Contact form error:', error);
