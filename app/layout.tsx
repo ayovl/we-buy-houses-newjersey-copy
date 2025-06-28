@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 
 // Optimize font loading for mobile
 const inter = Inter({ 
@@ -59,7 +60,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <ScrollToTopButton />
+      </body>
     </html>
   );
 }
