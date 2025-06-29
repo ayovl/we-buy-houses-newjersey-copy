@@ -630,8 +630,8 @@ export default function Home() {
       <section id="pricing" ref={pricingRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         {/* Seamless background blending - flows from testimonials above and into meeting section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-12 lg:px-16">          <motion.div 
-            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl p-8 md:p-12 rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-1 sm:px-2 md:px-6 lg:px-10">          <motion.div
+            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-16 rounded-2xl lg:rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -660,7 +660,7 @@ export default function Home() {
               animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
             >              {/* Feature Card 1: Website Design & Development */}
               <motion.div 
-                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-4 sm:p-6 rounded-xl flex flex-col shadow-lg overflow-hidden will-change-transform min-h-[16rem]"
                 variants={staggerChild}
                 whileHover={{ 
                   y: -4, 
@@ -698,7 +698,7 @@ export default function Home() {
 
               {/* Feature Card 2: SEO & Copywriting */}
               <motion.div 
-                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-4 sm:p-6 rounded-xl flex flex-col shadow-lg overflow-hidden will-change-transform min-h-[16rem]"
                 variants={staggerChild}
                 whileHover={{ 
                   y: -4, 
@@ -736,7 +736,7 @@ export default function Home() {
 
               {/* Feature Card 3: Branding */}
               <motion.div 
-                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-4 sm:p-6 rounded-xl flex flex-col shadow-lg overflow-hidden will-change-transform min-h-[16rem]"
                 variants={staggerChild}
                 whileHover={{ 
                   y: -4, 
@@ -772,7 +772,7 @@ export default function Home() {
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
               </motion.div>              {/* Feature Card 4: FREE Premium Branding Package - Professional */}
               <motion.div 
-                className="group relative bg-gradient-to-br from-purple-600/25 to-pink-600/25 border-2 border-purple-400/50 p-6 rounded-xl overflow-hidden h-64 flex flex-col shadow-lg will-change-transform"
+                className="group relative bg-gradient-to-br from-purple-600/25 to-pink-600/25 border-2 border-purple-400/50 p-4 sm:p-6 rounded-xl overflow-hidden flex flex-col shadow-lg will-change-transform min-h-[16rem]"
                 variants={staggerChild}
                 whileHover={{ 
                   y: -4, 
@@ -818,7 +818,7 @@ export default function Home() {
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-purple-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
               </motion.div>{/* Feature Card 5: Hosting & Setup */}
               <motion.div 
-                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-4 sm:p-6 rounded-xl flex flex-col shadow-lg overflow-hidden will-change-transform min-h-[16rem]"
                 variants={staggerChild}
                 whileHover={{ 
                   y: -4, 
@@ -856,7 +856,7 @@ export default function Home() {
 
               {/* Feature Card 6: Technical Support */}
               <motion.div 
-                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-6 rounded-xl h-64 flex flex-col shadow-lg overflow-hidden will-change-transform"
+                className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-4 sm:p-6 rounded-xl flex flex-col shadow-lg overflow-hidden will-change-transform min-h-[16rem]"
                 variants={staggerChild}
                 whileHover={{ 
                   y: -4, 
@@ -893,7 +893,7 @@ export default function Home() {
             </motion.div>            {/* Professional trust badges */}
             <div className="mb-6 relative z-10">
               <motion.div 
-                className="flex flex-wrap items-center justify-center gap-4"
+                className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-around sm:items-center sm:gap-4"
                 initial={staggerContainer.initial}
                 animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
               >
@@ -922,7 +922,7 @@ export default function Home() {
                 ].map((item, index) => (
                   <motion.div 
                     key={index} 
-                    className={`group inline-flex items-center gap-3 ${item.bgColor} border ${item.borderColor} px-4 py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
+                    className={`group flex w-full sm:w-auto items-center justify-center sm:inline-flex sm:justify-start gap-2 sm:gap-3 ${item.bgColor} border ${item.borderColor} px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
                     variants={staggerChild}
                     whileHover={{ 
                       y: -2,
@@ -936,7 +936,7 @@ export default function Home() {
                     />
                     
                     {/* Text */}
-                    <span className="text-white text-sm font-semibold">{item.text}</span>
+                    <span className="text-white text-xs sm:text-sm font-semibold">{item.text}</span>
                     
                     {/* Verification mark */}
                     <CheckCircle 
@@ -961,37 +961,39 @@ export default function Home() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4 relative z-10">
                 {/* Left side: Professional discussion text */}
                 <div className="text-center md:text-left flex-1">
-                  <h3 className="text-base font-semibold text-white mb-1">
-                    Ready to discuss your project?
+                  <h3 className="text-base font-semibold text-white">
+                    Want to discuss first?
                   </h3>
-                  <p className="text-slate-300 text-sm opacity-90">
+                  {/* <p className="text-slate-300 text-sm opacity-90">
                     Let's connect and bring your vision to life
-                  </p>
+                  </p> */}
                 </div>
                 
                 {/* Right side: Professional action buttons */}
-                <div className="flex items-center justify-center md:justify-end gap-2 flex-shrink-0">
+                <div className="flex flex-row items-center justify-center sm:justify-end gap-2 flex-shrink-0">
                   <motion.button 
-                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-4 py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm"
+                    aria-label="Schedule a Call"
+                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Phone className="w-4 h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
-                    <span className="font-semibold text-sm relative z-10">Schedule Call</span>
+                    <Phone className="w-5 h-5 sm:w-4 sm:h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
+                    <span className="font-semibold text-sm relative z-10 hidden sm:inline">Schedule Call</span>
                   </motion.button>
-                    <span className="text-slate-400 text-xs font-medium">or</span>
+                    <span className="text-slate-400 text-xs font-medium mx-1 sm:my-0">or</span>
                     <motion.button 
+                    aria-label="Send an Email"
                     onClick={() => setIsContactFormOpen(true)}
-                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-4 py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm"
+                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-slate-400/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Mail className="w-4 h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
-                    <span className="font-semibold text-sm relative z-10">Send Email</span>
+                    <Mail className="w-5 h-5 sm:w-4 sm:h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
+                    <span className="font-semibold text-sm relative z-10 hidden sm:inline">Send Email</span>
                   </motion.button>
                 </div>
               </div>
@@ -1007,7 +1009,7 @@ export default function Home() {
                 {/* Prominent Money Back Guarantee - Left Side */}
                 <div className="flex justify-center lg:justify-start">
                   <motion.div 
-                    className="group inline-flex items-center space-x-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-xl px-6 py-3 backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-[1.02] will-change-transform relative overflow-hidden"
+                    className="group inline-flex items-center space-x-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-xl px-4 py-2 sm:px-6 sm:py-3 backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-[1.02] will-change-transform relative overflow-hidden"
                     whileHover={{ y: -1 }}
                     transition={{ duration: 0.12 }}
                   >
@@ -1022,7 +1024,7 @@ export default function Home() {
                 </div>
 
                 {/* Balanced Pricing - Right Side */}
-                <div className="flex items-baseline justify-center lg:justify-end space-x-3">
+                <div className="flex items-baseline justify-center lg:justify-end space-x-1 sm:space-x-3 px-2 sm:px-0">
                   <span className="text-2xl lg:text-3xl font-semibold text-gray-500 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -1056,7 +1058,7 @@ export default function Home() {
                 transition={{ ...fadeInUp.transition, delay: 0.5 }}
               >                <motion.button
                   onClick={() => setIsModalOpen(true)}
-                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-12 lg:px-16 py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
+                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-12 lg:py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.15 }}
                 >
@@ -1064,7 +1066,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                   
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Get Your Website Now
+                    Get Now
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </motion.button>
