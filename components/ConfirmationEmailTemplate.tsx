@@ -95,7 +95,7 @@ export const ConfirmationEmailTemplate: React.FC<ConfirmationEmailTemplateProps>
             textAlign: 'left',
           }}
         >
-          In the meantime, if you have any urgent questions, feel free to reply to this email or contact us through the website.
+          If you have any questions, please email us at arsalmaab@gmail.com.
         </Text>
 
         <Hr style={{ margin: '32px 0', borderColor: '#e2e8f0' }} />
@@ -108,7 +108,7 @@ export const ConfirmationEmailTemplate: React.FC<ConfirmationEmailTemplateProps>
             fontStyle: 'italic',
           }}
         >
-          {/* Removed: "This is an automated confirmation email." */}
+          This is an automated email. Please do not reply to this email.
         </Text>
       </Section>
 

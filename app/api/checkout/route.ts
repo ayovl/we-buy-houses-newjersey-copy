@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
 
     // Send confirmation email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // Matching the contact form's from address
+      from: '"Arslan Maab" <noreply@vorve.tech>',
       to: [email], // Send to the customer's email
       subject: `🎉 Your Project is Confirmed, ${fullName}!`,
       react: ConfirmationEmailTemplate({ userName: fullName }),
