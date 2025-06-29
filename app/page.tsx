@@ -1074,7 +1074,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-          >            <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 rounded-2xl p-6 shadow-xl">
+          >            <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md border border-white/25 rounded-2xl p-4 sm:p-6 shadow-xl">
               <div className="flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-between gap-4">
                 {/* Email Section */}
                 <div className="flex items-center space-x-4 flex-1">
@@ -1098,7 +1098,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Divider for mobile */}
-                <div className="w-full h-px bg-slate-600/40 my-4 sm:hidden"></div>
+                <div className="w-full h-px bg-slate-600/40 my-2 sm:my-4 sm:hidden"></div>
                 {/* Email Now Button */}
                 <motion.button 
                   ref={emailButtonRef}
@@ -1111,9 +1111,9 @@ export default function Home() {
                 </motion.button>
               </div>
             </div>
-          </motion.div>          {/* Simple Horizontal Divider - hidden on mobile */}
-          <div className="mb-8 hidden sm:flex justify-center">
-            <div className="w-32 h-px bg-slate-600/40"></div>
+          </motion.div>          {/* Simple Horizontal Divider - shorter and distinct on mobile */}
+          <div className="mb-8 flex justify-center">
+            <div className="w-16 sm:w-32 h-px bg-slate-700 sm:bg-slate-600/40"></div>
           </div>
 
           {/* Schedule Call Button */}
