@@ -42,16 +42,14 @@ export async function POST(req: NextRequest) {
     const resend = getResendClient();
 
     if (!resend) {
-      // If Resend isn't configured, we can still proceed as if payment was "successful"
-      // but log that the email wasn't sent.
-      console.warn(`Resend client not available. Confirmation email for ${email} not sent.`);
-      // Simulate successful payment processing for now
+      console.error('Resend client not available (API key likely missing). Confirmation email cannot be sent.');
       return NextResponse.json(
         {
-          success: true,
-          message: 'Checkout processed (email not sent - Resend not configured).',
+          success: false,
+          error: 'Email service is currently unavailable. Please try again later.',
+          details: 'Resend client initialization failed.'
         },
-        { status: 200 }
+        { status: 503 } // Service Unavailable
       );
     }
 

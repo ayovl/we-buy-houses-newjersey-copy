@@ -108,7 +108,7 @@ export const ConfirmationEmailTemplate: React.FC<ConfirmationEmailTemplateProps>
             fontStyle: 'italic',
           }}
         >
-          This is an automated confirmation email.
+          {/* Removed: "This is an automated confirmation email." */}
         </Text>
       </Section>
 

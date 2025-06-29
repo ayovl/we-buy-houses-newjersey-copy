@@ -1,10 +1,15 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import Image from 'next/image'; // Added import
+import { useState, useRef, useEffect, useCallback } from 'react'; // Added useEffect, useCallback
+import Image from 'next/image';
+import Link from 'next/link'; // Added Link
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight, Mail, Calendar, Phone, Copy, X } from 'lucide-react';
+import { CheckCircle, ArrowRight, Mail, Calendar, Phone, Copy, X, Menu } from 'lucide-react'; // Added Menu
 import ContactFormModal from '@/components/ContactFormModal';
+
+// Assuming OptimizedImage is not strictly needed here, using next/image
+// If OptimizedImage is a simple wrapper, it could be copied or imported.
+// For now, standard Image component will be used.
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -15,42 +20,91 @@ const fadeInUp = {
 export default function ThankYou() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const contactButtonRef = useRef<HTMLButtonElement>(null);
+  const [showNavBackground, setShowNavBackground] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Handle scroll effect for nav background
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    setShowNavBackground(scrollY > 50);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  // Function to close mobile menu, can be passed to nav links if they were actual buttons
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] text-white relative overflow-x-hidden px-4 sm:px-6 lg:px-8">
-      {/* Subtle Background Effects */}
-      <div className="fixed inset-0 pointer-events-none">
+    <div className="min-h-screen bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] text-white relative overflow-x-hidden">
+      {/* Subtle Background Effects - kept from original thank you page */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
         <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={34}
-                height={34}
-                className="mr-3"
-                priority={true}
-                sizes="34px"
-              />
+      {/* Replicated Navigation from app/page.tsx */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
+        showNavBackground || isMobileMenuOpen
+          ? 'bg-black/40 md:bg-black/20 md:backdrop-blur-md border-white/10'
+          : 'bg-transparent border-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-16"> {/* Used lg:px-16 from main page for consistency */}
+          <div className="flex justify-between md:justify-center items-center h-16 relative">
+            <div className="flex items-center md:absolute md:left-0">
+              <Link href="/" passHref>
+                <div className="flex items-center cursor-pointer" onClick={closeMobileMenu}>
+                  <Image
+                    src="/logo.png"
+                    alt="Logo"
+                    width={34}
+                    height={34}
+                    className="mr-3"
+                    priority={true}
+                    sizes="34px"
+                  />
+                </div>
+              </Link>
             </div>
+
+            {/* Desktop Menu - Simplified for Thank You page */}
             <div className="hidden md:flex space-x-8">
-              <a href="/" className="text-gray-300 hover:text-white transition-colors">Home</a>
-              <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">About Me</a>
+              <Link href="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
+              <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">About</a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+          {/* Mobile Menu - Simplified for Thank You page */}
+          <div className={`md:hidden absolute top-full left-0 right-0 overflow-hidden transition-all duration-200 ${
+            isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          }`}>
+            <div className="bg-black/90 border-b border-white/10">
+              <div className="px-6 py-4 space-y-4">
+                <Link href="/" className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2" onClick={closeMobileMenu}>Home</Link>
+                <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="block w-full text-left text-gray-300 hover:text-white transition-colors py-2" onClick={closeMobileMenu}>About</a>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Thank You Content */}
-      <section className="min-h-screen flex items-center justify-center px-6 lg:px-8 relative">
+      {/* Thank You Content - Added pt-16 (h-16 of nav) to push content below fixed nav */}
+      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative pt-24 md:pt-16"> {/* Increased top padding more */}
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             className="mb-8"
@@ -79,12 +133,16 @@ export default function ThankYou() {
             Your new website and brand assets will be delivered within 4 business days.
           </motion.p>
 
+          {/* Removed the grid md:grid-cols-2 and individual card wrappers for "What Happens Next" and "Need to Reach Us" */}
+          {/* They will now be separate motion.divs, taking full width on all screens by default unless specified */}
+
           <motion.div 
-            className="grid md:grid-cols-2 gap-8 mb-12"
+            className="w-full max-w-lg mx-auto mb-12" // Centered, max-width for content
             initial={fadeInUp.initial}
             animate={fadeInUp.animate}
             transition={{ ...fadeInUp.transition, delay: 0.6 }}
           >
+            {/* This div could retain some card-like styling if desired for "What Happens Next", or be plain */}
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
               <h3 className="text-2xl font-bold mb-4 text-[hsl(267,75%,56%)]">What Happens Next?</h3>
               <ul className="space-y-3 text-left">
@@ -102,94 +160,110 @@ export default function ThankYou() {
                 </li>
               </ul>
             </div>
+          </motion.div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4 text-[hsl(267,75%,56%)]">Need to Reach Us?</h3>
-              <div className="space-y-6">
-                {/* Email Contact Card */}
-                <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-sm border border-white/20 rounded-xl p-5 shadow-lg">
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 bg-blue-600/20 border border-blue-500/30 rounded-lg flex items-center justify-center">
-                          <Mail className="w-5 h-5 text-blue-400" strokeWidth={2} />
-                        </div>
-                      </div>
-                      <div className="text-center sm:text-left">
-                        <div className="text-white font-semibold">arsalmaab@gmail.com</div>
-                        <button
-                          className="text-gray-300 text-xs hover:text-white transition-colors duration-200 flex items-center space-x-1 group mx-auto sm:mx-0"
-                          onClick={() => {
-                            navigator.clipboard.writeText('arsalmaab@gmail.com');
-                            // Consider adding a toast notification here for feedback
-                          }}
-                        >
-                          <span>Click to copy</span>
-                          <Copy className="w-3 h-3 group-hover:scale-110 transition-transform" />
-                        </button>
-                      </div>
+          {/* "Need to Reach Us?" Section - No parent card, content directly on background */}
+          <motion.div
+            className="w-full max-w-lg mx-auto mb-12 text-center" // Centered, max-width for content
+            initial={fadeInUp.initial}
+            animate={fadeInUp.animate}
+            transition={{ ...fadeInUp.transition, delay: 0.7 }} // Adjusted delay
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-[hsl(267,75%,56%)]">Need to Reach Us?</h3>
+            <div className="space-y-6">
+              {/* Email Contact Area - Styled similar to main page but without the outer card */}
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                {/* Email Info (Icon, Email, Copy Button) */}
+                <div className="flex items-center space-x-3 text-left">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600/20 border border-blue-500/30 rounded-lg flex items-center justify-center">
+                      <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" strokeWidth={2} />
                     </div>
-                    <motion.button
-                      ref={contactButtonRef}
-                      onClick={() => setIsContactFormOpen(true)}
-                      className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-md hover:shadow-purple-500/25 text-sm"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold text-sm sm:text-base">arsalmaab@gmail.com</div>
+                    <button
+                      className="text-gray-300 text-xs hover:text-white transition-colors duration-200 flex items-center space-x-1 group"
+                      onClick={() => {
+                        navigator.clipboard.writeText('arsalmaab@gmail.com');
+                        // Consider adding a toast notification here
+                      }}
                     >
-                      Email Now
-                    </motion.button>
+                      <span>Click to copy</span>
+                      <Copy className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                    </button>
                   </div>
                 </div>
 
-                {/* Simple Horizontal Divider */}
-                <div className="flex justify-center">
-                  <div className="w-24 h-px bg-slate-600/40"></div>
-                </div>
+                {/* Vertical Divider for sm screens and up, hidden on xs */}
+                <div className="hidden sm:block h-10 w-px bg-slate-600/40 self-center"></div>
+                {/* Horizontal Divider for xs screens */}
+                <div className="block sm:hidden w-full h-px bg-slate-600/40 my-2"></div>
 
-                {/* Schedule Call Button */}
+
+                {/* Email Now Button */}
                 <motion.button
-                  className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/30 backdrop-blur-sm border border-purple-500/30 text-sm"
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  ref={contactButtonRef}
+                  onClick={() => setIsContactFormOpen(true)}
+                  className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25 text-sm"
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    window.open('https://calendly.com/arsalmaab/30min', '_blank');
-                  }}
                 >
-                  Schedule a Call
+                  Email Now
                 </motion.button>
               </div>
+
+              {/* Simple Horizontal Divider (between email section and schedule call button) */}
+              <div className="flex justify-center py-2"> {/* Added padding for spacing */}
+                <div className="w-32 h-px bg-slate-600/40"></div>
+              </div>
+
+              {/* Schedule Call Button */}
+              <motion.button
+                className="w-full max-w-xs mx-auto bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-purple-500/30 backdrop-blur-sm border border-purple-500/30"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  window.open('https://calendly.com/arsalmaab/30min', '_blank');
+                }}
+              >
+                Schedule a Call
+              </motion.button>
             </div>
           </motion.div>
 
+          {/* "Learn about me" Section - No parent card, content directly on background */}
           <motion.div 
-            className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 p-6 rounded-lg mb-8"
+            className="w-full max-w-lg mx-auto my-12 text-center" // Centered, max-width, added vertical margin
             initial={fadeInUp.initial}
             animate={fadeInUp.animate}
-            transition={{ ...fadeInUp.transition, delay: 0.8 }}
+            transition={{ ...fadeInUp.transition, delay: 0.8 }} // Adjusted delay if needed
           >
-            <h3 className="text-xl font-bold mb-4">Learn about me</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">Learn about me</h3> {/* Increased heading size, white color */}
             <a 
               href="https://arslanmaab.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/30 border border-purple-500/50"
+              // Style similar to a primary CTA button
             >
               About Me <ArrowRight className="w-5 h-5 ml-2" />
             </a>
           </motion.div>
 
           <motion.div 
-            className="text-center"
+            className="text-center mt-16" // Added margin-top for spacing
             initial={fadeInUp.initial}
             animate={fadeInUp.animate}
             transition={{ ...fadeInUp.transition, delay: 1.0 }}
           >
-            <a 
+            <Link
               href="/"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="inline-flex items-center text-purple-300 hover:text-purple-200 border border-purple-400/40 hover:border-purple-400/70 hover:bg-purple-500/10 focus:ring-2 focus:ring-purple-500/50 focus:outline-none font-medium rounded-lg text-sm px-6 py-3 transition-all duration-300 group"
             >
-              ← Back to Home
-            </a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+              Back to Home
+            </Link>
           </motion.div>
         </div>
       </section>
