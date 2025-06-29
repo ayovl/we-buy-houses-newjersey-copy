@@ -591,7 +591,7 @@ export default function Home() {
         {/* Seamless background blending - flows from testimonials above and into meeting section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-2 sm:px-4 md:px-8 lg:px-12">          <motion.div
-            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-16 rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
+            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-16 rounded-2xl lg:rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -921,12 +921,12 @@ export default function Home() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4 relative z-10">
                 {/* Left side: Professional discussion text */}
                 <div className="text-center md:text-left flex-1">
-                  <h3 className="text-base font-semibold text-white mb-1">
-                    Ready to discuss your project?
+                  <h3 className="text-base font-semibold text-white">
+                    Want to discuss first?
                   </h3>
-                  <p className="text-slate-300 text-sm opacity-90">
+                  {/* <p className="text-slate-300 text-sm opacity-90">
                     Let's connect and bring your vision to life
-                  </p>
+                  </p> */}
                 </div>
                 
                 {/* Right side: Professional action buttons */}
