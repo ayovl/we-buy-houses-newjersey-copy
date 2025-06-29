@@ -853,7 +853,7 @@ export default function Home() {
             </motion.div>            {/* Professional trust badges */}
             <div className="mb-6 relative z-10">
               <motion.div 
-                className="flex flex-wrap items-center justify-center gap-4"
+                className="flex flex-wrap items-center justify-around gap-2 sm:gap-4"
                 initial={staggerContainer.initial}
                 animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
               >
@@ -882,7 +882,7 @@ export default function Home() {
                 ].map((item, index) => (
                   <motion.div 
                     key={index} 
-                    className={`group inline-flex items-center gap-3 ${item.bgColor} border ${item.borderColor} px-4 py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
+                    className={`group inline-flex items-center gap-2 sm:gap-3 ${item.bgColor} border ${item.borderColor} px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
                     variants={staggerChild}
                     whileHover={{ 
                       y: -2,
@@ -896,7 +896,7 @@ export default function Home() {
                     />
                     
                     {/* Text */}
-                    <span className="text-white text-sm font-semibold">{item.text}</span>
+                    <span className="text-white text-xs sm:text-sm font-semibold">{item.text}</span>
                     
                     {/* Verification mark */}
                     <CheckCircle 
@@ -932,26 +932,28 @@ export default function Home() {
                 {/* Right side: Professional action buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2 flex-shrink-0">
                   <motion.button 
-                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-4 py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
+                    aria-label="Schedule a Call"
+                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Phone className="w-4 h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
-                    <span className="font-semibold text-sm relative z-10">Schedule Call</span>
+                    <Phone className="w-5 h-5 sm:w-4 sm:h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
+                    <span className="font-semibold text-sm relative z-10 hidden sm:inline">Schedule Call</span>
                   </motion.button>
                     <span className="text-slate-400 text-xs font-medium my-1 sm:my-0">or</span>
                     <motion.button 
+                    aria-label="Send an Email"
                     onClick={() => setIsContactFormOpen(true)}
-                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-4 py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
+                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-slate-400/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Mail className="w-4 h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
-                    <span className="font-semibold text-sm relative z-10">Send Email</span>
+                    <Mail className="w-5 h-5 sm:w-4 sm:h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
+                    <span className="font-semibold text-sm relative z-10 hidden sm:inline">Send Email</span>
                   </motion.button>
                 </div>
               </div>
@@ -1016,7 +1018,7 @@ export default function Home() {
                 transition={{ ...fadeInUp.transition, delay: 0.5 }}
               >                <motion.button
                   onClick={() => setIsModalOpen(true)}
-                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 lg:px-12 lg:py-5 rounded-2xl text-base sm:text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
+                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-12 lg:py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.15 }}
                 >
