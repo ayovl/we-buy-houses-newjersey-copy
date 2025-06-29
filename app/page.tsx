@@ -37,48 +37,55 @@ import {
 } from 'lucide-react';
 
 // Mobile-optimized animation variants with reduced complexity
-const isMobile = () => typeof window !== 'undefined' && window.innerWidth <= 768;
+// const isMobile = () => typeof window !== 'undefined' && window.innerWidth <= 768; // Original, will be replaced by mounted check
 
-const fadeInUp = {
-  initial: { opacity: 0, y: isMobile() ? 10 : 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: isMobile() ? 0.3 : 0.6, ease: 'easeOut' }
-};
-
-// Optimized custom hook for scroll animations with better mobile performance
-const useScrollAnimation = (threshold = 0.1, triggerOnce = true) => {
+// Optimized custom hook for scroll animations with better mobile performance - will be updated
+const useOptimizedScrollAnimation = (isMobileDevice: boolean, threshold = 0.1, triggerOnce = true) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { 
     once: triggerOnce,
-    amount: isMobile() ? 0.05 : threshold, // Lower threshold for mobile
-    margin: isMobile() ? "-50px 0px" : "-100px 0px" // Reduced margin for mobile
+    amount: isMobileDevice ? 0.05 : threshold,
+    margin: isMobileDevice ? "-50px 0px" : "-100px 0px"
   });
-  
   return [ref, isInView] as const;
 };
 
-// Mobile-optimized stagger animations
-const staggerContainer = {
-  initial: {},
-  animate: {
-    transition: {
-      staggerChildren: isMobile() ? 0.05 : 0.1, // Faster stagger on mobile
-      delayChildren: 0
-    }
-  }
-};
-
-// Optimized child variant for staggered animations
-const staggerChild = {
-  initial: { opacity: 0, y: isMobile() ? 10 : 20 },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: isMobile() ? 0.3 : 0.6, ease: 'easeOut' }
-  }
-};
-
 export default function Home() {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const isClientMobile = useMemo(() => {
+    if (!hasMounted) return false; // Default to false for SSR and initial client render
+    return typeof window !== 'undefined' && window.innerWidth <= 768;
+  }, [hasMounted]);
+
+  const fadeInUp = useMemo(() => ({
+    initial: { opacity: 0, y: isClientMobile ? 10 : 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: isClientMobile ? 0.3 : 0.6, ease: 'easeOut' }
+  }), [isClientMobile]);
+
+  const staggerContainer = useMemo(() => ({
+    initial: {},
+    animate: {
+      transition: {
+        staggerChildren: isClientMobile ? 0.05 : 0.1,
+        delayChildren: 0
+      }
+    }
+  }), [isClientMobile]);
+
+  const staggerChild = useMemo(() => ({
+    initial: { opacity: 0, y: isClientMobile ? 10 : 20 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: isClientMobile ? 0.3 : 0.6, ease: 'easeOut' }
+    }
+  }), [isClientMobile]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [showNavBackground, setShowNavBackground] = useState(false);
@@ -167,13 +174,14 @@ export default function Home() {
   }, [handleScroll]);
 
   // Create refs for different sections with optimized thresholds for mobile
-  const [heroRef, heroInView] = useScrollAnimation(0.1);
-  const [problemRef, problemInView] = useScrollAnimation(0.1);
-  const [solutionRef, solutionInView] = useScrollAnimation(0.1);  const [pricingRef, pricingInView] = useScrollAnimation(0.1);
-  const [ctaRef, ctaInView] = useScrollAnimation(0.1);
-  const [testimonialRef, testimonialInView] = useScrollAnimation(0.1);
-  const [contactRef, contactInView] = useScrollAnimation(0.1);
-  const [meetingRef, meetingInView] = useScrollAnimation(0.1);
+  const [heroRef, heroInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [problemRef, problemInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [solutionRef, solutionInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [pricingRef, pricingInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [ctaRef, ctaInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [testimonialRef, testimonialInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [contactRef, contactInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
+  const [meetingRef, meetingInView] = useOptimizedScrollAnimation(isClientMobile, 0.1);
 
   // Memoized form handler
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
