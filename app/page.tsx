@@ -1113,7 +1113,7 @@ export default function Home() {
             </div>
           </motion.div>          {/* Simple Horizontal Divider - shorter and distinct on mobile */}
           <div className="mb-8 flex justify-center">
-            <div className="w-16 sm:w-32 h-px bg-slate-700 sm:bg-slate-600/40"></div>
+            <div className="w-16 sm:w-32 h-px bg-purple-500 sm:bg-slate-600/40"></div>
           </div>
 
           {/* Schedule Call Button */}
