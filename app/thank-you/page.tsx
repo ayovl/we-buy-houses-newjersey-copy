@@ -1,7 +1,10 @@
 'use client';
 
+import { useState, useRef } from 'react';
+import Image from 'next/image'; // Added import
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight, Mail, Calendar } from 'lucide-react';
+import { CheckCircle, ArrowRight, Mail, Calendar, Phone, Copy, X } from 'lucide-react';
+import ContactFormModal from '@/components/ContactFormModal';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -10,8 +13,11 @@ const fadeInUp = {
 };
 
 export default function ThankYou() {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const contactButtonRef = useRef<HTMLButtonElement>(null);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] text-white relative overflow-x-hidden px-4 sm:px-6 lg:px-8">
       {/* Subtle Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
@@ -24,7 +30,17 @@ export default function ThankYou() {
       <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold text-white">WebBrand Pro</div>
+            <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={34}
+                height={34}
+                className="mr-3"
+                priority={true}
+                sizes="34px"
+              />
+            </div>
             <div className="hidden md:flex space-x-8">
               <a href="/" className="text-gray-300 hover:text-white transition-colors">Home</a>
               <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">About Me</a>
@@ -60,7 +76,7 @@ export default function ThankYou() {
             animate={fadeInUp.animate}
             transition={{ ...fadeInUp.transition, delay: 0.4 }}
           >
-            We have received your request and we're excited to get started! You will receive an email shortly with the next steps. Your new website and brand assets will be delivered within 4 business days.
+            Your new website and brand assets will be delivered within 4 business days.
           </motion.p>
 
           <motion.div 
@@ -74,11 +90,7 @@ export default function ThankYou() {
               <ul className="space-y-3 text-left">
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                  <span>You'll receive a confirmation email within 24 hours</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                  <span>We'll schedule a brief call to discuss your preferences</span>
+                  <span>You'll receive a confirmation email shortly.</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
@@ -93,17 +105,58 @@ export default function ThankYou() {
 
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
               <h3 className="text-2xl font-bold mb-4 text-[hsl(267,75%,56%)]">Need to Reach Us?</h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-center space-x-3">
-                  <Mail className="w-5 h-5 text-blue-400" />
-                  <a href="mailto:arsalmaab@gmail.com" className="text-blue-400 hover:underline">
-                    arsalmaab@gmail.com
-                  </a>
+              <div className="space-y-6">
+                {/* Email Contact Card */}
+                <div className="bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-sm border border-white/20 rounded-xl p-5 shadow-lg">
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 bg-blue-600/20 border border-blue-500/30 rounded-lg flex items-center justify-center">
+                          <Mail className="w-5 h-5 text-blue-400" strokeWidth={2} />
+                        </div>
+                      </div>
+                      <div className="text-center sm:text-left">
+                        <div className="text-white font-semibold">arsalmaab@gmail.com</div>
+                        <button
+                          className="text-gray-300 text-xs hover:text-white transition-colors duration-200 flex items-center space-x-1 group mx-auto sm:mx-0"
+                          onClick={() => {
+                            navigator.clipboard.writeText('arsalmaab@gmail.com');
+                            // Consider adding a toast notification here for feedback
+                          }}
+                        >
+                          <span>Click to copy</span>
+                          <Copy className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                        </button>
+                      </div>
+                    </div>
+                    <motion.button
+                      ref={contactButtonRef}
+                      onClick={() => setIsContactFormOpen(true)}
+                      className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-md hover:shadow-purple-500/25 text-sm"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Email Now
+                    </motion.button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center space-x-3">
-                  <Calendar className="w-5 h-5 text-purple-400" />
-                  <span className="text-gray-300">We'll contact you within 24 hours</span>
+
+                {/* Simple Horizontal Divider */}
+                <div className="flex justify-center">
+                  <div className="w-24 h-px bg-slate-600/40"></div>
                 </div>
+
+                {/* Schedule Call Button */}
+                <motion.button
+                  className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/30 backdrop-blur-sm border border-purple-500/30 text-sm"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    window.open('https://calendly.com/arsalmaab/30min', '_blank');
+                  }}
+                >
+                  Schedule a Call
+                </motion.button>
               </div>
             </div>
           </motion.div>
@@ -114,14 +167,14 @@ export default function ThankYou() {
             animate={fadeInUp.animate}
             transition={{ ...fadeInUp.transition, delay: 0.8 }}
           >
-            <h3 className="text-xl font-bold mb-4">In the meantime, feel free to check out my work</h3>
+            <h3 className="text-xl font-bold mb-4">Learn about me</h3>
             <a 
               href="https://arslanmaab.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
             >
-              View My Portfolio <ArrowRight className="w-5 h-5 ml-2" />
+              About Me <ArrowRight className="w-5 h-5 ml-2" />
             </a>
           </motion.div>
 
@@ -140,6 +193,12 @@ export default function ThankYou() {
           </motion.div>
         </div>
       </section>
+
+      <ContactFormModal
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        triggerRef={contactButtonRef} // Make sure this ref is correctly assigned
+      />
     </div>
   );
 }

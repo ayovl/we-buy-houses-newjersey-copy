@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'WebBrand Pro - Professional Website Design',
+  title: 'Vorve',
   description: 'Get a professionally designed, conversion-optimized website that drives results. Complete solution with branding, hosting, and lifetime support.',
   icons: {
     icon: '/fav.png',
