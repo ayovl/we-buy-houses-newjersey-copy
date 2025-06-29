@@ -1098,7 +1098,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Divider for mobile */}
-                <div className="w-1/2 mx-auto h-px bg-slate-600/20 my-4 sm:hidden"></div>
+                <div className="w-full h-px bg-slate-600/40 my-4 sm:hidden"></div>
                 {/* Email Now Button */}
                 <motion.button 
                   ref={emailButtonRef}
@@ -1111,8 +1111,8 @@ export default function Home() {
                 </motion.button>
               </div>
             </div>
-          </motion.div>          {/* Simple Horizontal Divider */}
-          <div className="mb-8 flex justify-center">
+          </motion.div>          {/* Simple Horizontal Divider - hidden on mobile */}
+          <div className="mb-8 hidden sm:flex justify-center">
             <div className="w-32 h-px bg-slate-600/40"></div>
           </div>
 
