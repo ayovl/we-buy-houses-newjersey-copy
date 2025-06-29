@@ -590,7 +590,7 @@ export default function Home() {
       <section id="pricing" ref={pricingRef} className="py-16 lg:py-20 xl:py-24 px-6 lg:px-8 relative">
         {/* Seamless background blending - flows from testimonials above and into meeting section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-12 lg:px-16">          <motion.div 
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-2 sm:px-4 md:px-8 lg:px-12">          <motion.div
             className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl p-4 sm:p-6 md:p-8 lg:p-12 rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
@@ -930,9 +930,9 @@ export default function Home() {
                 </div>
                 
                 {/* Right side: Professional action buttons */}
-                <div className="flex items-center justify-center md:justify-end gap-2 flex-shrink-0">
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2 flex-shrink-0">
                   <motion.button 
-                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-4 py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm"
+                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 px-4 py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
@@ -941,10 +941,10 @@ export default function Home() {
                     <Phone className="w-4 h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
                     <span className="font-semibold text-sm relative z-10">Schedule Call</span>
                   </motion.button>
-                    <span className="text-slate-400 text-xs font-medium">or</span>
+                    <span className="text-slate-400 text-xs font-medium my-1 sm:my-0">or</span>
                     <motion.button 
                     onClick={() => setIsContactFormOpen(true)}
-                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-4 py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm"
+                    className="group relative flex items-center space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 px-4 py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
@@ -982,7 +982,7 @@ export default function Home() {
                 </div>
 
                 {/* Balanced Pricing - Right Side */}
-                <div className="flex items-baseline justify-center lg:justify-end space-x-3">
+                <div className="flex items-baseline justify-center lg:justify-end space-x-1 sm:space-x-3 px-2 sm:px-0">
                   <span className="text-2xl lg:text-3xl font-semibold text-gray-500 relative">
                     $5,000
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -1016,7 +1016,7 @@ export default function Home() {
                 transition={{ ...fadeInUp.transition, delay: 0.5 }}
               >                <motion.button
                   onClick={() => setIsModalOpen(true)}
-                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-6 py-4 sm:px-8 md:px-12 lg:px-16 sm:py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
+                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 lg:px-12 lg:py-5 rounded-2xl text-base sm:text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.15 }}
                 >
