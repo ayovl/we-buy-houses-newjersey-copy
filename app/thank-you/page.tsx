@@ -12,29 +12,16 @@ import ContactFormModal from '@/components/ContactFormModal';
 // For now, standard Image component will be used.
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 20 }, // y: 20 is a moderate translation, could be reduced slightly if still too much
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.4, ease: 'easeOut' } // Faster duration and easing for mobile friendliness
 };
 
 export default function ThankYou() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const contactButtonRef = useRef<HTMLButtonElement>(null);
-  const [showNavBackground, setShowNavBackground] = useState(false);
+  // Removed showNavBackground state and scroll handling logic
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Handle scroll effect for nav background
-  const handleScroll = useCallback(() => {
-    const scrollY = window.scrollY;
-    setShowNavBackground(scrollY > 50);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll]);
 
   // Function to close mobile menu, can be passed to nav links if they were actual buttons
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -42,20 +29,16 @@ export default function ThankYou() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[rgb(19,17,28)] to-[rgb(13,13,20)] text-white relative overflow-x-hidden">
-      {/* Subtle Background Effects - kept from original thank you page */}
+      {/* Subtle Background Effects - hidden on small screens */}
       <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl hidden sm:block"></div>
+        <div className="absolute top-40 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl hidden sm:block"></div>
+        <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl hidden sm:block"></div>
+        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl hidden sm:block"></div>
       </div>
 
-      {/* Replicated Navigation from app/page.tsx */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
-        showNavBackground || isMobileMenuOpen
-          ? 'bg-black/40 md:bg-black/20 md:backdrop-blur-md border-white/10'
-          : 'bg-transparent border-transparent'
-      }`}>
+      {/* Replicated Navigation from app/page.tsx - with static background */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b bg-black/40 md:bg-black/20 md:backdrop-blur-md border-white/10`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-16"> {/* Used lg:px-16 from main page for consistency */}
           <div className="flex justify-between md:justify-center items-center h-16 relative">
             <div className="flex items-center md:absolute md:left-0">
