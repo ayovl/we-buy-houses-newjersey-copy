@@ -882,7 +882,7 @@ export default function Home() {
                 ].map((item, index) => (
                   <motion.div 
                     key={index} 
-                    className={`group flex items-center justify-center sm:inline-flex sm:justify-start gap-2 sm:gap-3 ${item.bgColor} border ${item.borderColor} px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
+                    className={`group flex w-full sm:w-auto items-center justify-center sm:inline-flex sm:justify-start gap-2 sm:gap-3 ${item.bgColor} border ${item.borderColor} px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
                     variants={staggerChild}
                     whileHover={{ 
                       y: -2,
@@ -1026,7 +1026,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                   
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Get Your Website Now
+                    Get Now
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </motion.button>
