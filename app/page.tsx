@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import OptimizedImage from '../components/OptimizedImage';
 import LazyLoad from '../components/LazyLoad';
@@ -1305,20 +1306,30 @@ export default function Home() {
             </div>
             
             <div className="flex items-center justify-center space-x-6 text-xs text-slate-500">
-              <motion.a 
-                href="#" 
-                className="hover:text-slate-400 transition-colors duration-200"
-                whileHover={{ y: -1 }}
-              >
-                Privacy Policy
-              </motion.a>
-              <motion.a 
-                href="#" 
-                className="hover:text-slate-400 transition-colors duration-200"
-                whileHover={{ y: -1 }}
-              >
-                Terms of Service
-              </motion.a>
+              <motion.div whileHover={{ y: -1 }}>
+                <Link 
+                  href="/privacy"
+                  className="hover:text-slate-400 transition-colors duration-200"
+                >
+                  Privacy Policy
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ y: -1 }}>
+                <Link 
+                  href="/terms"
+                  className="hover:text-slate-400 transition-colors duration-200"
+                >
+                  Terms of Service
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ y: -1 }}>
+                <Link 
+                  href="/refund"
+                  className="hover:text-slate-400 transition-colors duration-200"
+                >
+                  Refund Policy
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
