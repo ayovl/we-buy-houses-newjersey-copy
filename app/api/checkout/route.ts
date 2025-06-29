@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
       // Even if email fails, payment might have succeeded.
       // For this task, we'll return an error, but in a real app, you'd handle this carefully.
       return NextResponse.json(
-        { success: false, error: 'Checkout processed, but failed to send confirmation email.' },
+        { success: false, error: 'Failed to send confirmation email. Transaction aborted. Please try again.' },
         { status: 500 } // Internal server error, but could be more specific
       );
     }

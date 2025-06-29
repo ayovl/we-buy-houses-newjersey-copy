@@ -144,7 +144,9 @@ export default function ThankYou() {
           >
             {/* This div could retain some card-like styling if desired for "What Happens Next", or be plain */}
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4 text-[hsl(267,75%,56%)]">What Happens Next?</h3>
+              <h3 className="text-2xl font-bold mb-4">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">What Happens Next?</span>
+              </h3>
               <ul className="space-y-3 text-left">
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
@@ -169,7 +171,9 @@ export default function ThankYou() {
             animate={fadeInUp.animate}
             transition={{ ...fadeInUp.transition, delay: 0.7 }} // Adjusted delay
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-[hsl(267,75%,56%)]">Need to Reach Us?</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-8">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Need to Reach Us?</span>
+            </h3>
             <div className="space-y-6">
               {/* Email Contact Area - Styled similar to main page but without the outer card */}
               <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -240,7 +244,9 @@ export default function ThankYou() {
             transition={{ ...fadeInUp.transition, delay: 0.8 }}
           >
             <div className="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm shadow-lg"> {/* Subtle container */}
-              <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">Learn about me</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Learn about me</span>
+              </h3>
               <a
                 href="https://arslanmaab.vercel.app/"
               target="_blank" 
@@ -275,6 +281,137 @@ export default function ThankYou() {
         onClose={() => setIsContactFormOpen(false)}
         triggerRef={contactButtonRef} // Make sure this ref is correctly assigned
       />
+
+      {/* Footer replicated from app/page.tsx with adjusted links */}
+      <footer className="relative py-16 px-6 lg:px-8 border-t border-white/10 bg-gradient-to-b from-transparent to-black/20 mt-24"> {/* Added mt-24 for spacing */}
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, staggerChildren: 0.1 }}
+          >
+            <motion.div
+              className="text-center md:text-left" // Adjusted alignment for consistency
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h4 className="text-white font-semibold text-lg mb-6">Navigation</h4>
+              <nav className="space-y-3">
+                <motion.div whileHover={{ x: 4 }}>
+                  <Link href="/" className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm" onClick={closeMobileMenu}>
+                    Home
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ x: 4 }}>
+                  <a href="https://arslanmaab.vercel.app/" target="_blank" rel="noopener noreferrer" className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm" onClick={closeMobileMenu}>
+                    About
+                  </a>
+                </motion.div>
+                <motion.div whileHover={{ x: 4 }}>
+                  <button
+                    onClick={() => { setIsContactFormOpen(true); closeMobileMenu(); }}
+                    className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm text-left w-full"
+                  >
+                    Contact
+                  </button>
+                </motion.div>
+              </nav>
+            </motion.div>
+
+            <motion.div
+              className="text-center md:text-left" // Adjusted alignment
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h4 className="text-white font-semibold text-lg mb-6">Get in Touch</h4>
+              <div className="space-y-4">
+                <motion.div
+                  className="flex items-center justify-center md:justify-start space-x-3" // Adjusted alignment
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Mail className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                  <div className="text-left">
+                    <button
+                      onClick={() => { setIsContactFormOpen(true); closeMobileMenu(); }}
+                      className="text-slate-400 hover:text-white transition-colors duration-200 text-sm block"
+                    >
+                      arsalmaab@gmail.com
+                    </button>
+                    <span className="text-slate-500 text-xs">Available 24/7</span>
+                  </div>
+                </motion.div>
+                <motion.div
+                  className="flex items-center justify-center md:justify-start space-x-3" // Adjusted alignment
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Phone className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                  <div className="text-left">
+                    <a href="https://calendly.com/arsalmaab/30min" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm block">
+                      Schedule a Call
+                    </a>
+                    <span className="text-slate-500 text-xs">Free consultation</span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+          </motion.div>
+          <motion.div
+            className="flex flex-col md:flex-row justify-between items-center gap-6 text-center" // Changed to justify-between
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4"> {/* Adjusted gap and flex direction for smaller screens */}
+              <p className="text-slate-500 text-sm">
+                © {new Date().getFullYear()} Vorve. All rights reserved.
+              </p>
+              <div className="hidden sm:block w-px h-4 bg-slate-600"></div> {/* sm:block for consistency */}
+              <p className="text-slate-500 text-sm flex items-center justify-center">
+                Made with
+                <motion.span
+                  className="text-red-400 mx-1.5"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  ❤️
+                </motion.span>
+                by Arsal Maab
+              </p>
+            </div>
+
+            <div className="flex items-center justify-center space-x-6 text-xs text-slate-500">
+              <motion.a
+                href="#"
+                className="hover:text-slate-400 transition-colors duration-200"
+                whileHover={{ y: -1 }}
+              >
+                Privacy Policy
+              </motion.a>
+              <motion.a
+                href="#"
+                className="hover:text-slate-400 transition-colors duration-200"
+                whileHover={{ y: -1 }}
+              >
+                Terms of Service
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </footer>
     </div>
   );
 }
