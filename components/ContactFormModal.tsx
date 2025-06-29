@@ -155,7 +155,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
                   </div>
                   <div>
                     <h2 className="text-xl font-semibold text-white">Get in Touch</h2>
-                    <p className="text-sm text-gray-300">Let's discuss your project</p>
+                    <p className="text-sm text-gray-300">Let&apos;s discuss your project</p>
                   </div>
                 </div>                <button
                   onClick={handleClose}

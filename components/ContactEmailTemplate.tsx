@@ -156,7 +156,7 @@ export const ContactEmailTemplate: React.FC<ContactEmailTemplateProps> = ({
             fontStyle: 'italic',
           }}
         >
-          This email was sent from your website's contact form
+          This email was sent from your website&apos;s contact form
         </Text>
       </Section>
       

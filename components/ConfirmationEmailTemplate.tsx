@@ -70,7 +70,7 @@ export const ConfirmationEmailTemplate: React.FC<ConfirmationEmailTemplateProps>
             textAlign: 'left',
           }}
         >
-          We've successfully received your project request. We're excited to get started!
+          We&apos;ve successfully received your project request. We&apos;re excited to get started!
         </Text>
 
         <Text

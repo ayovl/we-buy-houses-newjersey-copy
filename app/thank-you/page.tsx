@@ -133,7 +133,7 @@ export default function ThankYou() {
               <ul className="space-y-3 text-left">
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                  <span>You'll receive a confirmation email shortly.</span>
+                  <span>You&apos;ll receive a confirmation email shortly.</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />

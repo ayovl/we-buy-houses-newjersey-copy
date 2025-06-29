@@ -319,7 +319,7 @@ export default function Home() {
           >
             Your Current Website <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 animate-pulse">
-              Isn't Converting
+              Isn&apos;t Converting
             </span>          </motion.h1>
 
           <motion.p 
@@ -528,7 +528,7 @@ export default function Home() {
             animate={ctaInView ? fadeInUp.animate : fadeInUp.initial}
             transition={{ ...fadeInUp.transition, delay: 0.1 }}
           >
-            Let's build a website that works for you.
+            Let&apos;s build a website that works for you.
           </motion.p>
           <motion.button
             onClick={() => scrollToSection('pricing')}
@@ -599,11 +599,11 @@ export default function Home() {
                 
                 {/* Quote with enhanced typography */}
                 <div className="relative mb-6">
-                  <div className="absolute -top-2 -left-1 text-4xl text-purple-400/30 font-serif leading-none select-none">"</div>
+                  <div className="absolute -top-2 -left-1 text-4xl text-purple-400/30 font-serif leading-none select-none">&ldquo;</div>
                   <p className="text-gray-200 text-lg leading-relaxed pl-6 italic font-light">
                     {testimonial.quote}
                   </p>
-                  <div className="absolute -bottom-4 -right-1 text-4xl text-purple-400/30 font-serif leading-none rotate-180 select-none">"</div>
+                  <div className="absolute -bottom-4 -right-1 text-4xl text-purple-400/30 font-serif leading-none rotate-180 select-none">&rdquo;</div>
                 </div>
                   {/* Author and link section */}
                 <div className="relative">
@@ -1390,7 +1390,7 @@ export default function Home() {
 
               <p className="text-sm text-gray-300 text-center">
                 Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
-                We'll email your brand assets and login details upon completion.
+                We&apos;ll email your brand assets and login details upon completion.
               </p>
               
               <button
@@ -1473,7 +1473,7 @@ export default function Home() {
               
               <p className="text-sm text-gray-300 text-center">
                 Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
-                We'll email your brand assets and login details upon completion.
+                We&apos;ll email your brand assets and login details upon completion.
               </p>
               
               <button
