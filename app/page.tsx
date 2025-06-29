@@ -1096,7 +1096,10 @@ export default function Home() {
                       <Copy className="w-3 h-3 group-hover:scale-110 transition-transform" />
                     </button>
                   </div>
-                </div>                  {/* Email Now Button */}
+                </div>
+                {/* Divider for mobile */}
+                <div className="w-full h-px bg-slate-600/40 my-4 sm:hidden"></div>
+                {/* Email Now Button */}
                 <motion.button 
                   ref={emailButtonRef}
                   onClick={() => setIsContactFormOpen(true)}
