@@ -1098,7 +1098,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Divider for mobile */}
-                <div className="w-full h-px bg-slate-600/40 my-4 sm:hidden"></div>
+                <div className="w-1/2 mx-auto h-px bg-slate-600/20 my-4 sm:hidden"></div>
                 {/* Email Now Button */}
                 <motion.button 
                   ref={emailButtonRef}
