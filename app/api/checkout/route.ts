@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
       to: [email], // Send to the customer's email
       subject: `🎉 Your Project is Confirmed, ${fullName}!`,
       react: ConfirmationEmailTemplate({ userName: fullName }),
-      reply_to: 'arsalmaab@gmail.com', // Your support/reply-to email
+      replyTo: 'arsalmaab@gmail.com', // Your support/reply-to email
     });
 
     if (error) {
