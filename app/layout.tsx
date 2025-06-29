@@ -59,6 +59,23 @@ export default function RootLayout({
             `,
           }}
         />
+        {process.env.NODE_ENV === 'development' && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function () {
+                  var script = document.createElement('script');
+                  script.src = 'https://cdn.jsdelivr.net/npm/eruda@3.0.1/eruda.min.js';
+                  script.onload = function () {
+                    eruda.init();
+                    console.log('Eruda mobile debugger loaded');
+                  };
+                  document.head.appendChild(script);
+                })();
+              `,
+            }}
+          />
+        )}
       </head>
       <body className={inter.className}>
         {children}
