@@ -293,12 +293,18 @@ export default function ThankYou() {
                   </a>
                 </motion.div>
                 <motion.div whileHover={{ x: 4 }}>
-                  <button
-                    onClick={() => { setIsContactFormOpen(true); closeMobileMenu(); }}
-                    className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm text-left w-full"
+                  <a
+                    href="#"
+                    role="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsContactFormOpen(true);
+                      closeMobileMenu();
+                    }}
+                    className="block text-slate-400 hover:text-purple-400 transition-all duration-200 text-sm" // Removed w-full and text-left as <a> by default is inline and will align with other <a>/Link
                   >
                     Contact
-                  </button>
+                  </a>
                 </motion.div>
               </nav>
             </motion.div>
