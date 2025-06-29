@@ -232,16 +232,17 @@ export default function ThankYou() {
             </div>
           </motion.div>
 
-          {/* "Learn about me" Section - No parent card, content directly on background */}
+          {/* "Learn about me" Section - Reintroduced a subtle container */}
           <motion.div 
-            className="w-full max-w-lg mx-auto my-12 text-center" // Centered, max-width, added vertical margin
+            className="w-full max-w-lg mx-auto my-12 text-center"
             initial={fadeInUp.initial}
             animate={fadeInUp.animate}
-            transition={{ ...fadeInUp.transition, delay: 0.8 }} // Adjusted delay if needed
+            transition={{ ...fadeInUp.transition, delay: 0.8 }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">Learn about me</h3> {/* Increased heading size, white color */}
-            <a 
-              href="https://arslanmaab.vercel.app/" 
+            <div className="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm shadow-lg"> {/* Subtle container */}
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">Learn about me</h3>
+              <a
+                href="https://arslanmaab.vercel.app/"
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/30 border border-purple-500/50"
@@ -249,6 +250,7 @@ export default function ThankYou() {
             >
               About Me <ArrowRight className="w-5 h-5 ml-2" />
             </a>
+            </div> {/* Close subtle container div */}
           </motion.div>
 
           <motion.div 
