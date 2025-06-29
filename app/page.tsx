@@ -591,7 +591,7 @@ export default function Home() {
         {/* Seamless background blending - flows from testimonials above and into meeting section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-2 sm:px-4 md:px-8 lg:px-12">          <motion.div
-            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl p-4 sm:p-6 md:p-8 lg:p-12 rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
+            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-16 rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -853,7 +853,7 @@ export default function Home() {
             </motion.div>            {/* Professional trust badges */}
             <div className="mb-6 relative z-10">
               <motion.div 
-                className="flex flex-wrap items-center justify-around gap-2 sm:gap-4"
+                className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-around sm:items-center sm:gap-4"
                 initial={staggerContainer.initial}
                 animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
               >
@@ -882,7 +882,7 @@ export default function Home() {
                 ].map((item, index) => (
                   <motion.div 
                     key={index} 
-                    className={`group inline-flex items-center gap-2 sm:gap-3 ${item.bgColor} border ${item.borderColor} px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
+                    className={`group flex items-center justify-center sm:inline-flex sm:justify-start gap-2 sm:gap-3 ${item.bgColor} border ${item.borderColor} px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur-md transition-all duration-200 hover:border-opacity-70 hover:scale-105 will-change-transform shadow-sm`}
                     variants={staggerChild}
                     whileHover={{ 
                       y: -2,
@@ -930,10 +930,10 @@ export default function Home() {
                 </div>
                 
                 {/* Right side: Professional action buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2 flex-shrink-0">
+                <div className="flex flex-row items-center justify-center sm:justify-end gap-2 flex-shrink-0">
                   <motion.button 
                     aria-label="Schedule a Call"
-                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
+                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
@@ -942,11 +942,11 @@ export default function Home() {
                     <Phone className="w-5 h-5 sm:w-4 sm:h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
                     <span className="font-semibold text-sm relative z-10 hidden sm:inline">Schedule Call</span>
                   </motion.button>
-                    <span className="text-slate-400 text-xs font-medium my-1 sm:my-0">or</span>
+                    <span className="text-slate-400 text-xs font-medium mx-1 sm:my-0">or</span>
                     <motion.button 
                     aria-label="Send an Email"
                     onClick={() => setIsContactFormOpen(true)}
-                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-full sm:w-auto"
+                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-auto"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
