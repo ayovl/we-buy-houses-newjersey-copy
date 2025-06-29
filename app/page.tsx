@@ -96,6 +96,8 @@ export default function Home() {
     email: '',
     requests: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added for loading state
+  const [submissionError, setSubmissionError] = useState<string | null>(null); // Added for error message
 
   // Ref for positioning the contact form modal
   const emailButtonRef = useRef<HTMLButtonElement>(null);
@@ -192,11 +194,41 @@ export default function Home() {
   }, []);
 
   // Memoized submit handler
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to thank you page
-    window.location.href = '/thank-you';
-  }, []);
+    setIsSubmitting(true);
+    setSubmissionError(null);
+
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
+      } else {
+        // Handle error
+        console.error('Submission failed:', result);
+        setSubmissionError(result.error || 'An unexpected error occurred. Please try again.');
+        // Optionally, display a message to the user
+        // alert(`Error: ${result.error || 'Failed to process payment.'}`);
+      }
+    } catch (error) {
+      console.error('Network or other error:', error);
+      setSubmissionError('A network error occurred. Please check your connection and try again.');
+      // Optionally, display a message to the user
+      // alert('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData]);
 
   // Memoized scroll functions
   const scrollToSection = useCallback((sectionId: string) => {
@@ -233,7 +265,7 @@ export default function Home() {
             <div className="flex items-center md:absolute md:left-0">
               <OptimizedImage 
                 src="/logo.png" 
-                alt="WebBrand Pro" 
+                alt="Logo"
                 width={34} 
                 height={34} 
                 className="mr-3" 
@@ -1348,6 +1380,12 @@ export default function Home() {
                 />
               </div>
               
+              {submissionError && (
+                <p className="text-sm text-red-400 text-center bg-red-500/10 p-3 rounded-md border border-red-400/30">
+                  {submissionError}
+                </p>
+              )}
+
               <p className="text-sm text-gray-300 text-center">
                 Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
                 We'll email your brand assets and login details upon completion.
@@ -1355,85 +1393,23 @@ export default function Home() {
               
               <button
                 type="submit"
-                className="w-full bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105"
+                disabled={isSubmitting}
+                className="w-full bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
               >
-                Proceed to Payment - $3,950
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  'Proceed to Payment - $3,950'
+                )}
               </button>
             </form>
-          </motion.div>        </div>      )}      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-xl p-8 max-w-md w-full relative"
-          >
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">
-              Claim Your New Website
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="john@example.com"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Special Requests (Optional)
-                </label>
-                <textarea
-                  value={formData.requests}
-                  onChange={(e) => setFormData({...formData, requests: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent h-24 resize-none"
-                  placeholder="Any specific requirements or preferences..."
-                />
-              </div>
-              
-              <p className="text-sm text-gray-300 text-center">
-                Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
-                We'll email your brand assets and login details upon completion.
-              </p>
-              
-              <button
-                type="submit"
-                className="w-full bg-[hsl(267,75%,56%)] hover:bg-[hsl(267,75%,66%)] text-white py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105"
-              >
-                Proceed to Payment - $3,950
-              </button>
-            </form>
-          </motion.div>
-        </div>      )}      {/* Contact Form Modal */}
+          </motion.div>        </div>      )}      {/* Contact Form Modal */}
       <ContactFormModal 
         isOpen={isContactFormOpen} 
         onClose={() => setIsContactFormOpen(false)} 
