@@ -1409,9 +1409,6 @@ export default function Home() {
                 )}
               </button>
             </form>
-<<<<<<< HEAD
-          </motion.div>        </div>      )}      {/* Contact Form Modal */}
-=======
           </motion.div>        </div>      )}      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -1486,7 +1483,6 @@ export default function Home() {
             </form>
           </motion.div>
         </div>      )}      {/* Contact Form Modal */}
->>>>>>> origin/fix/mobile-modal-overflow
       <ContactFormModal 
         isOpen={isContactFormOpen} 
         onClose={() => setIsContactFormOpen(false)} 
