@@ -7,73 +7,88 @@ import { render } from '@react-email/render';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
+  console.log('🔔 WEBHOOK RECEIVED - Paddle webhook called');
+  
   try {
     // Get the raw body and signature
     const body = await request.text();
     const signature = request.headers.get('paddle-signature');
 
+    console.log('📝 Webhook details:', {
+      hasSignature: !!signature,
+      bodyLength: body.length,
+      headers: Object.fromEntries(request.headers.entries())
+    });
+
     if (!signature) {
-      console.error('No Paddle signature found');
+      console.error('❌ No Paddle signature found');
       return NextResponse.json({ error: 'No signature' }, { status: 400 });
     }
 
     // Verify the webhook signature
     try {
+      console.log('🔐 Verifying webhook signature...');
       // FIX: Await the unmarshal call
       const eventData = await paddle.webhooks.unmarshal(body, PADDLE_CONFIG.webhookSecret, signature);
       
-      console.log('Received Paddle webhook:', eventData.eventType);
+      console.log('✅ Webhook verified successfully');
+      console.log('📧 Received event:', eventData.eventType);
+      console.log('📊 Event data:', JSON.stringify(eventData.data, null, 2));
 
       // Handle different event types
       switch (eventData.eventType) {
         case 'transaction.completed':
+          console.log('💰 Processing transaction.completed event');
           await handleTransactionCompleted(eventData.data);
           break;
         
         case 'transaction.payment_failed':
+          console.log('❌ Processing transaction.payment_failed event');
           await handlePaymentFailed(eventData.data);
           break;
         
         case 'subscription.created':
+          console.log('🔄 Processing subscription.created event');
           await handleSubscriptionCreated(eventData.data);
           break;
         
         case 'customer.created':
+          console.log('👤 Processing customer.created event');
           await handleCustomerCreated(eventData.data);
           break;
         
         default:
-          console.log(`Unhandled event type: ${eventData.eventType}`);
+          console.log(`❓ Unhandled event type: ${eventData.eventType}`);
       }
 
       return NextResponse.json({ success: true });
     } catch (verificationError) {
-      console.error('Webhook verification failed:', verificationError);
+      console.error('🚫 Webhook verification failed:', verificationError);
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
     }
   } catch (error) {
-    console.error('Webhook processing error:', error);
+    console.error('💥 Webhook processing error:', error);
     return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
   }
 }
 
 async function handleTransactionCompleted(transaction: any) {
-  console.log('Transaction completed:', transaction.id);
+  console.log('💰 Transaction completed handler called:', transaction.id);
+  console.log('📋 Transaction data:', JSON.stringify(transaction, null, 2));
   
   try {
     // Send confirmation email to customer
+    console.log('📧 Attempting to send confirmation email...');
     await sendConfirmationEmail(transaction);
     
     // Send notification email to you
+    console.log('📬 Attempting to send notification email...');
     await sendNotificationEmail(transaction);
     
-    // Here you could also:
-    // - Update your database
-    // - Send data to analytics
-    // - Trigger other business processes
+    console.log('✅ All emails processed successfully');
     
   } catch (error) {
-    console.error('Error handling completed transaction:', error);
+    console.error('💥 Error handling completed transaction:', error);
   }
 }
 
@@ -99,25 +114,41 @@ async function handleCustomerCreated(customer: any) {
 }
 
 async function sendConfirmationEmail(transaction: any) {
+  console.log('📧 sendConfirmationEmail function called');
+  console.log('🔍 Transaction customer data:', transaction.customer);
+  
   const customerEmail = transaction.customer?.email;
   const customerName = transaction.customer?.name || 'Valued Customer';
   
-  if (!customerEmail) return;
+  console.log('📝 Email details:', {
+    customerEmail,
+    customerName,
+    hasCustomer: !!transaction.customer
+  });
+  
+  if (!customerEmail) {
+    console.error('❌ No customer email found in transaction');
+    return;
+  }
 
   try {
+    console.log('🎨 Rendering React email template...');
     // Render the React email template to HTML
     const emailHtml = await render(ConfirmationEmailTemplate({ userName: customerName }));
     
-    await resend.emails.send({
+    console.log('📮 Sending email via Resend...');
+    const result = await resend.emails.send({
       from: 'no-reply@vorve.tech',
       to: [customerEmail],
       subject: 'Thank you for your order - Vorve.tech',
       html: emailHtml,
     });
     
-    console.log('Confirmation email sent to:', customerEmail);
+    console.log('✅ Confirmation email sent successfully:', result);
+    console.log('📧 Email sent to:', customerEmail);
   } catch (error) {
-    console.error('Error sending confirmation email:', error);
+    console.error('💥 Error sending confirmation email:', error);
+    console.error('📊 Error details:', JSON.stringify(error, null, 2));
   }
 }
 

@@ -125,6 +125,29 @@ export function useCheckout() {
           frameStyle: 'width: 100%; background-color: transparent; border: none;',
           successUrl: `${window.location.origin}/thank-you?success=true`,
         },
+        eventCallback: (data: any) => {
+          console.log('Paddle event:', data);
+          
+          // Send immediate Resend email when checkout completes
+          if (data.name === 'checkout.completed') {
+            console.log('Checkout completed, sending confirmation email...');
+            
+            // Send confirmation email immediately
+            fetch('/api/send-confirmation', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: customerData.email,
+                name: customerData.fullName,
+                transactionId: data.data?.transaction_id || 'unknown'
+              })
+            }).then(res => {
+              console.log('Confirmation email API called:', res.status);
+            }).catch(err => {
+              console.error('Failed to send confirmation email:', err);
+            });
+          }
+        }
       };
       
       console.log('Opening Paddle checkout with options:', checkoutOptions);
