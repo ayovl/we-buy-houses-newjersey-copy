@@ -112,7 +112,7 @@ export function useCheckout() {
       }
 
       // Open Paddle checkout overlay with the correct options
-      if (window.Paddle && result.checkoutUrl) {
+      if (window.Paddle && result.priceId) {
         window.Paddle.Checkout.open({
           items: [{ priceId: result.priceId, quantity: 1 }],
           settings: {
@@ -125,7 +125,7 @@ export function useCheckout() {
           },
         });
       } else {
-        throw new Error('Paddle is not loaded or checkoutUrl missing');
+        throw new Error('Paddle is not loaded or priceId missing');
       }
 
       return result;
