@@ -120,9 +120,9 @@ export function useCheckout() {
         const checkoutOptions = {
           items: [{ priceId: result.priceId, quantity: 1 }],
           settings: {
-            displayMode: 'overlay',
-            theme: 'dark',
-            frameTarget: 'self',
+            displayMode: 'overlay' as const,
+            theme: 'dark' as const,
+            frameTarget: 'self' as const,
             frameInitialHeight: 450,
             frameStyle: 'width: 100%; background-color: transparent; border: none;',
             successUrl: `${window.location.origin}/thank-you?success=true&transaction_id=${result.transactionId}`,
