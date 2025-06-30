@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { paddle, getCheckoutConfig, CustomerMetadata, PRODUCTS } from '@/lib/paddle';
+import { Resend } from 'resend';
 import { z } from 'zod';
+import { ConfirmationEmailTemplate } from '@/components/ConfirmationEmailTemplate';
+import { render } from '@react-email/render';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Validation schema for checkout data
 const checkoutSchema = z.object({
@@ -119,6 +124,26 @@ export async function POST(req: NextRequest) {
       const transaction = await paddle.transactions.create(transactionData);
 
       console.log('Transaction created:', transaction.id);
+      
+      // Send immediate confirmation email using the proper React email template
+      try {
+        console.log('Sending confirmation email to:', email);
+        
+        // Render the React email template to HTML
+        const emailHtml = await render(ConfirmationEmailTemplate({ userName: fullName }));
+        
+        await resend.emails.send({
+          from: 'no-reply@vorve.tech',
+          to: email,
+          subject: 'Thank you for your order - Vorve.tech',
+          html: emailHtml,
+        });
+        
+        console.log('Confirmation email sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send confirmation email:', emailError);
+        // Don't fail the transaction if email fails
+      }
       
       // 3. Return the transaction info (including priceId for Paddle overlay)
       return NextResponse.json({
