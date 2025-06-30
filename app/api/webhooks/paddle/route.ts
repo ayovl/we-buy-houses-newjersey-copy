@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { paddle, PADDLE_CONFIG } from '@/lib/paddle';
 import { Resend } from 'resend';
+import { ConfirmationEmailTemplate } from '@/components/ConfirmationEmailTemplate';
+import { render } from '@react-email/render';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -98,61 +100,19 @@ async function handleCustomerCreated(customer: any) {
 
 async function sendConfirmationEmail(transaction: any) {
   const customerEmail = transaction.customer?.email;
+  const customerName = transaction.customer?.name || 'Valued Customer';
+  
   if (!customerEmail) return;
 
   try {
+    // Render the React email template to HTML
+    const emailHtml = await render(ConfirmationEmailTemplate({ userName: customerName }));
+    
     await resend.emails.send({
-      from: 'Vorve.tech <noreply@vorve.tech>',
+      from: 'no-reply@vorve.tech',
       to: [customerEmail],
-      subject: 'Payment Confirmed - Your Pitch Deck Project Starts Now! 🚀',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; color: white;">
-          <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="margin: 0; font-size: 28px; font-weight: bold;">Payment Confirmed! 🎉</h1>
-            <p style="margin: 10px 0 0 0; font-size: 18px; opacity: 0.9;">Your pitch deck project is officially underway</p>
-          </div>
-          
-          <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin: 20px 0; backdrop-filter: blur(10px);">
-            <h2 style="margin: 0 0 20px 0; font-size: 22px;">Order Details</h2>
-            <p><strong>Transaction ID:</strong> ${transaction.id}</p>
-            <p><strong>Amount:</strong> $${(transaction.details?.totals?.total / 100).toFixed(2)} USD</p>
-            <p><strong>Service:</strong> Complete Solution Package</p>
-            <p><strong>Date:</strong> ${new Date(transaction.created_at).toLocaleDateString()}</p>
-          </div>
-          
-          <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin: 20px 0; backdrop-filter: blur(10px);">
-            <h2 style="margin: 0 0 20px 0; font-size: 22px;">What Happens Next?</h2>
-            <ol style="padding-left: 20px; line-height: 1.8;">
-              <li><strong>Discovery Call (24-48 hours):</strong> I'll reach out to schedule our initial consultation</li>
-              <li><strong>Requirements Gathering:</strong> We'll discuss your goals, audience, and key messages</li>
-              <li><strong>Creation Process (5-7 days):</strong> AI-powered content creation and professional design</li>
-              <li><strong>Review & Revisions:</strong> Unlimited revisions during our 14-day revision period</li>
-              <li><strong>Final Delivery:</strong> Complete pitch deck in multiple formats + bonus materials</li>
-            </ol>
-          </div>
-          
-          <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin: 20px 0; backdrop-filter: blur(10px);">
-            <h2 style="margin: 0 0 20px 0; font-size: 22px;">Your Investment Includes:</h2>
-            <ul style="padding-left: 20px; line-height: 1.8;">
-              <li>Professional 10-15 slide pitch deck</li>
-              <li>AI-optimized content & messaging</li>
-              <li>Custom design & branding</li>
-              <li>Investor-ready financial projections</li>
-              <li>1-hour presentation coaching session</li>
-              <li>Multiple format exports (PPT, PDF, Figma)</li>
-              <li>30-day email support</li>
-            </ul>
-          </div>
-          
-          <div style="text-align: center; margin-top: 30px;">
-            <p style="font-size: 16px; margin-bottom: 20px;">Questions? Reply to this email or reach out directly:</p>
-            <p style="font-size: 16px; margin: 5px 0;"><strong>Email:</strong> arsalmaab@gmail.com</p>
-            <p style="font-size: 14px; opacity: 0.8; margin-top: 20px;">
-              Thank you for choosing Vorve.tech. Let's create something amazing together! 🚀
-            </p>
-          </div>
-        </div>
-      `,
+      subject: 'Thank you for your order - Vorve.tech',
+      html: emailHtml,
     });
     
     console.log('Confirmation email sent to:', customerEmail);
