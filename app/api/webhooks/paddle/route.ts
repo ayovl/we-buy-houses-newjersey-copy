@@ -54,7 +54,22 @@ export async function POST(request: NextRequest) {
       switch (eventData.eventType) {
         case EventName.TransactionCompleted:
           console.log('💰 Processing transaction.completed event');
-          await handleTransactionCompleted(eventData.data);
+          console.log('🔍 Transaction data structure:', Object.keys(eventData.data));
+          
+          // Cast to any to handle dynamic customer data addition
+          let transactionData: any = eventData.data;
+          if (!transactionData.customer && transactionData.customerId) {
+            console.log('🔍 Customer not included, customerId found:', transactionData.customerId);
+            try {
+              const customerInfo = await paddle.customers.get(transactionData.customerId);
+              transactionData.customer = customerInfo;
+              console.log('✅ Customer data fetched and added to transaction');
+            } catch (error) {
+              console.error('❌ Failed to fetch customer data:', error);
+            }
+          }
+          
+          await handleTransactionCompleted(transactionData);
           break;
         
         case EventName.TransactionPaymentFailed:
@@ -140,25 +155,46 @@ async function handleCustomerCreated(customer: any) {
 
 async function sendConfirmationEmail(transaction: any) {
   console.log('📧 sendConfirmationEmail function called');
-  console.log('🔍 Transaction customer data:', transaction.customer);
+  console.log('🔍 Full transaction object keys:', Object.keys(transaction));
+  console.log('🔍 Transaction structure:', JSON.stringify(transaction, null, 2));
   
-  const customerEmail = transaction.customer?.email;
-  const customerName = transaction.customer?.name || 'Valued Customer';
+  // Try multiple possible locations for customer data
+  let customerEmail = null;
+  let customerName = 'Valued Customer';
   
-  console.log('📝 Email details:', {
+  // Check different possible structures
+  if (transaction.customer?.email) {
+    customerEmail = transaction.customer.email;
+    customerName = transaction.customer.name || customerName;
+    console.log('✅ Found customer in transaction.customer');
+  } else if (transaction.customer_id && transaction.include?.customer?.email) {
+    customerEmail = transaction.include.customer.email;
+    customerName = transaction.include.customer.name || customerName;
+    console.log('✅ Found customer in transaction.include.customer');
+  } else if (transaction.details?.customer?.email) {
+    customerEmail = transaction.details.customer.email;
+    customerName = transaction.details.customer.name || customerName;
+    console.log('✅ Found customer in transaction.details.customer');
+  } else if (transaction.billing_details?.email) {
+    customerEmail = transaction.billing_details.email;
+    customerName = transaction.billing_details.name || customerName;
+    console.log('✅ Found customer in transaction.billing_details');
+  }
+  
+  console.log('📝 Final email details:', {
     customerEmail,
     customerName,
-    hasCustomer: !!transaction.customer
+    found: !!customerEmail
   });
   
   if (!customerEmail) {
-    console.error('❌ No customer email found in transaction');
+    console.error('❌ No customer email found in transaction after checking all possible locations');
+    console.error('🔍 Available transaction data:', Object.keys(transaction));
     return;
   }
 
   try {
     console.log('🎨 Rendering React email template...');
-    // Render the React email template to HTML
     const emailHtml = await render(ConfirmationEmailTemplate({ userName: customerName }));
     
     console.log('📮 Sending email via Resend...');
