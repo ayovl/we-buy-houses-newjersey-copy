@@ -24,7 +24,7 @@ export default function TermsOfService() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">1. Agreement to Terms</h2>
               <p className="text-gray-300 leading-relaxed">
-                By accessing and using Vorve.tech ("Service"), you accept and agree to be bound by the terms 
+                By accessing and using Vorve.tech (&quot;Service&quot;), you accept and agree to be bound by the terms 
                 and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </section>

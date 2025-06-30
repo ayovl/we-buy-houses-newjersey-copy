@@ -11,6 +11,7 @@ import MobileMotion from '../components/MobileMotion';
 import ViewportOptimizer from '../components/ViewportOptimizer';
 import ContactFormModal from '../components/ContactFormModal';
 import { usePerformanceMonitoring, useDeviceOptimization } from '../hooks/usePerformance';
+import { useCheckout } from '../components/PaddleProvider';
 import { 
   Shield, 
   Award, 
@@ -108,6 +109,9 @@ export default function Home() {
   usePerformanceMonitoring();
   useDeviceOptimization();
 
+  // Initialize Paddle checkout
+  const { openCheckout, isLoaded: paddleLoaded } = useCheckout();
+
   // Memoized device detection for better performance
   const isIOSDevice = useMemo(() => {
     if (typeof window === 'undefined') return false;
@@ -194,42 +198,48 @@ export default function Home() {
     }));
   }, []);
 
-  // Memoized submit handler
+  // Memoized submit handler with Paddle integration
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmissionError(null);
 
     try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Validate form data
+      if (!formData.fullName.trim() || !formData.email.trim()) {
+        setSubmissionError('Please fill in all required fields.');
+        return;
+      }
+
+      // Check if Paddle is loaded
+      if (!paddleLoaded) {
+        setSubmissionError('Payment system is loading. Please wait a moment and try again.');
+        return;
+      }
+
+      // Open Paddle checkout
+      await openCheckout({
+        fullName: formData.fullName,
+        email: formData.email,
+        requests: formData.requests,
+        company: '', // Could add company field if needed
+        phone: '', // Could add phone field if needed
       });
 
-      const result = await response.json();
+      // Don't redirect here - Paddle will handle the flow
+      console.log('Paddle checkout opened successfully');
 
-      if (response.ok && result.success) {
-        // Redirect to thank you page
-        window.location.href = '/thank-you';
-      } else {
-        // Handle error
-        console.error('Submission failed:', result);
-        setSubmissionError(result.error || 'An unexpected error occurred. Please try again.');
-        // Optionally, display a message to the user
-        // alert(`Error: ${result.error || 'Failed to process payment.'}`);
-      }
     } catch (error) {
-      console.error('Network or other error:', error);
-      setSubmissionError('A network error occurred. Please check your connection and try again.');
-      // Optionally, display a message to the user
-      // alert('An error occurred. Please try again later.');
+      console.error('Checkout error:', error);
+      setSubmissionError(
+        error instanceof Error 
+          ? error.message 
+          : 'Failed to open checkout. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData]);
+  }, [formData, paddleLoaded, openCheckout]);
 
   // Memoized scroll functions
   const scrollToSection = useCallback((sectionId: string) => {

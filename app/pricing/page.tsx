@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useCheckout } from '../../components/PaddleProvider';
 import { 
   CheckCircle,
   Star,
@@ -15,6 +16,17 @@ import {
 
 export default function PricingPage() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    company: '',
+    requests: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Initialize Paddle checkout
+  const { openCheckout, isLoaded: paddleLoaded } = useCheckout();
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -33,11 +45,28 @@ export default function PricingPage() {
     }
   };
 
-  const handleGetStarted = () => {
-    // This will be connected to Paddle checkout
-    console.log('Redirecting to Paddle checkout...');
-    // For now, open contact form
-    setIsContactFormOpen(true);
+  const handleGetStarted = async () => {
+    if (!paddleLoaded) {
+      setError('Payment system is loading. Please wait...');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      await openCheckout({
+        fullName: formData.fullName || 'Customer',
+        email: formData.email || '',
+        requests: formData.requests || 'Started from pricing page',
+        company: formData.company || '',
+        phone: '',
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to open checkout');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -218,7 +247,7 @@ export default function PricingPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur opacity-25 group-hover:opacity-40 transition-opacity"></div>
                 </button>
                 <p className="text-gray-400 text-sm mt-4">
-                  Ready to get started? Let's create your winning pitch deck.
+                  Ready to get started? Let&#39;s create your winning pitch deck.
                 </p>
               </motion.div>
             </div>
@@ -286,7 +315,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl p-8 border border-blue-500/20">
               <h2 className="text-3xl font-bold text-white mb-4">Ready to Transform Your Pitch?</h2>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                Join hundreds of successful entrepreneurs and business leaders who've used our AI-powered 
+                Join hundreds of successful entrepreneurs and business leaders who&#39;ve used our AI-powered 
                 pitch deck services to win deals and secure funding.
               </p>
               <button

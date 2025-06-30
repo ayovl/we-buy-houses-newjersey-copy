@@ -66,7 +66,7 @@ export default function RefundPolicy() {
               </p>
               <ol className="list-decimal list-inside text-gray-300 space-y-3">
                 <li>
-                  <strong>Contact Support:</strong> Email us at support@vorve.tech with "Refund Request" in the subject line
+                  <strong>Contact Support:</strong> Email us at support@vorve.tech with &quot;Refund Request&quot; in the subject line
                 </li>
                 <li>
                   <strong>Provide Information:</strong> Include your account email, order number, and reason for the refund request
@@ -132,13 +132,13 @@ export default function RefundPolicy() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">8. Dispute Resolution</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                If you're not satisfied with our refund decision:
+                If you&#39;re not satisfied with our refund decision:
               </p>
               <ol className="list-decimal list-inside text-gray-300 space-y-2">
                 <li>Contact our customer service manager at manager@vorve.tech</li>
                 <li>Provide detailed information about your case</li>
                 <li>Allow 5-7 business days for escalated review</li>
-                <li>Consider mediation through Paddle's dispute resolution process</li>
+                <li>Consider mediation through Paddle&#39;s dispute resolution process</li>
               </ol>
             </section>
 
@@ -192,7 +192,7 @@ export default function RefundPolicy() {
               <h3 className="text-xl font-semibold text-blue-400 mb-3">Need Help?</h3>
               <p className="text-gray-300">
                 Our customer success team is here to help you get the most out of Vorve.tech. 
-                Before requesting a refund, consider reaching out for support - we're often able to 
+                Before requesting a refund, consider reaching out for support - we&#39;re often able to 
                 resolve issues and improve your experience with our service.
               </p>
             </div>
