@@ -126,11 +126,17 @@ export function useCheckout() {
           successUrl: `${window.location.origin}/thank-you?success=true`,
         },
         eventCallback: (data: any) => {
-          console.log('Paddle event:', data);
+          console.log('🔔 Paddle event received:', data);
+          console.log('📊 Event name:', data.name);
+          console.log('📋 Event data:', JSON.stringify(data, null, 2));
           
           // Send immediate Resend email when checkout completes
           if (data.name === 'checkout.completed') {
-            console.log('Checkout completed, sending confirmation email...');
+            console.log('✅ Checkout completed, sending confirmation email...');
+            console.log('📧 Customer data for email:', {
+              email: customerData.email,
+              name: customerData.fullName
+            });
             
             // Send confirmation email immediately
             fetch('/api/send-confirmation', {
@@ -142,9 +148,31 @@ export function useCheckout() {
                 transactionId: data.data?.transaction_id || 'unknown'
               })
             }).then(res => {
-              console.log('Confirmation email API called:', res.status);
+              console.log('📮 Confirmation email API response status:', res.status);
+              return res.json();
+            }).then(result => {
+              console.log('✅ Confirmation email API result:', result);
             }).catch(err => {
-              console.error('Failed to send confirmation email:', err);
+              console.error('💥 Failed to send confirmation email:', err);
+            });
+          }
+          
+          // Also try other potential event names
+          if (data.name === 'checkout.payment.completed' || data.name === 'payment.completed') {
+            console.log('💳 Payment completed event detected, sending email...');
+            
+            fetch('/api/send-confirmation', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: customerData.email,
+                name: customerData.fullName,
+                transactionId: data.data?.transaction_id || 'unknown'
+              })
+            }).then(res => {
+              console.log('📮 Payment email API response:', res.status);
+            }).catch(err => {
+              console.error('💥 Payment email failed:', err);
             });
           }
         }
@@ -157,7 +185,29 @@ export function useCheckout() {
       }
       
       window.Paddle.Checkout.open(checkoutOptions);
-      console.log('Paddle checkout opened successfully');
+      console.log('✅ Paddle checkout opened successfully');
+      
+      // TEMPORARY FIX: Send email immediately when checkout opens
+      // This ensures the customer gets the email even if events don't fire
+      console.log('🚀 Sending immediate confirmation email as backup...');
+      setTimeout(() => {
+        fetch('/api/send-confirmation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: customerData.email,
+            name: customerData.fullName,
+            transactionId: 'immediate-send'
+          })
+        }).then(res => {
+          console.log('🔥 Immediate email API response:', res.status);
+          return res.json();
+        }).then(result => {
+          console.log('🔥 Immediate email result:', result);
+        }).catch(err => {
+          console.error('🔥 Immediate email failed:', err);
+        });
+      }, 2000); // Wait 2 seconds after checkout opens
 
       return { success: true };
     } catch (error) {
