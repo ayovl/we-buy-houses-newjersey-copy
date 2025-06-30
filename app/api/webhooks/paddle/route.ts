@@ -54,12 +54,12 @@ export async function POST(request: NextRequest) {
       switch (eventData.eventType) {
         case EventName.TransactionCompleted:
           console.log('💰 Processing transaction.completed event');
-          console.log('🔍 Transaction data structure:', Object.keys(eventData.data));
+          console.log('🔍 Transaction ID:', eventData.data.id);
           
           // Cast to any to handle dynamic customer data addition
           let transactionData: any = eventData.data;
           if (!transactionData.customer && transactionData.customerId) {
-            console.log('🔍 Customer not included, customerId found:', transactionData.customerId);
+            console.log('🔍 Fetching customer data for ID:', transactionData.customerId);
             try {
               const customerInfo = await paddle.customers.get(transactionData.customerId);
               transactionData.customer = customerInfo;
@@ -113,15 +113,12 @@ export async function POST(request: NextRequest) {
 }
 
 async function handleTransactionCompleted(transaction: any) {
-  console.log('💰 Transaction completed handler called:', transaction.id);
-  console.log('📋 Transaction data:', JSON.stringify(transaction, null, 2));
+  console.log('💰 Transaction completed handler called for ID:', transaction.id);
   
   try {
-    // Send confirmation email to customer
     console.log('📧 Attempting to send confirmation email...');
     await sendConfirmationEmail(transaction);
     
-    // Send notification email to you
     console.log('📬 Attempting to send notification email...');
     await sendNotificationEmail(transaction);
     
@@ -155,8 +152,6 @@ async function handleCustomerCreated(customer: any) {
 
 async function sendConfirmationEmail(transaction: any) {
   console.log('📧 sendConfirmationEmail function called');
-  console.log('🔍 Full transaction object keys:', Object.keys(transaction));
-  console.log('🔍 Transaction structure:', JSON.stringify(transaction, null, 2));
   
   // Try multiple possible locations for customer data
   let customerEmail = null;
@@ -181,15 +176,13 @@ async function sendConfirmationEmail(transaction: any) {
     console.log('✅ Found customer in transaction.billing_details');
   }
   
-  console.log('📝 Final email details:', {
-    customerEmail,
-    customerName,
-    found: !!customerEmail
+  console.log('📝 Email processing:', {
+    hasEmail: !!customerEmail,
+    hasName: !!customerName
   });
   
   if (!customerEmail) {
-    console.error('❌ No customer email found in transaction after checking all possible locations');
-    console.error('🔍 Available transaction data:', Object.keys(transaction));
+    console.error('❌ No customer email found in transaction');
     return;
   }
 
@@ -205,28 +198,27 @@ async function sendConfirmationEmail(transaction: any) {
       html: emailHtml,
     });
     
-    console.log('✅ Confirmation email sent successfully:', result);
-    console.log('📧 Email sent to:', customerEmail);
+    console.log('✅ Confirmation email sent successfully');
   } catch (error) {
     console.error('💥 Error sending confirmation email:', error);
-    console.error('📊 Error details:', JSON.stringify(error, null, 2));
   }
 }
 
 async function sendNotificationEmail(transaction: any) {
   try {
+    const amount = transaction.details?.totals?.total ? (transaction.details.totals.total / 100).toFixed(2) : '0.00';
+    
     await resend.emails.send({
       from: 'Paddle Notifications <notifications@vorve.tech>',
       to: ['arsalmaab@gmail.com'],
-      subject: `💰 New Payment Received - $${(transaction.details?.totals?.total / 100).toFixed(2)}`,
+      subject: `💰 New Payment Received - $${amount}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h1 style="color: #4F46E5;">New Payment Received! 🎉</h1>
           
           <div style="background: #F9FAFB; border-radius: 8px; padding: 20px; margin: 20px 0;">
             <h2>Transaction Details</h2>
-            <p><strong>Customer:</strong> ${transaction.customer?.email}</p>
-            <p><strong>Amount:</strong> $${(transaction.details?.totals?.total / 100).toFixed(2)} USD</p>
+            <p><strong>Amount:</strong> $${amount} USD</p>
             <p><strong>Transaction ID:</strong> ${transaction.id}</p>
             <p><strong>Date:</strong> ${new Date(transaction.created_at).toLocaleString()}</p>
           </div>
@@ -247,9 +239,9 @@ async function sendNotificationEmail(transaction: any) {
       `,
     });
     
-    console.log('Notification email sent');
+    console.log('📬 Notification email sent successfully');
   } catch (error) {
-    console.error('Error sending notification email:', error);
+    console.error('💥 Error sending notification email:', error);
   }
 }
 

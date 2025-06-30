@@ -16,9 +16,16 @@ export const metadata: Metadata = {
   title: 'Vorve',
   description: 'Get a professionally designed, conversion-optimized website that drives results. Complete solution with branding, hosting, and lifetime support.',
   icons: {
-    icon: '/fav.png',
-    shortcut: '/fav.png',
-    apple: '/fav.png',
+    icon: [
+      { url: '/fav.png', sizes: '16x16', type: 'image/png' },
+      { url: '/fav.png', sizes: '32x32', type: 'image/png' }
+    ],
+    shortcut: [
+      { url: '/fav.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/fav.png', sizes: '180x180', type: 'image/png' }
+    ],
   },
   viewport: {
     width: 'device-width',

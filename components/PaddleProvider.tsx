@@ -100,8 +100,7 @@ export function useCheckout() {
       // Use the price ID from our configuration
       const priceId = PRODUCTS.COMPLETE_SOLUTION.id;
       
-      console.log('Opening checkout with priceId:', priceId);
-      console.log('Customer data:', customerData);
+      console.log('🚀 Opening Paddle checkout...');
 
       // Open Paddle checkout overlay directly
       const checkoutOptions = {
@@ -126,27 +125,18 @@ export function useCheckout() {
           successUrl: `${window.location.origin}/thank-you?success=true`,
         },
         eventCallback: (data: any) => {
-          console.log('🔔 Paddle event received:', data);
-          console.log('📊 Event name:', data.name);
-          console.log('📋 Event data:', JSON.stringify(data, null, 2));
-          
-          // These frontend events are just for logging
-          // The actual email sending happens via webhook after payment completion
+          // Secure logging - only log event types, not sensitive data
           if (data.name === 'checkout.completed') {
-            console.log('ℹ️  Checkout form completed (user filled details) - webhook will handle email after payment');
-          }
-          
-          if (data.name === 'checkout.payment.initiated') {
-            console.log('ℹ️  Payment initiated - waiting for completion event via webhook');
-          }
-          
-          if (data.name === 'checkout.payment.completed' || data.name === 'payment.completed') {
-            console.log('✅ Payment completed on frontend - webhook should receive transaction.completed event');
+            console.log('ℹ️ Checkout form completed');
+          } else if (data.name === 'checkout.payment.initiated') {
+            console.log('ℹ️ Payment initiated');
+          } else if (data.name === 'checkout.payment.completed') {
+            console.log('✅ Payment completed - webhook will handle confirmation email');
           }
         }
       };
       
-      console.log('Opening Paddle checkout with options:', checkoutOptions);
+      console.log('Opening Paddle checkout with options...');
       
       if (!window.Paddle) {
         throw new Error('Paddle is not loaded on window object');
