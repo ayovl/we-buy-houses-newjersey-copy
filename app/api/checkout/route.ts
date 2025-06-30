@@ -60,15 +60,43 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      console.log('Creating Paddle customer...', { email, name: fullName });
+      console.log('Creating or finding Paddle customer...', { email, name: fullName });
       
-      // 1. Create or fetch the Paddle customer
-      const customer = await paddle.customers.create({
-        email,
-        name: fullName,
-      });
-
-      console.log('Customer created:', customer.id);
+      // 1. Try to create customer, or use existing one if email already exists
+      let customer;
+      try {
+        customer = await paddle.customers.create({
+          email,
+          name: fullName,
+        });
+        console.log('New customer created:', customer.id);
+      } catch (customerError: any) {
+        // If customer already exists, extract the existing customer ID
+        if (customerError.code === 'customer_already_exists') {
+          console.log('Customer already exists with email:', email);
+          
+          // Extract customer ID from error message
+          const errorMessage = customerError.message || customerError.detail || '';
+          const customerIdMatch = errorMessage.match(/ctm_[a-zA-Z0-9]+/);
+          
+          if (customerIdMatch) {
+            const existingCustomerId = customerIdMatch[0];
+            console.log('Using existing customer ID:', existingCustomerId);
+            
+            // Create a mock customer object with the existing ID
+            customer = {
+              id: existingCustomerId,
+              email: email,
+              name: fullName
+            };
+          } else {
+            throw new Error('Customer already exists but ID could not be extracted');
+          }
+        } else {
+          // Re-throw if it's a different error
+          throw customerError;
+        }
+      }
 
       // 2. Create a Paddle transaction (one-time checkout)
       const transactionData = {
