@@ -111,9 +111,13 @@ export function useCheckout() {
         throw new Error(result.error || 'Failed to create checkout');
       }
 
+      console.log('Checkout API response:', result);
+      console.log('window.Paddle available:', !!window.Paddle);
+      console.log('result.priceId:', result.priceId);
+
       // Open Paddle checkout overlay with the correct options
       if (window.Paddle && result.priceId) {
-        window.Paddle.Checkout.open({
+        const checkoutOptions = {
           items: [{ priceId: result.priceId, quantity: 1 }],
           settings: {
             displayMode: 'overlay',
@@ -123,8 +127,23 @@ export function useCheckout() {
             frameStyle: 'width: 100%; background-color: transparent; border: none;',
             successUrl: `${window.location.origin}/thank-you?success=true&transaction_id=${result.transactionId}`,
           },
-        });
+        };
+        
+        console.log('Opening Paddle checkout with options:', checkoutOptions);
+        
+        try {
+          window.Paddle.Checkout.open(checkoutOptions);
+          console.log('Paddle checkout opened successfully');
+        } catch (paddleError) {
+          console.error('Error opening Paddle checkout:', paddleError);
+          throw paddleError;
+        }
       } else {
+        console.error('Cannot open checkout:', {
+          paddleAvailable: !!window.Paddle,
+          priceId: result.priceId,
+          resultKeys: Object.keys(result)
+        });
         throw new Error('Paddle is not loaded or priceId missing');
       }
 
