@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { initializePaddle, Paddle } from '@paddle/paddle-js';
+import { PRODUCTS } from '@/lib/paddle';
 
 interface PaddleContextType {
   paddle: Paddle | undefined;
@@ -96,13 +97,9 @@ export function useCheckout() {
     }
 
     try {
-      // Get the price ID from environment (no API call needed)
-      const priceId = process.env.NEXT_PUBLIC_PADDLE_PRICE_ID;
+      // Use the price ID from our configuration
+      const priceId = PRODUCTS.COMPLETE_SOLUTION.id;
       
-      if (!priceId) {
-        throw new Error('Paddle price ID is not configured');
-      }
-
       console.log('Opening checkout with priceId:', priceId);
       console.log('Customer data:', customerData);
 
