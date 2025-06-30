@@ -130,22 +130,22 @@ export function useCheckout() {
           console.log('📊 Event name:', data.name);
           console.log('📋 Event data:', JSON.stringify(data, null, 2));
           
-          // Send immediate Resend email when checkout completes
-          if (data.name === 'checkout.completed') {
-            console.log('✅ Checkout completed, sending confirmation email...');
+          // ONLY send email after actual payment completion, not checkout completion
+          if (data.name === 'checkout.payment.completed' || data.name === 'payment.completed') {
+            console.log('✅ Payment actually completed, sending confirmation email...');
             console.log('📧 Customer data for email:', {
               email: customerData.email,
               name: customerData.fullName
             });
             
-            // Send confirmation email immediately
+            // Send confirmation email after payment is processed
             fetch('/api/send-confirmation', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 email: customerData.email,
                 name: customerData.fullName,
-                transactionId: data.data?.transaction_id || 'unknown'
+                transactionId: data.data?.transaction_id || data.data?.id || 'unknown'
               })
             }).then(res => {
               console.log('📮 Confirmation email API response status:', res.status);
@@ -157,23 +157,9 @@ export function useCheckout() {
             });
           }
           
-          // Also try other potential event names
-          if (data.name === 'checkout.payment.completed' || data.name === 'payment.completed') {
-            console.log('💳 Payment completed event detected, sending email...');
-            
-            fetch('/api/send-confirmation', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email: customerData.email,
-                name: customerData.fullName,
-                transactionId: data.data?.transaction_id || 'unknown'
-              })
-            }).then(res => {
-              console.log('📮 Payment email API response:', res.status);
-            }).catch(err => {
-              console.error('💥 Payment email failed:', err);
-            });
+          // Log other events for debugging but don't send emails
+          if (data.name === 'checkout.completed') {
+            console.log('ℹ️  Checkout form completed (user filled details) - NOT sending email yet');
           }
         }
       };

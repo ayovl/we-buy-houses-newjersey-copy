@@ -852,7 +852,7 @@ export default function Home() {
                     "Fully free setup included",
                     "Custom domain", 
                     "Deployed & live with blazing-fast performance",
-                    "Free hosting included"
+                    "Free hosting teir included"
                   ].map((item, index) => (
                     <li key={index} className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-purple-400 mr-3 flex-shrink-0" />
@@ -887,7 +887,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-3 text-white relative z-10">Technical Support</h3>
                 <ul className="space-y-2 flex-1 relative z-10">
                   {[
-                    "Tech support included",
+                    "1 year free Tech support",
                     "Never worry about updates or bugs again", 
                     "Updates and edits"
                   ].map((item, index) => (
