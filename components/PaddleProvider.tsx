@@ -130,36 +130,18 @@ export function useCheckout() {
           console.log('📊 Event name:', data.name);
           console.log('📋 Event data:', JSON.stringify(data, null, 2));
           
-          // ONLY send email after actual payment completion, not checkout completion
-          if (data.name === 'checkout.payment.completed' || data.name === 'payment.completed') {
-            console.log('✅ Payment actually completed, sending confirmation email...');
-            console.log('📧 Customer data for email:', {
-              email: customerData.email,
-              name: customerData.fullName
-            });
-            
-            // Send confirmation email after payment is processed
-            fetch('/api/send-confirmation', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email: customerData.email,
-                name: customerData.fullName,
-                transactionId: data.data?.transaction_id || data.data?.id || 'unknown'
-              })
-            }).then(res => {
-              console.log('📮 Confirmation email API response status:', res.status);
-              return res.json();
-            }).then(result => {
-              console.log('✅ Confirmation email API result:', result);
-            }).catch(err => {
-              console.error('💥 Failed to send confirmation email:', err);
-            });
+          // These frontend events are just for logging
+          // The actual email sending happens via webhook after payment completion
+          if (data.name === 'checkout.completed') {
+            console.log('ℹ️  Checkout form completed (user filled details) - webhook will handle email after payment');
           }
           
-          // Log other events for debugging but don't send emails
-          if (data.name === 'checkout.completed') {
-            console.log('ℹ️  Checkout form completed (user filled details) - NOT sending email yet');
+          if (data.name === 'checkout.payment.initiated') {
+            console.log('ℹ️  Payment initiated - waiting for completion event via webhook');
+          }
+          
+          if (data.name === 'checkout.payment.completed' || data.name === 'payment.completed') {
+            console.log('✅ Payment completed on frontend - webhook should receive transaction.completed event');
           }
         }
       };
@@ -172,28 +154,7 @@ export function useCheckout() {
       
       window.Paddle.Checkout.open(checkoutOptions);
       console.log('✅ Paddle checkout opened successfully');
-      
-      // TEMPORARY FIX: Send email immediately when checkout opens
-      // This ensures the customer gets the email even if events don't fire
-      console.log('🚀 Sending immediate confirmation email as backup...');
-      setTimeout(() => {
-        fetch('/api/send-confirmation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: customerData.email,
-            name: customerData.fullName,
-            transactionId: 'immediate-send'
-          })
-        }).then(res => {
-          console.log('🔥 Immediate email API response:', res.status);
-          return res.json();
-        }).then(result => {
-          console.log('🔥 Immediate email result:', result);
-        }).catch(err => {
-          console.error('🔥 Immediate email failed:', err);
-        });
-      }, 2000); // Wait 2 seconds after checkout opens
+      console.log('ℹ️  Email will be sent via webhook after payment completion')
 
       return { success: true };
     } catch (error) {

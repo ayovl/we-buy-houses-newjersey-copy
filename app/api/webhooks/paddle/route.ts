@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { paddle, PADDLE_CONFIG } from '@/lib/paddle';
+import { EventName } from '@paddle/paddle-node-sdk';
 import { Resend } from 'resend';
 import { ConfirmationEmailTemplate } from '@/components/ConfirmationEmailTemplate';
 import { render } from '@react-email/render';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Simple GET endpoint to test webhook accessibility
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'Paddle webhook endpoint is accessible',
+    timestamp: new Date().toISOString(),
+    webhookSecretConfigured: !!PADDLE_CONFIG.webhookSecret 
+  });
+}
 
 export async function POST(request: NextRequest) {
   console.log('🔔 WEBHOOK RECEIVED - Paddle webhook called');
@@ -17,7 +27,8 @@ export async function POST(request: NextRequest) {
     console.log('📝 Webhook details:', {
       hasSignature: !!signature,
       bodyLength: body.length,
-      headers: Object.fromEntries(request.headers.entries())
+      contentType: request.headers.get('content-type'),
+      userAgent: request.headers.get('user-agent')
     });
 
     if (!signature) {
@@ -25,34 +36,38 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No signature' }, { status: 400 });
     }
 
+    if (!PADDLE_CONFIG.webhookSecret) {
+      console.error('❌ Webhook secret not configured');
+      return NextResponse.json({ error: 'Webhook secret not configured' }, { status: 500 });
+    }
+
     // Verify the webhook signature
     try {
       console.log('🔐 Verifying webhook signature...');
-      // FIX: Await the unmarshal call
       const eventData = await paddle.webhooks.unmarshal(body, PADDLE_CONFIG.webhookSecret, signature);
       
       console.log('✅ Webhook verified successfully');
       console.log('📧 Received event:', eventData.eventType);
-      console.log('📊 Event data:', JSON.stringify(eventData.data, null, 2));
+      console.log('📊 Event data keys:', Object.keys(eventData.data));
 
       // Handle different event types
       switch (eventData.eventType) {
-        case 'transaction.completed':
+        case EventName.TransactionCompleted:
           console.log('💰 Processing transaction.completed event');
           await handleTransactionCompleted(eventData.data);
           break;
         
-        case 'transaction.payment_failed':
+        case EventName.TransactionPaymentFailed:
           console.log('❌ Processing transaction.payment_failed event');
           await handlePaymentFailed(eventData.data);
           break;
         
-        case 'subscription.created':
+        case EventName.SubscriptionCreated:
           console.log('🔄 Processing subscription.created event');
           await handleSubscriptionCreated(eventData.data);
           break;
         
-        case 'customer.created':
+        case EventName.CustomerCreated:
           console.log('👤 Processing customer.created event');
           await handleCustomerCreated(eventData.data);
           break;
@@ -61,14 +76,24 @@ export async function POST(request: NextRequest) {
           console.log(`❓ Unhandled event type: ${eventData.eventType}`);
       }
 
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ 
+        success: true, 
+        eventType: eventData.eventType,
+        message: 'Webhook processed successfully' 
+      });
     } catch (verificationError) {
       console.error('🚫 Webhook verification failed:', verificationError);
-      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+      return NextResponse.json({ 
+        error: 'Invalid signature',
+        details: verificationError instanceof Error ? verificationError.message : 'Unknown verification error'
+      }, { status: 401 });
     }
   } catch (error) {
     console.error('💥 Webhook processing error:', error);
-    return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Webhook processing failed',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }
 
