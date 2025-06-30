@@ -23,7 +23,7 @@ export const PRODUCTS = {
   COMPLETE_SOLUTION: {
     // PRODUCTION: Replace with your actual production price ID from Paddle dashboard
     // Go to Paddle > Catalog > Prices and copy the price ID (starts with pri_)
-    id: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID || 'pri_YOUR_PRODUCTION_PRICE_ID_HERE', 
+    id: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID || 'pri_01jyzg4g7sj0apjswqn5c6gdnq', 
     name: 'Complete Solution Package',
     price: 299700, // $2,997.00 (Paddle uses cents)
     currency: 'USD',
