@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import { PaddleProvider } from '../components/PaddleProvider';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Optimize font loading for mobile
 const inter = Inter({ 
@@ -81,6 +82,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <PaddleProvider>
           {children}
+          <SpeedInsights />
           <ScrollToTopButton />
         </PaddleProvider>
       </body>
