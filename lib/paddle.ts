@@ -21,7 +21,9 @@ export const PADDLE_CONFIG = {
 // Product configuration - you'll need to create these in your Paddle dashboard
 export const PRODUCTS = {
   COMPLETE_SOLUTION: {
-    id: 'pri_01jyzg4g7sj0apjswqn5c6gdnq', // Replace with your actual Paddle product price ID
+    // IMPORTANT: Replace this with your actual price ID from Paddle dashboard
+    // Go to Paddle > Catalog > Prices and copy the price ID (starts with pri_)
+    id: 'pri_01jyzg4g7sj0apjswqn5c6gdnq', 
     name: 'Complete Solution Package',
     price: 299700, // $2,997.00 (Paddle uses cents)
     currency: 'USD',

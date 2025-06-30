@@ -13,11 +13,15 @@ const checkoutSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    console.log('=== Checkout API Called ===');
+    
     const body = await req.json();
+    console.log('Request body:', body);
 
     const validation = checkoutSchema.safeParse(body);
 
     if (!validation.success) {
+      console.log('Validation failed:', validation.error.flatten().fieldErrors);
       return NextResponse.json(
         {
           success: false,
@@ -30,6 +34,13 @@ export async function POST(req: NextRequest) {
 
     const { fullName, email, requests, company, phone } = validation.data;
 
+    // Check environment variables
+    console.log('Environment check:', {
+      hasApiKey: !!process.env.PADDLE_API_KEY,
+      environment: process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT,
+      priceId: PRODUCTS.COMPLETE_SOLUTION.id
+    });
+
     // Prepare customer metadata for Paddle
     const customerData: CustomerMetadata = {
       email,
@@ -40,14 +51,27 @@ export async function POST(req: NextRequest) {
     };
 
     try {
+      // Check if Paddle is properly configured
+      if (!process.env.PADDLE_API_KEY) {
+        console.error('PADDLE_API_KEY is not set');
+        return NextResponse.json(
+          { success: false, error: 'Payment service not configured' },
+          { status: 500 }
+        );
+      }
+
+      console.log('Creating Paddle customer...', { email, name: fullName });
+      
       // 1. Create or fetch the Paddle customer
       const customer = await paddle.customers.create({
         email,
         name: fullName,
       });
 
+      console.log('Customer created:', customer.id);
+
       // 2. Create a Paddle transaction (one-time checkout)
-      const transaction = await paddle.transactions.create({
+      const transactionData = {
         items: [
           {
             priceId: PRODUCTS.COMPLETE_SOLUTION.id,
@@ -60,8 +84,13 @@ export async function POST(req: NextRequest) {
           phone: phone || '',
           projectDetails: requests || '',
         },
-        // Optionally add successUrl, cancelUrl, etc.
-      });
+      };
+      
+      console.log('Creating transaction with data:', transactionData);
+      
+      const transaction = await paddle.transactions.create(transactionData);
+
+      console.log('Transaction created:', transaction.id);
       
       // 3. Return the transaction info (including priceId for Paddle overlay)
       return NextResponse.json({
@@ -72,35 +101,40 @@ export async function POST(req: NextRequest) {
       });
       
     } catch (paddleError: any) {
-      console.error('Paddle checkout creation error:', paddleError);
+      console.error('=== Paddle Error Details ===');
+      console.error('Full error object:', paddleError);
+      console.error('Error message:', paddleError.message);
+      console.error('Error code:', paddleError.code);
       
-      // Handle specific Paddle errors
-      if (paddleError.code === 'invalid_field') {
-        return NextResponse.json(
-          { success: false, error: 'Invalid checkout data provided' },
-          { status: 400 }
-        );
+      if (paddleError.response) {
+        console.error('Response status:', paddleError.response.status);
+        console.error('Response data:', paddleError.response.data);
       }
       
-      if (paddleError.code === 'authentication_failed') {
-        return NextResponse.json(
-          { success: false, error: 'Payment service authentication failed' },
-          { status: 500 }
-        );
-      }
+      // Return more specific error information
+      const errorMessage = paddleError.message || 'Unknown Paddle error';
+      const errorCode = paddleError.code || 'unknown_error';
       
       return NextResponse.json(
-        { success: false, error: 'Failed to create checkout session. Please try again.' },
+        { 
+          success: false, 
+          error: `Paddle API error: ${errorMessage}`,
+          code: errorCode,
+          details: paddleError.response?.data || null
+        },
         { status: 500 }
       );
     }
 
   } catch (error) {
-    console.error('Checkout API error:', error);
+    console.error('=== General Checkout Error ===');
+    console.error('Error:', error);
+    
     let errorMessage = 'Internal server error';
     if (error instanceof Error) {
       errorMessage = error.message;
     }
+    
     return NextResponse.json(
       { success: false, error: errorMessage },
       { status: 500 }
