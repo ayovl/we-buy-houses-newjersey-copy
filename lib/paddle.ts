@@ -1,6 +1,6 @@
 import { Environment, Paddle } from '@paddle/paddle-node-sdk';
 
-// Initialize Paddle with sandbox credentials
+// Initialize Paddle with production credentials
 export const paddle = new Paddle(
   process.env.PADDLE_API_KEY || '',
   {
@@ -12,7 +12,7 @@ export const paddle = new Paddle(
 
 // Paddle configuration constants
 export const PADDLE_CONFIG = {
-  environment: process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT || 'sandbox',
+  environment: process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT || 'production',
   clientToken: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN || '',
   webhookSecret: process.env.PADDLE_WEBHOOK_SECRET || '',
   domain: process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000',

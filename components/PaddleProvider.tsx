@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { initializePaddle, Paddle } from '@paddle/paddle-js';
 import { PRODUCTS } from '@/lib/paddle';
+import toast from 'react-hot-toast';
 
 interface PaddleContextType {
   paddle: Paddle | undefined;
@@ -28,9 +29,15 @@ export function PaddleProvider({ children }: PaddleProviderProps) {
   useEffect(() => {
     const initPaddle = async () => {
       try {
-        // Get environment from your config
-        const environment = process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT || 'sandbox';
+        // Get environment from your config - default to production
+        const environment = process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT || 'production';
         const clientToken = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
+
+        // Debug logging to verify environment (remove in production)
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🔧 Paddle Environment:', environment);
+          console.log('🔑 Client Token (first 10 chars):', clientToken?.substring(0, 10));
+        }
 
         if (!clientToken) {
           throw new Error('Paddle client token is not configured');
@@ -52,7 +59,9 @@ export function PaddleProvider({ children }: PaddleProviderProps) {
         if (paddleInstance) {
           setPaddle(paddleInstance);
           setIsLoaded(true);
-          console.log('Paddle initialized successfully');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Paddle initialized successfully');
+          }
         } else {
           throw new Error('Failed to initialize Paddle');
         }
@@ -60,6 +69,8 @@ export function PaddleProvider({ children }: PaddleProviderProps) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
         setError(errorMessage);
         console.error('Paddle initialization error:', errorMessage);
+        // Toast notification for initialization errors
+        toast.error('Payment system failed to load. Please refresh the page and try again.');
       }
     };
 
@@ -144,7 +155,7 @@ export function useCheckout() {
       
       window.Paddle.Checkout.open(checkoutOptions);
       console.log('✅ Paddle checkout opened successfully');
-      console.log('ℹ️  Email will be sent via webhook after payment completion')
+      console.log('ℹ️  Email will be sent via webhook after payment completion');
 
       return { success: true };
     } catch (error) {
