@@ -90,6 +90,7 @@ export default function Home() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [contactFormContext, setContactFormContext] = useState<'contact' | 'website'>('contact');
   const [showNavBackground, setShowNavBackground] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [viewportHeight, setViewportHeight] = useState('100vh');
@@ -642,7 +643,7 @@ export default function Home() {
         {/* Seamless background blending - flows from testimonials above and into meeting section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-1 sm:px-2 md:px-6 lg:px-10">          <motion.div
-            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-16 rounded-2xl lg:rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
+            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-5 rounded-2xl lg:rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -958,57 +959,7 @@ export default function Home() {
                 ))}
               </motion.div>
             </div>            {/* Professional Contact Section */}
-            <motion.div 
-              className="mb-6 mx-0 px-4 py-3 bg-gradient-to-r from-slate-900/95 via-slate-800/90 to-slate-900/95 border border-slate-500/30 rounded-2xl shadow-2xl backdrop-blur-lg relative overflow-hidden group"
-              initial={fadeInUp.initial}
-              animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
-              transition={{ ...fadeInUp.transition, delay: 0.3 }}
-            >
-              {/* Enhanced background effects */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(56,189,248,0.1),transparent)] opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-              
-              {/* Content */}
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4 relative z-10">
-                {/* Left side: Professional discussion text */}
-                <div className="text-center md:text-left flex-1">
-                  <h3 className="text-base font-semibold text-white">
-                    Want to discuss first?
-                  </h3>
-                  {/* <p className="text-slate-300 text-sm opacity-90">
-                    Let's connect and bring your vision to life
-                  </p> */}
-                </div>
-                
-                {/* Right side: Professional action buttons */}
-                <div className="flex flex-row items-center justify-center sm:justify-end gap-2 flex-shrink-0">
-                  <motion.button 
-                    aria-label="Schedule a Call"
-                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-blue-600/80 to-blue-700/80 hover:from-blue-500/90 hover:to-blue-600/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-blue-400/30 hover:border-blue-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20 will-change-transform backdrop-blur-sm w-auto"
-                    whileHover={{ y: -2, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Phone className="w-5 h-5 sm:w-4 sm:h-4 text-blue-200 group-hover:text-blue-100 transition-colors duration-200 relative z-10" strokeWidth={2} />
-                    <span className="font-semibold text-sm relative z-10 hidden sm:inline">Schedule Call</span>
-                  </motion.button>
-                    <span className="text-slate-400 text-xs font-medium mx-1 sm:my-0">or</span>
-                    <motion.button 
-                    aria-label="Send an Email"
-                    onClick={() => setIsContactFormOpen(true)}
-                    className="group relative flex items-center justify-center sm:justify-start sm:space-x-2 text-white bg-gradient-to-r from-slate-700/80 to-slate-800/80 hover:from-slate-600/90 hover:to-slate-700/90 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-slate-400/30 hover:border-slate-300/50 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-slate-500/20 will-change-transform backdrop-blur-sm w-auto"
-                    whileHover={{ y: -2, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-400/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Mail className="w-5 h-5 sm:w-4 sm:h-4 text-slate-300 group-hover:text-slate-200 transition-colors duration-200 relative z-10" strokeWidth={2} />
-                    <span className="font-semibold text-sm relative z-10 hidden sm:inline">Send Email</span>
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>{/* Refined Pricing & CTA Section */}
+            {/* Removed entire discuss section <motion.div> to avoid empty/weird leftover section */}
             <div className="space-y-6 relative z-10">
               {/* Refined Pricing & Guarantee Row */}
               <motion.div 
@@ -1067,39 +1018,40 @@ export default function Home() {
                 initial={fadeInUp.initial}
                 animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
                 transition={{ ...fadeInUp.transition, delay: 0.5 }}
-              >                <motion.button
-                  onClick={() => setIsModalOpen(true)}
-                  className="group relative bg-gradient-to-r from-[hsl(267,75%,56%)] to-[hsl(267,75%,66%)] hover:from-[hsl(267,75%,66%)] hover:to-[hsl(267,75%,76%)] text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-12 lg:py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-[hsl(267,75%,56%)]/50 w-full max-w-sm shadow-lg will-change-transform overflow-hidden"
+              >
+                <motion.button
+                  className="group relative bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-purple-500/30 w-full max-w-xs shadow-lg will-change-transform overflow-hidden"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.15 }}
+                  onClick={() => {
+                    window.open('https://calendly.com/arsalmaab/30min', '_blank');
+                  }}
                 >
                   {/* Subtle shimmer effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                   
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Get Now
+                    Schedule a Call
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </motion.button>
 
-                <motion.div 
-                  className="flex items-center space-x-2 text-xs text-gray-400"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.7, duration: 0.6 }}
+                <motion.button
+                  className="group relative bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-blue-500/30 w-full max-w-xs shadow-lg will-change-transform overflow-hidden"
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.15 }}
+                  onClick={() => {
+                    setContactFormContext('website');
+                    setIsContactFormOpen(true);
+                  }}
                 >
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="font-medium">4-day delivery • Tech support included</span>
-                </motion.div>
-
-                <motion.button 
-                  onClick={() => scrollToSection('problem')}
-                  className="group text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center space-x-2 transition-all duration-200 hover:scale-105 py-3 px-4 rounded-xl hover:bg-white/5 will-change-transform"
-                  whileHover={{ y: -1 }}
-                  transition={{ duration: 0.12 }}
-                >
-                  <span>Why do you need this website?</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+                  {/* Subtle shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                  
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Email Now
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
                 </motion.button>
               </motion.div>            </div>
           </motion.div>
@@ -1155,7 +1107,10 @@ export default function Home() {
                 {/* Email Now Button */}
                 <motion.button 
                   ref={emailButtonRef}
-                  onClick={() => setIsContactFormOpen(true)}
+                  onClick={() => {
+                    setContactFormContext('contact');
+                    setIsContactFormOpen(true);
+                  }}
                   className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -1510,6 +1465,11 @@ export default function Home() {
         isOpen={isContactFormOpen} 
         onClose={() => setIsContactFormOpen(false)} 
         triggerRef={scheduleCallButtonRef}
+        title={contactFormContext === 'website' ? 'Get Your Website Now' : 'Get in Touch'}
+        subtitle={contactFormContext === 'website' ? 'Tell us about your business and get a stunning website in just 4 days' : 'Ready to start your project? Let\'s discuss your needs.'}
+        messagePlaceholder={contactFormContext === 'website' ? 'Tell us about your business, target audience, and any specific features you need...' : 'Tell us about your project...'}
+        messageLabel={contactFormContext === 'website' ? 'About Your Business' : 'Message'}
+        messageOptional={contactFormContext === 'website'}
       />
     </div>
   );

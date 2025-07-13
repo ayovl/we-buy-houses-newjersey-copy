@@ -10,18 +10,43 @@ interface ContactFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   triggerRef?: React.RefObject<HTMLElement>;
+  title?: string;
+  subtitle?: string;
+  messagePlaceholder?: string;
+  messageLabel?: string;
+  messageOptional?: boolean;
 }
 
-// Validation schema
-const contactSchema = z.object({
+// Base validation schema
+const baseContactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
   email: z.string().email('Invalid email address'),
-  message: z.string().min(10, 'Message must be at least 10 characters').max(1000, 'Message is too long'),
 });
 
-type ContactFormData = z.infer<typeof contactSchema>;
+const createContactSchema = (messageOptional: boolean) => {
+  return baseContactSchema.extend({
+    message: messageOptional 
+      ? z.string().max(1000, 'Message is too long').optional().default('')
+      : z.string().min(10, 'Message must be at least 10 characters').max(1000, 'Message is too long'),
+  });
+};
 
-const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, triggerRef }) => {
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const ContactFormModal: React.FC<ContactFormModalProps> = ({ 
+  isOpen, 
+  onClose, 
+  triggerRef,
+  title = "Get in Touch",
+  subtitle = "Let's discuss your project",
+  messagePlaceholder = "Tell me about your project or how I can help you...",
+  messageLabel = "Message",
+  messageOptional = false
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -49,7 +74,8 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
 
   const validateForm = (): boolean => {
     try {
-      contactSchema.parse(formData);
+      const schema = createContactSchema(messageOptional);
+      schema.parse(formData);
       setErrors({});
       return true;
     } catch (error) {
@@ -154,8 +180,8 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
                     <Mail className="w-5 h-5 text-purple-300" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold text-white">Get in Touch</h2>
-                    <p className="text-sm text-gray-300">Let&apos;s discuss your project</p>
+                    <h2 className="text-xl font-semibold text-white">{title}</h2>
+                    <p className="text-sm text-gray-300">{subtitle}</p>
                   </div>
                 </div>                <button
                   onClick={handleClose}
@@ -229,7 +255,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                         <MessageSquare className="inline w-4 h-4 mr-2 text-purple-400" />
-                        Message
+                        {messageLabel}{messageOptional && " (Optional)"}
                       </label>
                       <textarea
                         id="message"
@@ -239,7 +265,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose, tr
                         className={`w-full px-4 py-3 bg-white/5 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 resize-none text-white placeholder-gray-400 backdrop-blur-sm ${
                           errors.message ? 'border-red-400/50' : 'border-white/20'
                         }`}
-                        placeholder="Tell me about your project or how I can help you..."
+                        placeholder={messagePlaceholder}
                         disabled={isSubmitting}
                       />
                       {errors.message && (
