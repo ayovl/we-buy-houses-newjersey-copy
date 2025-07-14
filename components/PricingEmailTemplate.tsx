@@ -224,8 +224,8 @@ export const PricingEmailTemplate: React.FC<PricingEmailTemplateProps> = ({
               margin: '0',
             }}
           >
-            • This lead came from your pricing section - they're interested in your website service<br/>
-            • They've already seen your pitch deck and sales copy<br/>
+            • This lead came from your pricing section - they&apos;re interested in your website service<br/>
+            • They&apos;ve already seen your pitch deck and sales copy<br/>
             • Priority: HIGH - Respond within 24 hours for best conversion<br/>
             • Suggested follow-up: Schedule a discovery call to discuss their needs
           </Text>

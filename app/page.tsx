@@ -1,13 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
-import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import OptimizedImage from '../components/OptimizedImage';
-import LazyLoad from '../components/LazyLoad';
-import MobileMotion from '../components/MobileMotion';
 import ViewportOptimizer from '../components/ViewportOptimizer';
 import ContactFormModal from '../components/ContactFormModal';
 import { usePerformanceMonitoring, useDeviceOptimization } from '../hooks/usePerformance';
@@ -21,10 +17,9 @@ import {
   ArrowRight,
   X,
   Gift,
-  Palette,
-  Type,
-  FileText,  Phone,
-  Mail,  Copy,
+  Phone,
+  Mail,
+  Copy,
   ChevronDown,
   Menu,
   AlertTriangle,
@@ -643,7 +638,7 @@ export default function Home() {
         {/* Seamless background blending - flows from testimonials above and into meeting section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/6 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/4 to-pink-900/6"></div>        <div className="max-w-7xl mx-auto relative z-10 px-1 sm:px-2 md:px-6 lg:px-10">          <motion.div
-            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-5 rounded-2xl lg:rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
+            className="bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-gray-900/90 backdrop-blur-sm border border-slate-400/40 shadow-xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-12 lg:py-16 rounded-2xl lg:rounded-3xl relative overflow-hidden max-w-5xl mx-auto"
             initial={fadeInUp.initial}
             animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
@@ -665,12 +660,12 @@ export default function Home() {
               >
                 Fully Branded, Conversion-Optimized Website<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-semibold"> That Drive Results</span>
               </motion.p>
-            </div>{/* Enhanced Features Grid */}
+            </div>            {/* Enhanced Features Grid */}
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 relative z-10"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 relative z-10 pt-4 pb-4"
               initial={staggerContainer.initial}
               animate={pricingInView ? staggerContainer.animate : staggerContainer.initial}
-            >              {/* Feature Card 1: Website Design & Development */}
+            >{/* Feature Card 1: Website Design & Development */}
               <motion.div 
                 className="group relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/25 p-4 sm:p-6 rounded-xl flex flex-col shadow-lg overflow-hidden will-change-transform min-h-[16rem]"
                 variants={staggerChild}
