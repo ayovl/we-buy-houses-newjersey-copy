@@ -9,4 +9,5 @@
 - Avoid unnecessary complexity or heavy operations.
 
 **This is the most important requirement for all development work.**
-2. After every change make sure to add the changes and then make a commit with a meaningful message about the changes you made.
+2. After every change make sure to add all changes with git "add ." and commit with a meaningful message about the changes you made. but don't push them
+

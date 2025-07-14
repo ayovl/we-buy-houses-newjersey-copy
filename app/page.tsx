@@ -994,7 +994,7 @@ export default function Home() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.15 }}
                   >
-                    $3,500
+                    $1,950
                   </motion.span>
                   <span className="text-lg text-gray-300 font-medium">USD</span>
                 </div>
