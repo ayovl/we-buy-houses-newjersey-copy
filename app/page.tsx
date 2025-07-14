@@ -1053,7 +1053,35 @@ export default function Home() {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </motion.button>
-              </motion.div>            </div>
+              </motion.div>
+
+              {/* 4-day delivery and tech support */}
+              <motion.div 
+                className="flex items-center justify-center gap-2 mt-6 mb-4"
+                initial={fadeInUp.initial}
+                animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.6 }}
+              >
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-xs text-slate-400">4-day delivery • Tech support included</span>
+              </motion.div>
+
+              {/* Why do you need this website button */}
+              <motion.div 
+                className="flex justify-center mt-4"
+                initial={fadeInUp.initial}
+                animate={pricingInView ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.7 }}
+              >
+                <button
+                  onClick={() => scrollToSection('problem')}
+                  className="group flex items-center gap-2 text-gray-300 hover:text-white text-sm transition-colors duration-300"
+                >
+                  <span>Why do you need this website?</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>      {/* Have a question? Reach out Section */}
