@@ -138,7 +138,7 @@ export default function PricingPage() {
               {/* Pricing */}
               <motion.div variants={fadeInUp} className="text-center mb-12">
                 <div className="flex items-center justify-center mb-4">
-                  <span className="text-6xl md:text-7xl font-bold text-white">$2,997</span>
+                  <span className="text-6xl md:text-7xl font-bold text-white">$1999</span>
                   <span className="text-gray-400 text-xl ml-2">/project</span>
                 </div>
                 <div className="flex items-center justify-center space-x-4 text-sm text-gray-400">

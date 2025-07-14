@@ -12,4 +12,6 @@
 2. After every change make sure to add all changes with git "add ." and commit with a meaningful, detailed message about the changes you made to my local repo. Make sure the message is abit descriptive and detailed. not too  long though.
 **You must not push the changes to remote rep this is very important**
 
+3. You must never switch the model to Gemini 2.5 flash. Always use Gemini 2.5 pro
+
 
