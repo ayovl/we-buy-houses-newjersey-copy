@@ -130,7 +130,7 @@ export default function PricingPage() {
                 <motion.p 
                   variants={fadeInUp}
                   className="text-gray-300 text-lg max-w-2xl mx-auto"
-                >
+                > 
                   Everything you need for professional pitch decks that win deals and secure funding
                 </motion.p>
               </div>
