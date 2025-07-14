@@ -62,7 +62,7 @@ export const ContactEmailTemplate: React.FC<ContactEmailTemplateProps> = ({
             textAlign: 'center',
           }}
         >
-          📩 New Contact Form Submission
+          📩 General Contact Form Submission
         </Heading>
         
         <Hr style={{ margin: '24px 0', borderColor: '#e2e8f0' }} />
@@ -119,32 +119,34 @@ export const ContactEmailTemplate: React.FC<ContactEmailTemplateProps> = ({
           </Text>
         </Row>
         
-        <Row>
-          <Text
-            style={{
-              fontSize: '16px',
-              color: '#374151',
-              fontWeight: '600',
-              marginBottom: '8px',
-            }}
-          >
-            💬 Message:
-          </Text>
-          <Text
-            style={{
-              fontSize: '16px',
-              color: '#1f2937',
-              lineHeight: '1.6',
-              backgroundColor: '#f1f5f9',
-              padding: '16px',
-              borderRadius: '8px',
-              border: '1px solid #e2e8f0',
-              whiteSpace: 'pre-wrap',
-            }}
-          >
-            {message}
-          </Text>
-        </Row>
+        {message && message.trim() && (
+          <Row>
+            <Text
+              style={{
+                fontSize: '16px',
+                color: '#374151',
+                fontWeight: '600',
+                marginBottom: '8px',
+              }}
+            >
+              💬 Message:
+            </Text>
+            <Text
+              style={{
+                fontSize: '16px',
+                color: '#1f2937',
+                lineHeight: '1.6',
+                backgroundColor: '#f1f5f9',
+                padding: '16px',
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0',
+                whiteSpace: 'pre-wrap',
+              }}
+            >
+              {message}
+            </Text>
+          </Row>
+        )}
         
         <Hr style={{ margin: '32px 0', borderColor: '#e2e8f0' }} />
         
@@ -156,7 +158,7 @@ export const ContactEmailTemplate: React.FC<ContactEmailTemplateProps> = ({
             fontStyle: 'italic',
           }}
         >
-          This email was sent from your website&apos;s contact form
+          📋 General inquiry from your website&apos;s contact form
         </Text>
       </Section>
       

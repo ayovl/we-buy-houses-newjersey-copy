@@ -15,6 +15,7 @@ interface ContactFormModalProps {
   messagePlaceholder?: string;
   messageLabel?: string;
   messageOptional?: boolean;
+  source?: 'contact' | 'pricing';
 }
 
 // Base validation schema
@@ -45,7 +46,8 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
   subtitle = "Let's discuss your project",
   messagePlaceholder = "Tell me about your project or how I can help you...",
   messageLabel = "Message",
-  messageOptional = false
+  messageOptional = false,
+  source = 'contact'
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -104,7 +106,10 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          source: source
+        }),
       });
 
       const result = await response.json();
@@ -176,8 +181,10 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
               {/* Header */}
               <div className="relative z-10 flex items-center justify-between p-6 border-b border-white/10">
                 <div className="flex items-center space-x-3">
-                  <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-400/30 backdrop-blur-sm">
-                    <Mail className="w-5 h-5 text-purple-300" />
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-400/30 backdrop-blur-sm flex items-center justify-center">
+                      <Mail className="w-5 h-5 text-purple-300" strokeWidth={2} />
+                    </div>
                   </div>
                   <div>
                     <h2 className="text-xl font-semibold text-white">{title}</h2>

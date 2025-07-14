@@ -442,7 +442,7 @@ export default function Home() {
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            A Professionally Designed Website <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Delivers Results</span>
+            Why do you need a  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">better website?</span>
           </motion.h2>
 
           <motion.div
@@ -458,11 +458,11 @@ export default function Home() {
                 proofLink: "https://www.uncommonlogic.com/case-studies/cro-240-increase-conversion-rate/"
               },
               { 
-                stat: "75%", 
-                title: "Appear Trust Worthy", 
-                description: "75% of users judge credibility based on website design and visual appeal",
-                icon: Shield,
-                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
+                stat: "132%", 
+                title: "Revenue Increase", 
+                description: "Well-designed websites can boost revenue by 132% through better user experience",
+                icon: DollarSign,
+                proofLink: "https://thegood.com/results/swissgear/"
               },
               { 
                 stat: "94%", 
@@ -472,11 +472,11 @@ export default function Home() {
                 proofLink: "https://cxl.com/blog/first-impressions-matter-the-importance-of-great-visual-design/#h-first-impressions-are-94-design-related"
               },
               { 
-                stat: "132%", 
-                title: "Revenue Increase", 
-                description: "Well-designed websites can boost revenue by 132% through better user experience",
-                icon: DollarSign,
-                proofLink: "https://thegood.com/results/swissgear/"
+                stat: "75%", 
+                title: "Appear Trust Worthy", 
+                description: "75% of users judge credibility based on website design and visual appeal",
+                icon: Shield,
+                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
               }
             ].map((item, index) => (<motion.div
                 key={index}
@@ -1466,10 +1466,11 @@ export default function Home() {
         onClose={() => setIsContactFormOpen(false)} 
         triggerRef={scheduleCallButtonRef}
         title={contactFormContext === 'website' ? 'Get Your Website Now' : 'Get in Touch'}
-        subtitle={contactFormContext === 'website' ? 'Tell us about your business and get a stunning website in just 4 days' : 'Ready to start your project? Let\'s discuss your needs.'}
-        messagePlaceholder={contactFormContext === 'website' ? 'Tell us about your business, target audience, and any specific features you need...' : 'Tell us about your project...'}
-        messageLabel={contactFormContext === 'website' ? 'About Your Business' : 'Message'}
+        subtitle={contactFormContext === 'website' ? 'Please provide the correct email address, I will follow up with you shortly.' : 'Feel free to reach out with any questions or requests.'}
+        messagePlaceholder={contactFormContext === 'website' ? 'Any changes or requests?' : 'How can I help you?'}
+        messageLabel={contactFormContext === 'website' ? 'Changes Request' : 'Message'}
         messageOptional={contactFormContext === 'website'}
+        source={contactFormContext === 'website' ? 'pricing' : 'contact'}
       />
     </div>
   );
