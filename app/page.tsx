@@ -436,11 +436,11 @@ export default function Home() {
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            A Professionally Designed Website <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Delivers Results</span>
+            Why Do You Need a <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Better Website?</span>
           </motion.h2>
 
           <motion.div
-            className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto"
+            className="grid md:grid-cols-2 md:grid-rows-2 gap-6 lg:gap-8 max-w-6xl mx-auto"
             initial={staggerContainer.initial}
             animate={solutionInView ? staggerContainer.animate : staggerContainer.initial}
           >            {[
@@ -452,11 +452,11 @@ export default function Home() {
                 proofLink: "https://www.uncommonlogic.com/case-studies/cro-240-increase-conversion-rate/"
               },
               { 
-                stat: "75%", 
-                title: "Appear Trust Worthy", 
-                description: "75% of users judge credibility based on website design and visual appeal",
-                icon: Shield,
-                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
+                stat: "132%", 
+                title: "Revenue Increase", 
+                description: "Well-designed websites can boost revenue by 132% through better user experience",
+                icon: DollarSign,
+                proofLink: "https://thegood.com/results/swissgear/"
               },
               { 
                 stat: "94%", 
@@ -466,21 +466,21 @@ export default function Home() {
                 proofLink: "https://cxl.com/blog/first-impressions-matter-the-importance-of-great-visual-design/#h-first-impressions-are-94-design-related"
               },
               { 
-                stat: "132%", 
-                title: "Revenue Increase", 
-                description: "Well-designed websites can boost revenue by 132% through better user experience",
-                icon: DollarSign,
-                proofLink: "https://thegood.com/results/swissgear/"
+                stat: "75%", 
+                title: "Appear Trust Worthy", 
+                description: "75% of users judge credibility based on website design and visual appeal",
+                icon: Shield,
+                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
               }
             ].map((item, index) => (<motion.div
                 key={index}
                 className="relative group"
                 variants={staggerChild}
               >                {/* Premium solution card with enhanced backdrop and refined animations */}
-                <div className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-md border border-white/30 p-7 rounded-xl text-center hover:border-purple-400/50 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group">
+                <div className="bg-gradient-to-br from-white/15 to-white/8 backdrop-blur-md border border-white/30 p-7 rounded-xl text-center hover:border-purple-400/50 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group h-full flex flex-col">
                   {/* Subtle diagonal background pattern - matching problem cards style */}
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-60"></div>{/* Content container */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col flex-1">
                     {/* Enhanced statistics badge with fixed size */}
                     <div className="absolute -top-3 -right-3 w-16 h-8 bg-gradient-to-r from-purple-500/15 via-white/10 to-pink-500/15 border border-purple-400/40 rounded-full text-xs font-medium text-white backdrop-blur-md group-hover:bg-gradient-to-r group-hover:from-purple-500/25 group-hover:via-white/15 group-hover:to-pink-500/25 group-hover:border-purple-400/60 group-hover:shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300 flex items-center justify-center select-none touch-manipulation" style={{WebkitTapHighlightColor: 'transparent', WebkitTouchCallout: 'none', WebkitUserSelect: 'none'}}>
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-white font-semibold pointer-events-none">
@@ -500,6 +500,7 @@ export default function Home() {
                     
                     {/* Enhanced description */}
                     <p className="text-gray-200 text-sm leading-relaxed mb-6 group-hover:text-gray-100 transition-colors duration-300">{item.description}</p>                    {/* Clean text-only See Proof button */}
+                    <div className="mt-auto">
                     {item.proofLink && (
                       <a 
                         href={item.proofLink} 
@@ -513,6 +514,7 @@ export default function Home() {
                         </svg>
                       </a>
                     )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -1071,7 +1073,7 @@ export default function Home() {
                   onClick={() => scrollToSection('problem')}
                   className="group flex items-center gap-2 text-gray-300 hover:text-white text-sm transition-colors duration-300"
                 >
-                  <span>Why do you need this website?</span>
+                  <span>Why do you need a better website?</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </motion.div>
