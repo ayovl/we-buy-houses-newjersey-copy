@@ -442,7 +442,7 @@ export default function Home() {
             animate={solutionInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}
           >
-            Why do you need a  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">better website?</span>
+            A Professionally Designed Website <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Delivers Results</span>
           </motion.h2>
 
           <motion.div
@@ -458,11 +458,11 @@ export default function Home() {
                 proofLink: "https://www.uncommonlogic.com/case-studies/cro-240-increase-conversion-rate/"
               },
               { 
-                stat: "132%", 
-                title: "Revenue Increase", 
-                description: "Well-designed websites can boost revenue by 132% through better user experience",
-                icon: DollarSign,
-                proofLink: "https://thegood.com/results/swissgear/"
+                stat: "75%", 
+                title: "Appear Trust Worthy", 
+                description: "75% of users judge credibility based on website design and visual appeal",
+                icon: Shield,
+                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
               },
               { 
                 stat: "94%", 
@@ -472,11 +472,11 @@ export default function Home() {
                 proofLink: "https://cxl.com/blog/first-impressions-matter-the-importance-of-great-visual-design/#h-first-impressions-are-94-design-related"
               },
               { 
-                stat: "75%", 
-                title: "Appear Trust Worthy", 
-                description: "75% of users judge credibility based on website design and visual appeal",
-                icon: Shield,
-                proofLink: "https://rareformnewmedia.com/credibility-in-web-design/"
+                stat: "132%", 
+                title: "Revenue Increase", 
+                description: "Well-designed websites can boost revenue by 132% through better user experience",
+                icon: DollarSign,
+                proofLink: "https://thegood.com/results/swissgear/"
               }
             ].map((item, index) => (<motion.div
                 key={index}
