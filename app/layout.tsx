@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ScrollToTopButton from '../components/ScrollToTopButton';
-import { PaddleProvider } from '../components/PaddleProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Optimize font loading for mobile
@@ -87,11 +86,9 @@ export default function RootLayout({
         )}
       </head>
       <body className={inter.className}>
-        <PaddleProvider>
-          {children}
-          <SpeedInsights />
-          <ScrollToTopButton />
-        </PaddleProvider>
+        {children}
+        <SpeedInsights />
+        <ScrollToTopButton />
       </body>
     </html>
   );

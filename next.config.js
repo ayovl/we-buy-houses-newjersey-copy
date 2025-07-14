@@ -5,8 +5,6 @@ const nextConfig = {
   },
   // Environment variables for client-side
   env: {
-    NEXT_PUBLIC_PADDLE_ENVIRONMENT: process.env.PADDLE_ENVIRONMENT,
-    NEXT_PUBLIC_PADDLE_CLIENT_TOKEN: process.env.PADDLE_CLIENT_TOKEN,
     NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
   },
   // Enable image optimization for better mobile performance

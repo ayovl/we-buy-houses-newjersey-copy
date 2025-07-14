@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useCheckout } from '../../components/PaddleProvider';
 import { 
   CheckCircle,
   Star,
@@ -25,9 +24,6 @@ export default function PricingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Initialize Paddle checkout
-  const { openCheckout, isLoaded: paddleLoaded } = useCheckout();
-
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -46,24 +42,34 @@ export default function PricingPage() {
   };
 
   const handleGetStarted = async () => {
-    if (!paddleLoaded) {
-      setError('Payment system is loading. Please wait...');
-      return;
-    }
-
     setIsSubmitting(true);
     setError(null);
 
     try {
-      await openCheckout({
-        fullName: formData.fullName || 'Customer',
-        email: formData.email || '',
-        requests: formData.requests || 'Started from pricing page',
-        company: formData.company || '',
-        phone: '',
+      // Submit contact form for getting started
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName || 'Customer',
+          email: formData.email || '',
+          requests: formData.requests || 'Started from pricing page',
+          company: formData.company || '',
+          source: 'pricing'
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit request');
+      }
+
+      // Show success message or redirect
+      console.log('Request submitted successfully');
+      
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to open checkout');
+      setError(err instanceof Error ? err.message : 'Failed to submit request');
     } finally {
       setIsSubmitting(false);
     }

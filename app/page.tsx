@@ -7,7 +7,6 @@ import OptimizedImage from '../components/OptimizedImage';
 import ViewportOptimizer from '../components/ViewportOptimizer';
 import ContactFormModal from '../components/ContactFormModal';
 import { usePerformanceMonitoring, useDeviceOptimization } from '../hooks/usePerformance';
-import { useCheckout } from '../components/PaddleProvider';
 import { 
   Shield, 
   Award, 
@@ -105,9 +104,6 @@ export default function Home() {
   usePerformanceMonitoring();
   useDeviceOptimization();
 
-  // Initialize Paddle checkout
-  const { openCheckout, isLoaded: paddleLoaded } = useCheckout();
-
   // Memoized device detection for better performance
   const isIOSDevice = useMemo(() => {
     if (typeof window === 'undefined') return false;
@@ -194,7 +190,7 @@ export default function Home() {
     }));
   }, []);
 
-  // Memoized submit handler with Paddle integration
+  // Memoized submit handler
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -207,35 +203,38 @@ export default function Home() {
         return;
       }
 
-      // Check if Paddle is loaded
-      if (!paddleLoaded) {
-        setSubmissionError('Payment system is loading. Please wait a moment and try again.');
-        return;
-      }
-
-      // Open Paddle checkout
-      await openCheckout({
-        fullName: formData.fullName,
-        email: formData.email,
-        requests: formData.requests,
-        company: '', // Could add company field if needed
-        phone: '', // Could add phone field if needed
+      // Submit contact form (you can implement your own contact form logic here)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          requests: formData.requests,
+        }),
       });
 
-      // Don't redirect here - Paddle will handle the flow
-      console.log('Paddle checkout opened successfully');
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      // Reset form and show success message
+      setFormData({ fullName: '', email: '', requests: '' });
+      console.log('Form submitted successfully');
 
     } catch (error) {
-      console.error('Checkout error:', error);
+      console.error('Form submission error:', error);
       setSubmissionError(
         error instanceof Error 
           ? error.message 
-          : 'Failed to open checkout. Please try again.'
+          : 'Failed to submit form. Please try again.'
       );
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData, paddleLoaded, openCheckout]);
+  }, [formData]);
 
   // Memoized scroll functions
   const scrollToSection = useCallback((sectionId: string) => {
