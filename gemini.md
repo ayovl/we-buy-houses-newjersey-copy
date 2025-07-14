@@ -9,7 +9,7 @@
 - Avoid unnecessary complexity or heavy operations.
 **This is the most important requirement for all development work.**
 
-2. After every change make sure to add all changes with git "add ." and commit with a meaningful message about the changes you made to my local repo. 
+2. After every change make sure to add all changes with git "add ." and commit with a meaningful, detailed message about the changes you made to my local repo. Make sure the message is abit descriptive and detailed. not too  long though.
 **You must not push the changes to remote rep this is very important**
 
 
