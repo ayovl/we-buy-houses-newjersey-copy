@@ -338,7 +338,7 @@ export default function Home() {
               filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))'
             }}
           >
-            A new and improved <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 font-semibold">cashforpropertiesnyc.com</span> is ready for you.
+            A new and improved <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 font-semibold">webuyhomesmonsters.com</span> is ready for you.
           </motion.p><motion.button
             onClick={() => scrollToSection('pricing')}
             className="group relative bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-500 hover:via-purple-400 hover:to-pink-400 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/40 overflow-hidden"
@@ -385,7 +385,7 @@ export default function Home() {
             animate={problemInView ? fadeInUp.animate : fadeInUp.initial}
             transition={fadeInUp.transition}          >
             The Problem with <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 text-2xl md:text-3xl lg:text-4xl break-all">cashforpropertiesnyc.com</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 text-2xl md:text-3xl lg:text-4xl break-all">webuyhomesmonsters.com</span>
           </motion.h2><motion.div 
             className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto"
             initial={staggerContainer.initial}
@@ -994,7 +994,7 @@ export default function Home() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.15 }}
                   >
-                    $1,999
+                    $980
                   </motion.span>
                   <span className="text-lg text-gray-300 font-medium">USD</span>
                 </div>
@@ -1389,7 +1389,7 @@ export default function Home() {
               )}
 
               <p className="text-sm text-gray-300 text-center">
-                Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
+                Your new website will be live at <strong>webuyhomesmonsters.com</strong> in 4 days. 
                 We&apos;ll email your brand assets and login details upon completion.
               </p>
               
@@ -1472,7 +1472,7 @@ export default function Home() {
               </div>
               
               <p className="text-sm text-gray-300 text-center">
-                Your new website will be live at <strong>cashforpropertiesnyc.com</strong> in 4 days. 
+                Your new website will be live at <strong>webuyhomesmonsters.com</strong> in 4 days. 
                 We&apos;ll email your brand assets and login details upon completion.
               </p>
               
