@@ -3,7 +3,13 @@ import { Resend } from 'resend';
 import { ConfirmationEmailTemplate } from '@/components/ConfirmationEmailTemplate';
 import { render } from '@react-email/render';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend lazily to avoid build-time errors
+const getResendClient = () => {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY is not configured');
+  }
+  return new Resend(process.env.RESEND_API_KEY);
+};
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,6 +31,7 @@ export async function POST(req: NextRequest) {
     const emailHtml = await render(ConfirmationEmailTemplate({ userName: name }));
     
     console.log('📮 Sending email via Resend...');
+    const resend = getResendClient();
     const result = await resend.emails.send({
       from: 'no-reply@vorve.tech',
       to: email,
